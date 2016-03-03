@@ -2,6 +2,13 @@
 
 **Recommend me** is an app that recommends restaurants and activities to you. We’ve been there before just after we just got done doing something with friends or family. Like watching a movie or eating at a restaurant. We then try to decide what the group should do next. Recommend Me app suggests activities or restaurants for your group, and gives out detailed information and locations on a map to those places.
 
+## APIs Used
+- [ ] YELP search API will be used for searching local businesses near the user 
+- model class Yelp Client
+  Stores properties - Business name, address, distance
+- [ ] Eventful.com API to search for nearby events and movies.
+- model class Event
+- stores properties Event name, description, address, timings
 
 ## User Stories
 
