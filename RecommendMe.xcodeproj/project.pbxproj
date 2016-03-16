@@ -54,14 +54,38 @@
 		EE83BE221C7D3FC20002DF50 /* RecommendMe */ = {
 			isa = PBXGroup;
 			children = (
+				EE83BE371C7D3FF60002DF50 /* Model */,
+				EE83BE361C7D3FEA0002DF50 /* ViewController */,
+				EE83BE351C7D3FE20002DF50 /* Views */,
 				EE83BE231C7D3FC20002DF50 /* AppDelegate.swift */,
-				EE83BE251C7D3FC20002DF50 /* ViewController.swift */,
 				EE83BE271C7D3FC20002DF50 /* Main.storyboard */,
 				EE83BE2A1C7D3FC20002DF50 /* Assets.xcassets */,
 				EE83BE2C1C7D3FC20002DF50 /* LaunchScreen.storyboard */,
 				EE83BE2F1C7D3FC20002DF50 /* Info.plist */,
 			);
 			path = RecommendMe;
+			sourceTree = "<group>";
+		};
+		EE83BE351C7D3FE20002DF50 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		EE83BE361C7D3FEA0002DF50 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EE83BE251C7D3FC20002DF50 /* ViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		EE83BE371C7D3FF60002DF50 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
