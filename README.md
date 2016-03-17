@@ -9,6 +9,7 @@
 - [ ] Eventful.com API to search for nearby events and movies.
 - model class Event
 - stores properties Event name, description, address, timings
+- Google Maps API - Recommend Me app will send a url of the coordinates from obtained by Yelp to create a Google maps URL. The app will check if Google Maps is in fact installed by checking if a google maps url can be pushed.
 
 ## User Stories
 
