@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0E2406EEB17467234263795 /* Pods_RecommendMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5606B7B2809000C22EC51E /* Pods_RecommendMe.framework */; };
+		EE2961151C99D92C00A088E8 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2961141C99D92C00A088E8 /* YelpClient.swift */; };
 		EE83BE241C7D3FC20002DF50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE83BE231C7D3FC20002DF50 /* AppDelegate.swift */; };
 		EE83BE261C7D3FC20002DF50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE83BE251C7D3FC20002DF50 /* ViewController.swift */; };
 		EE83BE291C7D3FC20002DF50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE83BE271C7D3FC20002DF50 /* Main.storyboard */; };
@@ -15,6 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3DC23E10D5CD47DA769F9601 /* Pods-RecommendMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecommendMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.debug.xcconfig"; sourceTree = "<group>"; };
+		6D5606B7B2809000C22EC51E /* Pods_RecommendMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecommendMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E30ECBB7E68F5F9EBF7DECE /* Pods-RecommendMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecommendMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.release.xcconfig"; sourceTree = "<group>"; };
+		EE2961141C99D92C00A088E8 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		EE83BE201C7D3FC20002DF50 /* RecommendMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecommendMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE83BE231C7D3FC20002DF50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE83BE251C7D3FC20002DF50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +35,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E2406EEB17467234263795 /* Pods_RecommendMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1471157E4B8ADB8B6A74C50D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D5606B7B2809000C22EC51E /* Pods_RecommendMe.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33B1BE30717C4349EE15B8D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3DC23E10D5CD47DA769F9601 /* Pods-RecommendMe.debug.xcconfig */,
+				9E30ECBB7E68F5F9EBF7DECE /* Pods-RecommendMe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EE2961131C99D82300A088E8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				EE2961141C99D92C00A088E8 /* YelpClient.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		EE83BE171C7D3FC20002DF50 = {
 			isa = PBXGroup;
 			children = (
 				EE83BE221C7D3FC20002DF50 /* RecommendMe */,
 				EE83BE211C7D3FC20002DF50 /* Products */,
+				33B1BE30717C4349EE15B8D2 /* Pods */,
+				1471157E4B8ADB8B6A74C50D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +88,7 @@
 		EE83BE221C7D3FC20002DF50 /* RecommendMe */ = {
 			isa = PBXGroup;
 			children = (
+				EE2961131C99D82300A088E8 /* API */,
 				EE83BE371C7D3FF60002DF50 /* Model */,
 				EE83BE361C7D3FEA0002DF50 /* ViewController */,
 				EE83BE351C7D3FE20002DF50 /* Views */,
@@ -95,9 +130,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE83BE321C7D3FC20002DF50 /* Build configuration list for PBXNativeTarget "RecommendMe" */;
 			buildPhases = (
+				753C657F7B665D94D668C93A /* Check Pods Manifest.lock */,
 				EE83BE1C1C7D3FC20002DF50 /* Sources */,
 				EE83BE1D1C7D3FC20002DF50 /* Frameworks */,
 				EE83BE1E1C7D3FC20002DF50 /* Resources */,
+				F841FF70405030C110FBAB17 /* Embed Pods Frameworks */,
+				0E6E5FDF10023A29FF88EE2E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -154,12 +192,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0E6E5FDF10023A29FF88EE2E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		753C657F7B665D94D668C93A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F841FF70405030C110FBAB17 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EE83BE1C1C7D3FC20002DF50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EE83BE261C7D3FC20002DF50 /* ViewController.swift in Sources */,
+				EE2961151C99D92C00A088E8 /* YelpClient.swift in Sources */,
 				EE83BE241C7D3FC20002DF50 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +356,7 @@
 		};
 		EE83BE331C7D3FC20002DF50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DC23E10D5CD47DA769F9601 /* Pods-RecommendMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RecommendMe/Info.plist;
@@ -280,6 +368,7 @@
 		};
 		EE83BE341C7D3FC20002DF50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E30ECBB7E68F5F9EBF7DECE /* Pods-RecommendMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RecommendMe/Info.plist;
@@ -308,6 +397,7 @@
 				EE83BE341C7D3FC20002DF50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
