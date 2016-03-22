@@ -52,11 +52,11 @@ class YelpClient: BDBOAuth1SessionManager {
         self.requestSerializer.saveAccessToken(token)
     }
     
-    func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+    func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask  {
         return searchWithTerm(term, sort: nil, categories: nil, deals: nil, completion: completion)
     }
     
-    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask  {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
         
@@ -78,7 +78,7 @@ class YelpClient: BDBOAuth1SessionManager {
         
         print(parameters)
         
-        return self.GET("search", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        return self.GET("search", parameters: parameters, success: { (operation: NSURLSessionTask!, response: AnyObject!) -> Void in
             let dictionaries = response["businesses"] as? [NSDictionary]
             if dictionaries != nil {
                 completion(Business.businesses(array: dictionaries!), nil)
@@ -90,7 +90,7 @@ class YelpClient: BDBOAuth1SessionManager {
     
     // Added the offset feature with searchWithTerm
     
-    func searchWithTermOffset(term: String, offset:Int, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+    func searchWithTermOffset(term: String, offset:Int, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask  {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
         // Default the location to San Francisco
