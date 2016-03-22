@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C768873B1C9A4CB800F9FA14 /* Bussiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = C768873A1C9A4CB800F9FA14 /* Bussiness.swift */; };
 		E0E2406EEB17467234263795 /* Pods_RecommendMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5606B7B2809000C22EC51E /* Pods_RecommendMe.framework */; };
+		EE245A421CA1E3D900DF2A76 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE245A411CA1E3D900DF2A76 /* MainMenuViewController.swift */; };
+		EE245A441CA1E6B200DF2A76 /* AdvancedFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE245A431CA1E6B200DF2A76 /* AdvancedFilterViewController.swift */; };
+		EE245A461CA1FC5300DF2A76 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE245A451CA1FC5300DF2A76 /* PlannerViewController.swift */; };
 		EE2961151C99D92C00A088E8 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2961141C99D92C00A088E8 /* YelpClient.swift */; };
 		EE83BE241C7D3FC20002DF50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE83BE231C7D3FC20002DF50 /* AppDelegate.swift */; };
 		EE83BE261C7D3FC20002DF50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE83BE251C7D3FC20002DF50 /* ViewController.swift */; };
@@ -22,6 +25,9 @@
 		6D5606B7B2809000C22EC51E /* Pods_RecommendMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecommendMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E30ECBB7E68F5F9EBF7DECE /* Pods-RecommendMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecommendMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.release.xcconfig"; sourceTree = "<group>"; };
 		C768873A1C9A4CB800F9FA14 /* Bussiness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bussiness.swift; sourceTree = "<group>"; };
+		EE245A411CA1E3D900DF2A76 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		EE245A431CA1E6B200DF2A76 /* AdvancedFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedFilterViewController.swift; sourceTree = "<group>"; };
+		EE245A451CA1FC5300DF2A76 /* PlannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
 		EE2961141C99D92C00A088E8 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		EE83BE201C7D3FC20002DF50 /* RecommendMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecommendMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE83BE231C7D3FC20002DF50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				EE83BE251C7D3FC20002DF50 /* ViewController.swift */,
+				EE245A411CA1E3D900DF2A76 /* MainMenuViewController.swift */,
+				EE245A431CA1E6B200DF2A76 /* AdvancedFilterViewController.swift */,
+				EE245A451CA1FC5300DF2A76 /* PlannerViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -248,8 +257,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE245A441CA1E6B200DF2A76 /* AdvancedFilterViewController.swift in Sources */,
 				EE83BE261C7D3FC20002DF50 /* ViewController.swift in Sources */,
+				EE245A421CA1E3D900DF2A76 /* MainMenuViewController.swift in Sources */,
 				C768873B1C9A4CB800F9FA14 /* Bussiness.swift in Sources */,
+				EE245A461CA1FC5300DF2A76 /* PlannerViewController.swift in Sources */,
 				EE2961151C99D92C00A088E8 /* YelpClient.swift in Sources */,
 				EE83BE241C7D3FC20002DF50 /* AppDelegate.swift in Sources */,
 			);
