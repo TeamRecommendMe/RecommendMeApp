@@ -15,13 +15,13 @@
 
 The following **required** functionality is completed:
 
-- [ ] Google Map implementation 
+- [ ] Opens Google Maps to give user detailed navigation directions and street views.
 - [ ] Initial Settings page that at first ever start of the application ask users preferences of activities they like and dislike doing.
 - [ ] Main Menu view controller where the user can select from to which item they want to do a recommend search from.
+- [ ] Main Menu uses UI Gesture Recognizers to swipe to different view controllers.
 - [ ] Advanced search to fine-tune both activities and restaurants.
-- [ ] detail pageview of the selected places.
+- [ ] Detail view controller of the selected places.
 - [ ] About page to give credit to the people who help create this and the technologies that must be credited to.
-- [ ] Uses group agreed upon logos and color schemes, and fonts.
 
 The following **optional** features are implemented:
 
