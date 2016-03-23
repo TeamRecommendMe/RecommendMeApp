@@ -22,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.tintColor = UIColor.whiteColor()
         navigationBarAppearace.barTintColor = uiColorFromHex(0x252b39)
         
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
+        navigationBarAppearace.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Verdana-BoldItalic", size: 17)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         return true
     }

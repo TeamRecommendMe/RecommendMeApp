@@ -6,6 +6,7 @@
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 
+/*
 import UIKit
 import AFNetworking
 import BDBOAuth1Manager
@@ -79,11 +80,11 @@ class YelpClient: BDBOAuth1SessionManager {
         print(parameters)
         
         return self.GET("search", parameters: parameters, success: { (operation: NSURLSessionTask!, response: AnyObject!) -> Void in
-            let dictionaries = response["businesses"] as? [NSDictionary]
-            if dictionaries != nil {
+           let dictionaries = response["businesses"] as? [NSDictionary]
+          if dictionaries != nil {
                 completion(Business.businesses(array: dictionaries!), nil)
-            }
-            }, failure: { (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in
+             }
+            }, failure: { (operation: NSURLSessionTask?, error: NSError!) -> Void in
                 completion(nil, error)
         })!
     }
@@ -112,15 +113,17 @@ class YelpClient: BDBOAuth1SessionManager {
         
         print(parameters)
         
-        return self.GET("search", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+      return self.GET("search", parameters: parameters, success: { (operation: NSURLSessionTask!, response: AnyObject!) -> Void in
             let dictionaries = response["businesses"] as? [NSDictionary]
             if dictionaries != nil {
                 completion(Business.businesses(array: dictionaries!), nil)
             }
-            }, failure: { (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in
+            }, failure: { (operation: NSURLSessionTask?, error: NSError!) -> Void in
                 completion(nil, error)
         })!
+
+
     }
 
 }
-
+*/

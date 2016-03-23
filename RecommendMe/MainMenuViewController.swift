@@ -13,8 +13,17 @@ class MainMenuViewController: UIViewController {
 
     
     
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeLeft)
+        
 
         // Do any additional setup after loading the view.
     }
@@ -22,6 +31,26 @@ class MainMenuViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.Left:
+                print("Gesture Right")
+                self.performSegueWithIdentifier("advancedSettings", sender: self)
+            case UISwipeGestureRecognizerDirection.Right:
+                print("Gesture Left")
+                self.performSegueWithIdentifier("initialSettings", sender: self)
+            default:
+                break
+                
+                
+            }
+        }
     }
     
 
