@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import GameplayKit
 
 class MainMenuViewController: UIViewController {
-
-
+    let array : [String] = ["a","b","c"]
+    
     
     
     override func viewDidLoad() {
@@ -24,6 +25,8 @@ class MainMenuViewController: UIViewController {
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         
+        let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
+        print(shuffled)
 
         // Do any additional setup after loading the view.
     }
