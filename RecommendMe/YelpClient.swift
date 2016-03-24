@@ -23,7 +23,7 @@ enum YelpSortMode: Int {
 
 class YelpClient: BDBOAuth1SessionManager {
     
-    var accessToken: String!
+    /*var accessToken: String!
     var accessSecret: String!
     
     
@@ -125,7 +125,7 @@ class YelpClient: BDBOAuth1SessionManager {
         })!
 
 
-    }
+    }*/
 
 }
 
