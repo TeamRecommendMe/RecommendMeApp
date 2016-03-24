@@ -12,6 +12,7 @@
 		EE245A441CA1E6B200DF2A76 /* AdvancedFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE245A431CA1E6B200DF2A76 /* AdvancedFilterViewController.swift */; };
 		EE245A461CA1FC5300DF2A76 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE245A451CA1FC5300DF2A76 /* PlannerViewController.swift */; };
 		EE245A4A1CA3182200DF2A76 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE245A491CA3182200DF2A76 /* Business.swift */; };
+		EE245A4C1CA37E3000DF2A76 /* InitialSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE245A4B1CA37E3000DF2A76 /* InitialSettingsViewController.swift */; };
 		EE2961151C99D92C00A088E8 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2961141C99D92C00A088E8 /* YelpClient.swift */; };
 		EE83BE241C7D3FC20002DF50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE83BE231C7D3FC20002DF50 /* AppDelegate.swift */; };
 		EE83BE261C7D3FC20002DF50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE83BE251C7D3FC20002DF50 /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 		EE245A431CA1E6B200DF2A76 /* AdvancedFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedFilterViewController.swift; sourceTree = "<group>"; };
 		EE245A451CA1FC5300DF2A76 /* PlannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
 		EE245A491CA3182200DF2A76 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		EE245A4B1CA37E3000DF2A76 /* InitialSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialSettingsViewController.swift; sourceTree = "<group>"; };
 		EE2961141C99D92C00A088E8 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		EE83BE201C7D3FC20002DF50 /* RecommendMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecommendMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE83BE231C7D3FC20002DF50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				EE245A411CA1E3D900DF2A76 /* MainMenuViewController.swift */,
 				EE245A431CA1E6B200DF2A76 /* AdvancedFilterViewController.swift */,
 				EE245A451CA1FC5300DF2A76 /* PlannerViewController.swift */,
+				EE245A4B1CA37E3000DF2A76 /* InitialSettingsViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE245A4C1CA37E3000DF2A76 /* InitialSettingsViewController.swift in Sources */,
 				EE245A441CA1E6B200DF2A76 /* AdvancedFilterViewController.swift in Sources */,
 				EE245A4A1CA3182200DF2A76 /* Business.swift in Sources */,
 				EE83BE261C7D3FC20002DF50 /* ViewController.swift in Sources */,
