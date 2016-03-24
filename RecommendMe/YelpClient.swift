@@ -20,12 +20,9 @@ enum YelpSortMode: Int {
     case BestMatched = 0, Distance, HighestRated
 }
 
-
 class YelpClient: BDBOAuth1SessionManager {
-    
-    /*var accessToken: String!
+    var accessToken: String!
     var accessSecret: String!
-    
     
     class var sharedInstance : YelpClient {
         struct Static {
@@ -53,11 +50,11 @@ class YelpClient: BDBOAuth1SessionManager {
         self.requestSerializer.saveAccessToken(token)
     }
     
-    func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask  {
+    func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
         return searchWithTerm(term, sort: nil, categories: nil, deals: nil, completion: completion)
     }
     
-    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask  {
+    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
         
@@ -79,21 +76,19 @@ class YelpClient: BDBOAuth1SessionManager {
         
         print(parameters)
         
-        return self.Get("search", parameters: parameters, success: { (ope
-        
-        //return self.GET("search", parameters: parameters, success: { (operation:, response: AnyObject!) -> Void in
-         //  let dictionaries = response["businesses"] as? [NSDictionary]
-        //  if dictionaries != nil {
-        //        completion(Business.businesses(array: dictionaries!), nil)
-        //     }
-          //    }, failure: { (operation: NSURLSessionTask?, error: NSError!) -> Void in
-       //         completion(nil, error)
-         // })!
+        return self.GET("search", parameters: parameters, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            let dictionaries = response!["businesses"] as? [NSDictionary]
+            if dictionaries != nil {
+                completion(Business.businesses(array: dictionaries!), nil)
+            }
+            }, failure: { (operation: NSURLSessionTask?, error: NSError!) -> Void in
+                completion(nil, error)
+        })!
     }
     
     // Added the offset feature with searchWithTerm
     
-    func searchWithTermOffset(term: String, offset:Int, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask  {
+    func searchWithTermOffset(term: String, offset:Int, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
         // Default the location to San Francisco
@@ -115,17 +110,15 @@ class YelpClient: BDBOAuth1SessionManager {
         
         print(parameters)
         
-      return self.GET("search", parameters: parameters, success: { (operation: NSURLSessionTask!, response: AnyObject!) -> Void in
-            let dictionaries = response["businesses"] as? [NSDictionary]
+        return self.GET("search", parameters: parameters, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            let dictionaries = response!["businesses"] as? [NSDictionary]
             if dictionaries != nil {
                 completion(Business.businesses(array: dictionaries!), nil)
             }
-            }, failure: { (operation: NSURLSessionTask?, error: NSError!) -> Void in
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
                 completion(nil, error)
         })!
-
-
-    }*/
+    }
 
 }
 
