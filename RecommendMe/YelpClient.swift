@@ -6,7 +6,7 @@
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 
-/*
+
 import UIKit
 import AFNetworking
 import BDBOAuth1Manager
@@ -79,14 +79,16 @@ class YelpClient: BDBOAuth1SessionManager {
         
         print(parameters)
         
-        return self.GET("search", parameters: parameters, success: { (operation: NSURLSessionTask!, response: AnyObject!) -> Void in
-           let dictionaries = response["businesses"] as? [NSDictionary]
-          if dictionaries != nil {
-                completion(Business.businesses(array: dictionaries!), nil)
-             }
-            }, failure: { (operation: NSURLSessionTask?, error: NSError!) -> Void in
-                completion(nil, error)
-        })!
+        return self.Get("search", parameters: parameters, success: { (ope
+        
+        //return self.GET("search", parameters: parameters, success: { (operation:, response: AnyObject!) -> Void in
+         //  let dictionaries = response["businesses"] as? [NSDictionary]
+        //  if dictionaries != nil {
+        //        completion(Business.businesses(array: dictionaries!), nil)
+        //     }
+          //    }, failure: { (operation: NSURLSessionTask?, error: NSError!) -> Void in
+       //         completion(nil, error)
+         // })!
     }
     
     // Added the offset feature with searchWithTerm
@@ -126,4 +128,4 @@ class YelpClient: BDBOAuth1SessionManager {
     }
 
 }
-*/
+
