@@ -30,6 +30,10 @@ The following **optional** features are implemented:
 - [ ] Push notification to let them know that one of their friends have thumbs up a place.
 - [ ] Animation and transitions to the different areas of the application.
 
+## Walkthrough March 23rd:
+![group1](https://cloud.githubusercontent.com/assets/14221032/14008540/09d5bc74-f13f-11e5-955d-ef786fbb691c.gif)
+
+
     Copyright [2016] [Team Recommend Me]
 
     Licensed under the Apache License, Version 2.0 (the "License");
