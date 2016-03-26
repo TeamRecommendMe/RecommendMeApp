@@ -18,12 +18,16 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var tableView: UITableView!
     weak var delegate: InitialSettingsViewControllerDelegate?
     var foodCategories: [[String:String]]!
+    var activitiesCategories:[[String:String]]!
+    var allCategories: [[String:String]]!
     var switchStates = [Int: Bool]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         foodCategories = yelpCategories()
-        
+        activitiesCategories = yelpActivitiesCategories()
+        allCategories = yelpCategories() + bigActivities()
+        print(allCategories.count)
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -34,16 +38,41 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         // Dispose of any resources that can be recreated.
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foodCategories.count
+        return allCategories.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCellTableViewCell
         
-        cell.switchLabel.text = foodCategories[indexPath.row]["name"]
+        cell.switchLabel.text = allCategories[indexPath.row]["name"]
         cell.delegate = self
         
         cell.onSwitch.on = switchStates [indexPath.row] ?? true
         return cell
+    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // 1
+        // Return the number of sections.
+        return 2
+    }
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("Header") as! HeaderCell
+        headerCell.backgroundColor = UIColor.cyanColor()
+        
+        switch (section) {
+        case 0:
+            headerCell.headerLabel.text = "Food";
+            //return sectionHeaderView
+        case 1:
+            headerCell.headerLabel.text = "Asia";
+            //return sectionHeaderView
+        case 2:
+            headerCell.headerLabel.text = "South America";
+            //return sectionHeaderView
+        default:
+            headerCell.headerLabel.text = "Other";
+        }
+        
+        return headerCell
     }
     
     func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) {
@@ -57,8 +86,16 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         var selectedCategories = [String]()
         //selectedCategories.removeAll()
         for (row, isSelected) in switchStates {
-            if isSelected {
-                selectedCategories.append(foodCategories[row]["code"]!)
+            if row < 169 {
+                if isSelected {
+                    selectedCategories.append(allCategories[row]["code"]!)
+                }
+            }
+            else
+            {
+                if isSelected {
+                    selectedCategories.append(activitiesCategories[row]["code"]!)
+                }
             }
         }
         var i = 0
@@ -238,9 +275,11 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Wraps", "code": "wraps"],
             ["name" : "Yugoslav", "code": "yugoslav"]]
     }
-    func activitiesCategories() -> [[String:String]]
+    func yelpActivitiesCategories() -> [[String:String]]
     {
-        return [["name" : "Amusement Parks", "code": "amusementparks"],
+        return
+            //Attractions
+            [["name" : "Amusement Parks", "code": "amusementparks"],
             ["name" : "Aquariums", "code": "aquariums"],
             ["name" : "Arcades", "code": "arcades"],
             ["name" : "Art Galleries", "code": "galleries"],
@@ -254,13 +293,13 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Skating Rinks", "code": "skatingrinks"],
             ["name" : "Trampoline Parks", "code": "trampoline"],
             ["name" : "Zoos", "code": "zoos"],
-            
+            //Beauty and Spas
             ["name" : "Day Spas", "code": "spas"],
             ["name" : "Massage", "code": "massage"],
             ["name" : "Piercing", "code": "piercing"],
             ["name" : "Tanning", "code": "tanning"],
             ["name" : "Tattoo", "code": "tattoo"],
-            
+            //Entertainment
             ["name" : "Festivals", "code": "festivals"],
             ["name" : "Movies", "code": "movietheatres"],
             ["name" : "Music Venues", "code": "musicvenues"],
@@ -269,7 +308,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Race Tracks", "code": "racetracks"],
             ["name" : "Social Clubs", "code": "social_clubs"],
             ["name" : "Wineries", "code": "wineries"],
-            
+            //Extreme/Great Outdoors
             ["name" : "Climbing", "code": "climbing"],
             ["name" : "Hang Gliding", "code": "hanggliding"],
             ["name" : "Hiking", "code": "hiking"],
@@ -278,7 +317,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Rafting/Kayaking", "code": "rafting"],
             ["name" : "Skydiving", "code": "skydiving"],
             ["name" : "Landmarks", "code": "landmarks"],
-            
+            //Nightlife
             ["name" : "Champagne Bars", "code": "champagne_bars"],
             ["name" : "Cocktail Bars", "code": "cocktailbars"],
             ["name" : "Comedy Clubs", "code": "comedyclubs"],
@@ -295,17 +334,17 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Pubs", "code": "pubs"],
             ["name" : "Sports Bars", "code": "sportsbars"],
             ["name" : "Wine Bars", "code": "wine_bars"],
-            
+            //Parks
             ["name" : "Playgrounds", "code": "playgrounds"],
             ["name" : "Skate Parks", "code": "skate_parks"],
-            
+            //Pets
             ["name" : "Animal Parks", "code": "dog_parks"],
             ["name" : "Animal Shelters", "code": "animalshelters"],
-            
+            //Professional Sports
             ["name" : "Amateur Sports Teams", "code": "amateursportsteams"],
             ["name" : "Professional Sports Teams", "code": "sportsteams"],
             ["name" : "Stadiums & Arenas", "code": "stadiumsarenas"],
-            
+            //Sports
             ["name" : "Archery", "code": "archery"],
             ["name" : "Badminton", "code": "badminton"],
             ["name" : "Basketball Courts", "code": "basketballcourts"],
@@ -323,7 +362,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Squash", "code": "squash"],
             ["name" : "Tennis", "code": "tennis"],
             ["name" : "Yoga", "code": "yoga"],
-            
+            //Water
             ["name" : "Beaches", "code": "beaches"],
             ["name" : "Fishing", "code": "fishing"],
             ["name" : "Kiteboarding", "code": "kiteboarding"],
@@ -333,6 +372,20 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Surfing", "code": "surfing"],
             ["name" : "Swimming Pools", "code": "swimmingpools"],
             ["name" : "Tubing", "code": "tubing"]]
+    }
+    func bigActivities() -> [[String:String]]
+    {
+                return [["name" : "Attractions"],
+                ["name" : "Beauty and Spas"],
+                ["name" : "Entertainment"],
+                ["name" : "Great Outdoors/Extreme"],
+                ["name" : "Landmarks/Historical Buildings"],
+                ["name" : "Nightlife"],
+                ["name" : "Parks"],
+                ["name" : "Pets"],
+                ["name" : "Professional Sporting Events"],
+                ["name" : "Sports"],
+                ["name" : "Water"]]
     }
     /*
     // MARK: - Navigation

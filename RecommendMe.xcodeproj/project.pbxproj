@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		424056D205707EA27D0ED609 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4D18CCC45AB080C7F6CB1D /* Pods.framework */; };
+		948D1D4E1CA74F8F0051319D /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948D1D4D1CA74F8F0051319D /* HeaderCell.swift */; };
 		94A1E1D01CA720F0009B0A20 /* SwitchCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1E1CF1CA720F0009B0A20 /* SwitchCellTableViewCell.swift */; };
 		E0E2406EEB17467234263795 /* Pods_RecommendMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5606B7B2809000C22EC51E /* Pods_RecommendMe.framework */; };
 		EE245A421CA1E3D900DF2A76 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE245A411CA1E3D900DF2A76 /* MainMenuViewController.swift */; };
@@ -27,6 +28,7 @@
 		3DC23E10D5CD47DA769F9601 /* Pods-RecommendMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecommendMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.debug.xcconfig"; sourceTree = "<group>"; };
 		4C4D18CCC45AB080C7F6CB1D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5606B7B2809000C22EC51E /* Pods_RecommendMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecommendMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		948D1D4D1CA74F8F0051319D /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		94A1E1CF1CA720F0009B0A20 /* SwitchCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCellTableViewCell.swift; sourceTree = "<group>"; };
 		9E30ECBB7E68F5F9EBF7DECE /* Pods-RecommendMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecommendMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.release.xcconfig"; sourceTree = "<group>"; };
 		EE245A411CA1E3D900DF2A76 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				94A1E1CF1CA720F0009B0A20 /* SwitchCellTableViewCell.swift */,
+				948D1D4D1CA74F8F0051319D /* HeaderCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				EE83BE261C7D3FC20002DF50 /* ViewController.swift in Sources */,
 				EE245A421CA1E3D900DF2A76 /* MainMenuViewController.swift in Sources */,
 				EE245A461CA1FC5300DF2A76 /* PlannerViewController.swift in Sources */,
+				948D1D4E1CA74F8F0051319D /* HeaderCell.swift in Sources */,
 				EE2961151C99D92C00A088E8 /* YelpClient.swift in Sources */,
 				94A1E1D01CA720F0009B0A20 /* SwitchCellTableViewCell.swift in Sources */,
 				EE83BE241C7D3FC20002DF50 /* AppDelegate.swift in Sources */,
