@@ -8,11 +8,24 @@
 
 import UIKit
 
-class InitialSettingsViewController: UIViewController {
+@ objc protocol InitialSettingsViewControllerDelegate {
+    optional func initialSettingsViewController (initialSettingsViewController: InitialSettingsViewController, didUpdateFilters filters: [String:AnyObject])
+}
 
+class InitialSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellTableViewCellDelegate {
+
+
+    @IBOutlet weak var tableView: UITableView!
+    weak var delegate: InitialSettingsViewControllerDelegate?
+    var foodCategories: [[String:String]]!
+    var switchStates = [Int: Bool]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        		
+        
+        foodCategories = yelpCategories()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
 
@@ -20,8 +33,307 @@ class InitialSettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return foodCategories.count
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCellTableViewCell
+        
+        cell.switchLabel.text = foodCategories[indexPath.row]["name"]
+        cell.delegate = self
+        
+        cell.onSwitch.on = switchStates [indexPath.row] ?? true
+        return cell
+    }
     
-
+    func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) {
+        let indexPath = tableView.indexPathForCell(switchCell)!
+        switchStates [indexPath.row] = value
+        print("filters view controller got the switch event")
+    }
+    @IBAction func doneButton(sender: AnyObject) {
+        
+        var filters = [String:AnyObject]()
+        var selectedCategories = [String]()
+        //selectedCategories.removeAll()
+        for (row, isSelected) in switchStates {
+            if isSelected {
+                selectedCategories.append(foodCategories[row]["code"]!)
+            }
+        }
+        var i = 0
+        delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
+        for i = 0; i < selectedCategories.count; i++ {
+            print(selectedCategories[i])
+        }
+    }
+    func yelpCategories() -> [[String:String]] {
+        return [["name" : "Afghan", "code": "afghani"],
+            ["name" : "African", "code": "african"],
+            ["name" : "American, New", "code": "newamerican"],
+            ["name" : "American, Traditional", "code": "tradamerican"],
+            ["name" : "Arabian", "code": "arabian"],
+            ["name" : "Argentine", "code": "argentine"],
+            ["name" : "Armenian", "code": "armenian"],
+            ["name" : "Asian Fusion", "code": "asianfusion"],
+            ["name" : "Asturian", "code": "asturian"],
+            ["name" : "Australian", "code": "australian"],
+            ["name" : "Austrian", "code": "austrian"],
+            ["name" : "Baguettes", "code": "baguettes"],
+            ["name" : "Bangladeshi", "code": "bangladeshi"],
+            ["name" : "Barbeque", "code": "bbq"],
+            ["name" : "Basque", "code": "basque"],
+            ["name" : "Bavarian", "code": "bavarian"],
+            ["name" : "Beer Garden", "code": "beergarden"],
+            ["name" : "Beer Hall", "code": "beerhall"],
+            ["name" : "Beisl", "code": "beisl"],
+            ["name" : "Belgian", "code": "belgian"],
+            ["name" : "Bistros", "code": "bistros"],
+            ["name" : "Black Sea", "code": "blacksea"],
+            ["name" : "Brasseries", "code": "brasseries"],
+            ["name" : "Brazilian", "code": "brazilian"],
+            ["name" : "Breakfast & Brunch", "code": "breakfast_brunch"],
+            ["name" : "British", "code": "british"],
+            ["name" : "Buffets", "code": "buffets"],
+            ["name" : "Bulgarian", "code": "bulgarian"],
+            ["name" : "Burgers", "code": "burgers"],
+            ["name" : "Burmese", "code": "burmese"],
+            ["name" : "Cafes", "code": "cafes"],
+            ["name" : "Cafeteria", "code": "cafeteria"],
+            ["name" : "Cajun/Creole", "code": "cajun"],
+            ["name" : "Cambodian", "code": "cambodian"],
+            ["name" : "Canadian", "code": "New)"],
+            ["name" : "Canteen", "code": "canteen"],
+            ["name" : "Caribbean", "code": "caribbean"],
+            ["name" : "Catalan", "code": "catalan"],
+            ["name" : "Chech", "code": "chech"],
+            ["name" : "Cheesesteaks", "code": "cheesesteaks"],
+            ["name" : "Chicken Shop", "code": "chickenshop"],
+            ["name" : "Chicken Wings", "code": "chicken_wings"],
+            ["name" : "Chilean", "code": "chilean"],
+            ["name" : "Chinese", "code": "chinese"],
+            ["name" : "Comfort Food", "code": "comfortfood"],
+            ["name" : "Corsican", "code": "corsican"],
+            ["name" : "Creperies", "code": "creperies"],
+            ["name" : "Cuban", "code": "cuban"],
+            ["name" : "Curry Sausage", "code": "currysausage"],
+            ["name" : "Cypriot", "code": "cypriot"],
+            ["name" : "Czech", "code": "czech"],
+            ["name" : "Czech/Slovakian", "code": "czechslovakian"],
+            ["name" : "Danish", "code": "danish"],
+            ["name" : "Delis", "code": "delis"],
+            ["name" : "Diners", "code": "diners"],
+            ["name" : "Dumplings", "code": "dumplings"],
+            ["name" : "Eastern European", "code": "eastern_european"],
+            ["name" : "Ethiopian", "code": "ethiopian"],
+            ["name" : "Fast Food", "code": "hotdogs"],
+            ["name" : "Filipino", "code": "filipino"],
+            ["name" : "Fish & Chips", "code": "fishnchips"],
+            ["name" : "Fondue", "code": "fondue"],
+            ["name" : "Food Court", "code": "food_court"],
+            ["name" : "Food Stands", "code": "foodstands"],
+            ["name" : "French", "code": "french"],
+            ["name" : "French Southwest", "code": "sud_ouest"],
+            ["name" : "Galician", "code": "galician"],
+            ["name" : "Gastropubs", "code": "gastropubs"],
+            ["name" : "Georgian", "code": "georgian"],
+            ["name" : "German", "code": "german"],
+            ["name" : "Giblets", "code": "giblets"],
+            ["name" : "Gluten-Free", "code": "gluten_free"],
+            ["name" : "Greek", "code": "greek"],
+            ["name" : "Halal", "code": "halal"],
+            ["name" : "Hawaiian", "code": "hawaiian"],
+            ["name" : "Heuriger", "code": "heuriger"],
+            ["name" : "Himalayan/Nepalese", "code": "himalayan"],
+            ["name" : "Hong Kong Style Cafe", "code": "hkcafe"],
+            ["name" : "Hot Dogs", "code": "hotdog"],
+            ["name" : "Hot Pot", "code": "hotpot"],
+            ["name" : "Hungarian", "code": "hungarian"],
+            ["name" : "Iberian", "code": "iberian"],
+            ["name" : "Indian", "code": "indpak"],
+            ["name" : "Indonesian", "code": "indonesian"],
+            ["name" : "International", "code": "international"],
+            ["name" : "Irish", "code": "irish"],
+            ["name" : "Island Pub", "code": "island_pub"],
+            ["name" : "Israeli", "code": "israeli"],
+            ["name" : "Italian", "code": "italian"],
+            ["name" : "Japanese", "code": "japanese"],
+            ["name" : "Jewish", "code": "jewish"],
+            ["name" : "Kebab", "code": "kebab"],
+            ["name" : "Korean", "code": "korean"],
+            ["name" : "Kosher", "code": "kosher"],
+            ["name" : "Kurdish", "code": "kurdish"],
+            ["name" : "Laos", "code": "laos"],
+            ["name" : "Laotian", "code": "laotian"],
+            ["name" : "Latin American", "code": "latin"],
+            ["name" : "Live/Raw Food", "code": "raw_food"],
+            ["name" : "Lyonnais", "code": "lyonnais"],
+            ["name" : "Malaysian", "code": "malaysian"],
+            ["name" : "Meatballs", "code": "meatballs"],
+            ["name" : "Mediterranean", "code": "mediterranean"],
+            ["name" : "Mexican", "code": "mexican"],
+            ["name" : "Middle Eastern", "code": "mideastern"],
+            ["name" : "Milk Bars", "code": "milkbars"],
+            ["name" : "Modern Australian", "code": "modern_australian"],
+            ["name" : "Modern European", "code": "modern_european"],
+            ["name" : "Mongolian", "code": "mongolian"],
+            ["name" : "Moroccan", "code": "moroccan"],
+            ["name" : "New Zealand", "code": "newzealand"],
+            ["name" : "Night Food", "code": "nightfood"],
+            ["name" : "Norcinerie", "code": "norcinerie"],
+            ["name" : "Open Sandwiches", "code": "opensandwiches"],
+            ["name" : "Oriental", "code": "oriental"],
+            ["name" : "Pakistani", "code": "pakistani"],
+            ["name" : "Parent Cafes", "code": "eltern_cafes"],
+            ["name" : "Parma", "code": "parma"],
+            ["name" : "Persian/Iranian", "code": "persian"],
+            ["name" : "Peruvian", "code": "peruvian"],
+            ["name" : "Pita", "code": "pita"],
+            ["name" : "Pizza", "code": "pizza"],
+            ["name" : "Polish", "code": "polish"],
+            ["name" : "Portuguese", "code": "portuguese"],
+            ["name" : "Potatoes", "code": "potatoes"],
+            ["name" : "Poutineries", "code": "poutineries"],
+            ["name" : "Pub Food", "code": "pubfood"],
+            ["name" : "Rice", "code": "riceshop"],
+            ["name" : "Romanian", "code": "romanian"],
+            ["name" : "Rotisserie Chicken", "code": "rotisserie_chicken"],
+            ["name" : "Rumanian", "code": "rumanian"],
+            ["name" : "Russian", "code": "russian"],
+            ["name" : "Salad", "code": "salad"],
+            ["name" : "Sandwiches", "code": "sandwiches"],
+            ["name" : "Scandinavian", "code": "scandinavian"],
+            ["name" : "Scottish", "code": "scottish"],
+            ["name" : "Seafood", "code": "seafood"],
+            ["name" : "Serbo Croatian", "code": "serbocroatian"],
+            ["name" : "Signature Cuisine", "code": "signature_cuisine"],
+            ["name" : "Singaporean", "code": "singaporean"],
+            ["name" : "Slovakian", "code": "slovakian"],
+            ["name" : "Soul Food", "code": "soulfood"],
+            ["name" : "Soup", "code": "soup"],
+            ["name" : "Southern", "code": "southern"],
+            ["name" : "Spanish", "code": "spanish"],
+            ["name" : "Steakhouses", "code": "steak"],
+            ["name" : "Sushi Bars", "code": "sushi"],
+            ["name" : "Swabian", "code": "swabian"],
+            ["name" : "Swedish", "code": "swedish"],
+            ["name" : "Swiss Food", "code": "swissfood"],
+            ["name" : "Tabernas", "code": "tabernas"],
+            ["name" : "Taiwanese", "code": "taiwanese"],
+            ["name" : "Tapas Bars", "code": "tapas"],
+            ["name" : "Tapas/Small Plates", "code": "tapasmallplates"],
+            ["name" : "Tex-Mex", "code": "tex-mex"],
+            ["name" : "Thai", "code": "thai"],
+            ["name" : "Traditional Norwegian", "code": "norwegian"],
+            ["name" : "Traditional Swedish", "code": "traditional_swedish"],
+            ["name" : "Trattorie", "code": "trattorie"],
+            ["name" : "Turkish", "code": "turkish"],
+            ["name" : "Ukrainian", "code": "ukrainian"],
+            ["name" : "Uzbek", "code": "uzbek"],
+            ["name" : "Vegan", "code": "vegan"],
+            ["name" : "Vegetarian", "code": "vegetarian"],
+            ["name" : "Venison", "code": "venison"],
+            ["name" : "Vietnamese", "code": "vietnamese"],
+            ["name" : "Wok", "code": "wok"],
+            ["name" : "Wraps", "code": "wraps"],
+            ["name" : "Yugoslav", "code": "yugoslav"]]
+    }
+    func activitiesCategories() -> [[String:String]]
+    {
+        return [["name" : "Amusement Parks", "code": "amusementparks"],
+            ["name" : "Aquariums", "code": "aquariums"],
+            ["name" : "Arcades", "code": "arcades"],
+            ["name" : "Art Galleries", "code": "galleries"],
+            ["name" : "Casinos", "code": "casinos"],
+            ["name" : "Go Karts", "code": "gokarts"],
+            ["name" : "Horse Racing", "code": "horseracing"],
+            ["name" : "Laser Tag", "code": "lasertag"],
+            ["name" : "Mini Golf", "code": "mini_golf"],
+            ["name" : "Museums", "code": "museums"],
+            ["name" : "Paintball", "code": "paintball"],
+            ["name" : "Skating Rinks", "code": "skatingrinks"],
+            ["name" : "Trampoline Parks", "code": "trampoline"],
+            ["name" : "Zoos", "code": "zoos"],
+            
+            ["name" : "Day Spas", "code": "spas"],
+            ["name" : "Massage", "code": "massage"],
+            ["name" : "Piercing", "code": "piercing"],
+            ["name" : "Tanning", "code": "tanning"],
+            ["name" : "Tattoo", "code": "tattoo"],
+            
+            ["name" : "Festivals", "code": "festivals"],
+            ["name" : "Movies", "code": "movietheatres"],
+            ["name" : "Music Venues", "code": "musicvenues"],
+            ["name" : "Opera & Ballet", "code": "opera"],
+            ["name" : "Theater", "code": "theater"],
+            ["name" : "Race Tracks", "code": "racetracks"],
+            ["name" : "Social Clubs", "code": "social_clubs"],
+            ["name" : "Wineries", "code": "wineries"],
+            
+            ["name" : "Climbing", "code": "climbing"],
+            ["name" : "Hang Gliding", "code": "hanggliding"],
+            ["name" : "Hiking", "code": "hiking"],
+            ["name" : "Hot Air Balloons", "code": "hot_air_balloons"],
+            ["name" : "Mountain Biking", "code": "mountainbiking"],
+            ["name" : "Rafting/Kayaking", "code": "rafting"],
+            ["name" : "Skydiving", "code": "skydiving"],
+            ["name" : "Landmarks", "code": "landmarks"],
+            
+            ["name" : "Champagne Bars", "code": "champagne_bars"],
+            ["name" : "Cocktail Bars", "code": "cocktailbars"],
+            ["name" : "Comedy Clubs", "code": "comedyclubs"],
+            ["name" : "Country Dance Halls", "code": "countrydancehalls"],
+            ["name" : "Dance Clubs", "code": "danceclubs"],
+            ["name" : "Dive Bars", "code": "divebars"],
+            ["name" : "Gay Bars", "code": "gaybars"],
+            ["name" : "Hookah Bars", "code": "hookah_bars"],
+            ["name" : "Jazz & Blues", "code": "jazzandblues"],
+            ["name" : "Karaoke", "code": "karaoke"],
+            ["name" : "Lounges", "code": "lounges"],
+            ["name" : "Piano Bars", "code": "pianobars"],
+            ["name" : "Pool Halls", "code": "poolhalls"],
+            ["name" : "Pubs", "code": "pubs"],
+            ["name" : "Sports Bars", "code": "sportsbars"],
+            ["name" : "Wine Bars", "code": "wine_bars"],
+            
+            ["name" : "Playgrounds", "code": "playgrounds"],
+            ["name" : "Skate Parks", "code": "skate_parks"],
+            
+            ["name" : "Animal Parks", "code": "dog_parks"],
+            ["name" : "Animal Shelters", "code": "animalshelters"],
+            
+            ["name" : "Amateur Sports Teams", "code": "amateursportsteams"],
+            ["name" : "Professional Sports Teams", "code": "sportsteams"],
+            ["name" : "Stadiums & Arenas", "code": "stadiumsarenas"],
+            
+            ["name" : "Archery", "code": "archery"],
+            ["name" : "Badminton", "code": "badminton"],
+            ["name" : "Basketball Courts", "code": "basketballcourts"],
+            ["name" : "Batting Cages", "code": "battingcages"],
+            ["name" : "Bike Rentals", "code": "bikerentals"],
+            ["name" : "Boating", "code": "boating"],
+            ["name" : "Bowling", "code": "bowling"],
+            ["name" : "Disc Golf", "code": "discgolf"],
+            ["name" : "Golf", "code": "golf"],
+            ["name" : "Gun/Rifle", "code": "gun_ranges"],
+            ["name" : "Gymnastics", "code": "gymnastics"],
+            ["name" : "Horseback Riding", "code": "horsebackriding"],
+            ["name" : "Rock Climbing", "code": "rock_climbing"],
+            ["name" : "Soccer", "code": "football"],
+            ["name" : "Squash", "code": "squash"],
+            ["name" : "Tennis", "code": "tennis"],
+            ["name" : "Yoga", "code": "yoga"],
+            
+            ["name" : "Beaches", "code": "beaches"],
+            ["name" : "Fishing", "code": "fishing"],
+            ["name" : "Kiteboarding", "code": "kiteboarding"],
+            ["name" : "Lakes", "code": "lakes"],
+            ["name" : "Paddleboarding", "code": "paddleboarding"],
+            ["name" : "Scuba Diving", "code": "scuba"],
+            ["name" : "Surfing", "code": "surfing"],
+            ["name" : "Swimming Pools", "code": "swimmingpools"],
+            ["name" : "Tubing", "code": "tubing"]]
+    }
     /*
     // MARK: - Navigation
 
