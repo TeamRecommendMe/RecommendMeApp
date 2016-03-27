@@ -13,6 +13,13 @@ class MainMenuViewController: UIViewController {
     let array : [String] = ["a","b","c"]
     
     
+    // Temp saved NSUserDefaults
+    let CategoryDefaults = NSUserDefaults.standardUserDefaults()
+    var tempFoodCategories: [[String: String]]!
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +34,23 @@ class MainMenuViewController: UIViewController {
         
         let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
         print(shuffled)
+        
+        
+        // Temp food categories
+        tempFoodCategories = tempYelpCategories()
+        
+        // Save defaults
+        CategoryDefaults.setObject(tempFoodCategories, forKey: "TempUserSelected")
+        
+        // Reading from NSUserDefaults example
+        
+        let testDictionary = CategoryDefaults.objectForKey("TempUserSelected") as? [[String: String]] ?? [[String: String]]()
+        
+        
+        // Prints fine here
+        
+        
+        
 
         // Do any additional setup after loading the view.
     }
@@ -55,6 +79,27 @@ class MainMenuViewController: UIViewController {
             }
         }
     }
+    
+
+    
+    
+    
+    func tempYelpCategories() -> [[String:String]] {
+        return [["name" : "Afghan", "code": "afghani"],
+            ["name" : "African", "code": "african"],
+            ["name" : "American, New", "code": "newamerican"],
+            ["name" : "American, Traditional", "code": "tradamerican"],
+            ["name" : "Arabian", "code": "arabian"],
+            ["name" : "Argentine", "code": "argentine"],
+            ["name" : "Armenian", "code": "armenian"],
+            ["name" : "Asian Fusion", "code": "asianfusion"],
+            ["name" : "Asturian", "code": "asturian"],
+            ["name" : "Australian", "code": "australian"],
+            ["name" : "Yugoslav", "code": "yugoslav"]]
+    }
+    
+    
+    
     
 
     /*
