@@ -23,6 +23,7 @@ class AdvancedFilterViewController: UITableViewController {
         navigationItem.title = "Advance Filter"
         
         let btnBack = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "btnCancelPressed:")
+        
             
         foodCategories = AdvYelpCategories()
         activitiesCategories = AdvBigActivities()
