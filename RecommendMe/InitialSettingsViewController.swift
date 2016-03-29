@@ -126,7 +126,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             if row < 169 && isSelected {
                 
                 selectedCategories.append(allCategories[row]["code"]!)
-                
+                print(allCategories[row]["code"])
             }
             else
             {
@@ -136,7 +136,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             }
         }
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
-
+        
     }
     func yelpCategories() -> [[String:String]] {
         return [["name" : "Afghan", "code": "afghani"],
