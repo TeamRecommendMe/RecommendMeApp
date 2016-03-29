@@ -6,6 +6,21 @@
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 
+
+
+// If you are going to follow a tutorial, please follow it to the end. You're missing a lot of the settings required in
+// The http://www.ioscreator.com/tutorials/customizing-header-footer-table-view-ios8-swift tutorial for what you are doing. 
+// 
+//
+// Please also see the other comments below and fix your changes. It's Easter so I'm not going to be around to help you.
+// Push your work as you go so I can see changes. That's when I have time of course.
+// 
+//
+// FILTERS VIDEO SEE: 
+// https://www.youtube.com/watch?v=sgqlFm8vdwo&list=PLrT2tZ9JRrf7p1AoQ0C7APLImJjdUiEbA&index=3https://gist.github.com/timothy1ee/e23415fa468c76e84fb3
+
+
+
 import UIKit
 
 @ objc protocol InitialSettingsViewControllerDelegate {
@@ -64,11 +79,15 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // 1
         // Return the number of sections.
-        return 2
+        return 2 // <-- HINT - Josh
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("Header") as! HeaderCell
         headerCell.backgroundColor = UIColor.cyanColor()
+        
+        // Each section is represented in a zero-based format just like how an array is. This finds which section it is on 
+        // Updates the header to show a new title. Can you guess what's wrong here? Hint: You already declared how many sections it has from the func numberOfSectionsInTableView.
+        // - Josh
         
         switch (section) {
         case 0:
@@ -91,9 +110,10 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     }
     @IBAction func doneButton(sender: AnyObject) {
         
-        var filters = [String:AnyObject]()
+        let filters = [String:AnyObject]()
         var selectedCategories = [String]()
         //selectedCategories.removeAll()
+        
         for (row, isSelected) in switchStates {
             if row < 169 && isSelected {
                 

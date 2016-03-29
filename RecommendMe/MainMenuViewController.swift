@@ -13,6 +13,13 @@ class MainMenuViewController: UIViewController {
     let array : [String] = ["a","b","c"]
     
     
+    // Temp saved NSUserDefaults
+    let CategoryDefaults = NSUserDefaults.standardUserDefaults()
+    var tempFoodCategories: [[String: String]]!
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +34,22 @@ class MainMenuViewController: UIViewController {
         
         let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
         print(shuffled)
+        
+        
+        // Temp food categories
+        tempFoodCategories = tempYelpCategories()
+        
+        // Save defaults
+        CategoryDefaults.setObject(tempFoodCategories, forKey: "TempUserSelected")
+        
+        // Reading from NSUserDefaults example
+        
+        let testDictionary = CategoryDefaults.objectForKey("TempUserSelected") as? [[String: String]] ?? [[String: String]]()
+        
+        
+        
+        
+        
 
         // Do any additional setup after loading the view.
     }
@@ -57,14 +80,39 @@ class MainMenuViewController: UIViewController {
     }
     
 
-    /*
+    
+    
+    
+    func tempYelpCategories() -> [[String:String]] {
+        return [["name" : "Afghan", "code": "afghani"],
+            ["name" : "African", "code": "african"],
+            ["name" : "American, New", "code": "newamerican"],
+            ["name" : "American, Traditional", "code": "tradamerican"],
+            ["name" : "Arabian", "code": "arabian"],
+            ["name" : "Argentine", "code": "argentine"],
+            ["name" : "Armenian", "code": "armenian"],
+            ["name" : "Asian Fusion", "code": "asianfusion"],
+            ["name" : "Asturian", "code": "asturian"],
+            ["name" : "Australian", "code": "australian"],
+            ["name" : "Yugoslav", "code": "yugoslav"]]
+    }
+    
+    
+    
+    
+
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        
+        
+        
     }
-    */
+    
 
 }
