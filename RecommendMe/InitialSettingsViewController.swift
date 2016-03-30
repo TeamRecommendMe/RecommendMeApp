@@ -46,7 +46,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
        // activitiesCategories = yelpActivitiesCategories()
         bigActivitiesCategories = bigActivities()
         allCategories = yelpCategories() + bigActivities()
-        print(allCategories)
+        //print(allCategories)
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -92,20 +92,20 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("Header") as! HeaderCell
         headerCell.backgroundColor = UIColor.cyanColor()
-        
         // Each section is represented in a zero-based format just like how an array is. This finds which section it is on 
         // Updates the header to show a new title. Can you guess what's wrong here? Hint: You already declared how many sections it has from the func numberOfSectionsInTableView.
         // - Josh
         
         switch (section) {
         case 0:
-            headerCell.headerLabel.text = "Food";
-            //return sectionHeaderView
+            headerCell.headerLabel.text = "Food"
+            print("\(headerCell.headerLabel.text)")
+           // return sectionHeaderView
         case 1:
-            headerCell.headerLabel.text = "Activities";
+            headerCell.headerLabel.text = "Activities"
             //return sectionHeaderView
         default:
-            headerCell.headerLabel.text = "Error";
+            headerCell.headerLabel.text = "Error"
         }
         
         return headerCell
@@ -162,6 +162,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                 }
                 if row == 180 && isSelected {
                     selectedCategories.append(waterList()[row]["code"]!)
+                    print("I am selected at 180")
                 }
             }
         }
