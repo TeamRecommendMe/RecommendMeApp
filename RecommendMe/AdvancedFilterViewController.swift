@@ -161,8 +161,9 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
                 
                 print("Printing items appended in selected Categories")
                 
+                // Not the best way to display the array of dictionaries but it works.
+                
                 for item in selectedCategories {
-                    
                     
                     for(key, value) in item {
                         print("\(key): \(value)")
@@ -175,7 +176,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
             }
         }
         
-        print("Button is pressed completed")
+        print("Search button is pressed func is complete!")
         
         
     }
