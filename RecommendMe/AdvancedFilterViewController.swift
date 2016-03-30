@@ -88,14 +88,18 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         switch(indexPath.section) {
         case 0:
             cell.lblCategoryItem.text = foodCategories[indexPath.row]["name"]
+
+            
         case 1:
             cell.lblCategoryItem.text = activitiesCategories[indexPath.row]["name"]
+
         default:
             return cell
         }
         
         
         if advSwitchStates[indexPath.row] != nil {
+            
             cell.advOnOffSwitch.on = advSwitchStates[indexPath.row]!
         }
         else {
@@ -137,6 +141,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         
         print("This advanced filter controller has received the switch event.")
         advSwitchStates[indexPath.row] = value
+        
     }
     
     
@@ -144,7 +149,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         print("Search button is pressed")
         
         var selectedCategories = [[String: String]]()
-        var advfilters = [String: AnyObject]()
+        //var advfilters = [String: AnyObject]()
         var testName: String
         var testCode: String
         
@@ -158,6 +163,8 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
                 print("Adding values into the array of dictionaries")
                 
                 selectedCategories.append(["name" : testName, "code": testCode])
+                
+                print("There is a total of \(selectedCategories.count) items in selected categories.")
                 
                 print("Printing items appended in selected Categories")
                 
