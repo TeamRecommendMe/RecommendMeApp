@@ -43,7 +43,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidLoad()
         
         foodCategories = yelpCategories()
-        activitiesCategories = yelpActivitiesCategories()
+       // activitiesCategories = yelpActivitiesCategories()
         bigActivitiesCategories = bigActivities()
         allCategories = yelpCategories() + bigActivities()
         print(allCategories)
@@ -123,15 +123,45 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         //selectedCategories.removeAll()
         
         for (row, isSelected) in switchStates {
-            if row < 169 && isSelected {
+            if row <= 169 && isSelected {
                 
                 selectedCategories.append(allCategories[row]["code"]!)
-                print(allCategories[row]["code"])
+                print("\(allCategories[row]["code"])")
             }
             else
             {
-                if isSelected {
-                    selectedCategories.append(activitiesCategories[row]["code"]!)
+                if row == 170 && isSelected {
+                    selectedCategories.append(attractionsList()[row]["code"]!)
+                }
+                if row == 171 && isSelected {
+                    selectedCategories.append(beautyList()[row]["code"]!)
+                }
+                if row == 172 && isSelected {
+                    selectedCategories.append(entertainmentList()[row]["code"]!)
+                }
+                if row == 173 && isSelected {
+                    selectedCategories.append(extremeList()[row]["code"]!)
+                }
+                if row == 174 && isSelected {
+                    selectedCategories.append(landmarksList()[row]["code"]!)
+                }
+                if row == 175 && isSelected {
+                    selectedCategories.append(nightlifeList()[row]["code"]!)
+                }
+                if row == 176 && isSelected {
+                    selectedCategories.append(parksList()[row]["code"]!)
+                }
+                if row == 177 && isSelected {
+                    selectedCategories.append(petsList()[row]["code"]!)
+                }
+                if row == 178 && isSelected {
+                    selectedCategories.append(profSportsList()[row]["code"]!)
+                }
+                if row == 179 && isSelected {
+                    selectedCategories.append(sportsList()[row]["code"]!)
+                }
+                if row == 180 && isSelected {
+                    selectedCategories.append(waterList()[row]["code"]!)
                 }
             }
         }
@@ -309,11 +339,9 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Wraps", "code": "wraps"],
             ["name" : "Yugoslav", "code": "yugoslav"]]
     }
-    func yelpActivitiesCategories() -> [[String:String]]
+    func attractionsList() -> [[String:String]]
     {
-        return
-            //Attractions
-            [["name" : "Amusement Parks", "code": "amusementparks"],
+        return [["name" : "Amusement Parks", "code": "amusementparks"],
             ["name" : "Aquariums", "code": "aquariums"],
             ["name" : "Arcades", "code": "arcades"],
             ["name" : "Art Galleries", "code": "galleries"],
@@ -326,86 +354,112 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Paintball", "code": "paintball"],
             ["name" : "Skating Rinks", "code": "skatingrinks"],
             ["name" : "Trampoline Parks", "code": "trampoline"],
-            ["name" : "Zoos", "code": "zoos"],
-            //Beauty and Spas
-            ["name" : "Day Spas", "code": "spas"],
-            ["name" : "Massage", "code": "massage"],
-            ["name" : "Piercing", "code": "piercing"],
-            ["name" : "Tanning", "code": "tanning"],
-            ["name" : "Tattoo", "code": "tattoo"],
-            //Entertainment
-            ["name" : "Festivals", "code": "festivals"],
-            ["name" : "Movies", "code": "movietheatres"],
-            ["name" : "Music Venues", "code": "musicvenues"],
-            ["name" : "Opera & Ballet", "code": "opera"],
-            ["name" : "Theater", "code": "theater"],
-            ["name" : "Race Tracks", "code": "racetracks"],
-            ["name" : "Social Clubs", "code": "social_clubs"],
-            ["name" : "Wineries", "code": "wineries"],
-            //Extreme/Great Outdoors
-            ["name" : "Climbing", "code": "climbing"],
-            ["name" : "Hang Gliding", "code": "hanggliding"],
-            ["name" : "Hiking", "code": "hiking"],
-            ["name" : "Hot Air Balloons", "code": "hot_air_balloons"],
-            ["name" : "Mountain Biking", "code": "mountainbiking"],
-            ["name" : "Rafting/Kayaking", "code": "rafting"],
-            ["name" : "Skydiving", "code": "skydiving"],
-            ["name" : "Landmarks", "code": "landmarks"],
-            //Nightlife
-            ["name" : "Champagne Bars", "code": "champagne_bars"],
-            ["name" : "Cocktail Bars", "code": "cocktailbars"],
-            ["name" : "Comedy Clubs", "code": "comedyclubs"],
-            ["name" : "Country Dance Halls", "code": "countrydancehalls"],
-            ["name" : "Dance Clubs", "code": "danceclubs"],
-            ["name" : "Dive Bars", "code": "divebars"],
-            ["name" : "Gay Bars", "code": "gaybars"],
-            ["name" : "Hookah Bars", "code": "hookah_bars"],
-            ["name" : "Jazz & Blues", "code": "jazzandblues"],
-            ["name" : "Karaoke", "code": "karaoke"],
-            ["name" : "Lounges", "code": "lounges"],
-            ["name" : "Piano Bars", "code": "pianobars"],
-            ["name" : "Pool Halls", "code": "poolhalls"],
-            ["name" : "Pubs", "code": "pubs"],
-            ["name" : "Sports Bars", "code": "sportsbars"],
-            ["name" : "Wine Bars", "code": "wine_bars"],
-            //Parks
-            ["name" : "Playgrounds", "code": "playgrounds"],
-            ["name" : "Skate Parks", "code": "skate_parks"],
-            //Pets
-            ["name" : "Animal Parks", "code": "dog_parks"],
-            ["name" : "Animal Shelters", "code": "animalshelters"],
-            //Professional Sports
-            ["name" : "Amateur Sports Teams", "code": "amateursportsteams"],
+            ["name" : "Zoos", "code": "zoos"]]
+    }
+    func beautyList()->[[String:String]]
+    {
+        //Beauty and Spas
+        return [["name" : "Day Spas", "code": "spas"],
+        ["name" : "Massage", "code": "massage"],
+        ["name" : "Piercing", "code": "piercing"],
+        ["name" : "Tanning", "code": "tanning"],
+        ["name" : "Tattoo", "code": "tattoo"]]
+
+    }
+    func entertainmentList()->[[String:String]]
+    {
+        //Entertainment
+       return [["name" : "Festivals", "code": "festivals"],
+        ["name" : "Movies", "code": "movietheatres"],
+        ["name" : "Music Venues", "code": "musicvenues"],
+        ["name" : "Opera & Ballet", "code": "opera"],
+        ["name" : "Theater", "code": "theater"],
+        ["name" : "Race Tracks", "code": "racetracks"],
+        ["name" : "Social Clubs", "code": "social_clubs"],
+        ["name" : "Wineries", "code": "wineries"]]
+
+    }
+    func extremeList()->[[String:String]]
+    {
+        //Extreme/Great Outdoors
+        return [["name" : "Climbing", "code": "climbing"],
+        ["name" : "Hang Gliding", "code": "hanggliding"],
+        ["name" : "Hiking", "code": "hiking"],
+        ["name" : "Hot Air Balloons", "code": "hot_air_balloons"],
+        ["name" : "Mountain Biking", "code": "mountainbiking"],
+        ["name" : "Rafting/Kayaking", "code": "rafting"],
+        ["name" : "Skydiving", "code": "skydiving"]]
+    }
+    func landmarksList()->[[String:String]]
+    {
+        return [["name" : "Landmarks", "code": "landmarks"]]
+    }
+    func nightlifeList()->[[String:String]]
+    {
+        return  [["name" : "Champagne Bars", "code": "champagne_bars"],
+        ["name" : "Cocktail Bars", "code": "cocktailbars"],
+        ["name" : "Comedy Clubs", "code": "comedyclubs"],
+        ["name" : "Country Dance Halls", "code": "countrydancehalls"],
+        ["name" : "Dance Clubs", "code": "danceclubs"],
+        ["name" : "Dive Bars", "code": "divebars"],
+        ["name" : "Gay Bars", "code": "gaybars"],
+        ["name" : "Hookah Bars", "code": "hookah_bars"],
+        ["name" : "Jazz & Blues", "code": "jazzandblues"],
+        ["name" : "Karaoke", "code": "karaoke"],
+        ["name" : "Lounges", "code": "lounges"],
+        ["name" : "Piano Bars", "code": "pianobars"],
+        ["name" : "Pool Halls", "code": "poolhalls"],
+        ["name" : "Pubs", "code": "pubs"],
+        ["name" : "Sports Bars", "code": "sportsbars"],
+        ["name" : "Wine Bars", "code": "wine_bars"]]
+    }
+    func parksList()->[[String:String]]
+    {
+        return [["name" : "Playgrounds", "code": "playgrounds"],
+        ["name" : "Skate Parks", "code": "skate_parks"]]
+    }
+    func petsList()->[[String:String]]
+    {
+        return [["name" : "Animal Parks", "code": "dog_parks"],
+        ["name" : "Animal Shelters", "code": "animalshelters"]]
+    }
+    func profSportsList()->[[String:String]]
+    {
+        return [["name" : "Amateur Sports Teams", "code": "amateursportsteams"],
             ["name" : "Professional Sports Teams", "code": "sportsteams"],
-            ["name" : "Stadiums & Arenas", "code": "stadiumsarenas"],
-            //Sports
-            ["name" : "Archery", "code": "archery"],
-            ["name" : "Badminton", "code": "badminton"],
-            ["name" : "Basketball Courts", "code": "basketballcourts"],
-            ["name" : "Batting Cages", "code": "battingcages"],
-            ["name" : "Bike Rentals", "code": "bikerentals"],
-            ["name" : "Boating", "code": "boating"],
-            ["name" : "Bowling", "code": "bowling"],
-            ["name" : "Disc Golf", "code": "discgolf"],
-            ["name" : "Golf", "code": "golf"],
-            ["name" : "Gun/Rifle", "code": "gun_ranges"],
-            ["name" : "Gymnastics", "code": "gymnastics"],
-            ["name" : "Horseback Riding", "code": "horsebackriding"],
-            ["name" : "Rock Climbing", "code": "rock_climbing"],
-            ["name" : "Soccer", "code": "football"],
-            ["name" : "Squash", "code": "squash"],
-            ["name" : "Tennis", "code": "tennis"],
-            ["name" : "Yoga", "code": "yoga"],
-            //Water
-            ["name" : "Beaches", "code": "beaches"],
-            ["name" : "Fishing", "code": "fishing"],
-            ["name" : "Kiteboarding", "code": "kiteboarding"],
-            ["name" : "Lakes", "code": "lakes"],
-            ["name" : "Paddleboarding", "code": "paddleboarding"],
-            ["name" : "Scuba Diving", "code": "scuba"],
-            ["name" : "Surfing", "code": "surfing"],
-            ["name" : "Swimming Pools", "code": "swimmingpools"],
-            ["name" : "Tubing", "code": "tubing"]]
+            ["name" : "Stadiums & Arenas", "code": "stadiumsarenas"]]
+    }
+    func sportsList()->[[String:String]]
+    {
+        return [["name" : "Archery", "code": "archery"],
+        ["name" : "Badminton", "code": "badminton"],
+        ["name" : "Basketball Courts", "code": "basketballcourts"],
+        ["name" : "Batting Cages", "code": "battingcages"],
+        ["name" : "Bike Rentals", "code": "bikerentals"],
+        ["name" : "Boating", "code": "boating"],
+        ["name" : "Bowling", "code": "bowling"],
+        ["name" : "Disc Golf", "code": "discgolf"],
+        ["name" : "Golf", "code": "golf"],
+        ["name" : "Gun/Rifle", "code": "gun_ranges"],
+        ["name" : "Gymnastics", "code": "gymnastics"],
+        ["name" : "Horseback Riding", "code": "horsebackriding"],
+        ["name" : "Rock Climbing", "code": "rock_climbing"],
+        ["name" : "Soccer", "code": "football"],
+        ["name" : "Squash", "code": "squash"],
+        ["name" : "Tennis", "code": "tennis"],
+        ["name" : "Yoga", "code": "yoga"]]
+    }
+    func waterList()->[[String:String]]
+    {
+        return [["name" : "Beaches", "code": "beaches"],
+        ["name" : "Fishing", "code": "fishing"],
+        ["name" : "Kiteboarding", "code": "kiteboarding"],
+        ["name" : "Lakes", "code": "lakes"],
+        ["name" : "Paddleboarding", "code": "paddleboarding"],
+        ["name" : "Scuba Diving", "code": "scuba"],
+        ["name" : "Surfing", "code": "surfing"],
+        ["name" : "Swimming Pools", "code": "swimmingpools"],
+        ["name" : "Tubing", "code": "tubing"]]
     }
     func bigActivities() -> [[String:String]]
     {
