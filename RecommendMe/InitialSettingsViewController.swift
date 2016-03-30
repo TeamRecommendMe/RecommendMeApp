@@ -34,15 +34,19 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     weak var delegate: InitialSettingsViewControllerDelegate?
     var foodCategories: [[String:String]]!
     var activitiesCategories:[[String:String]]!
+    var  bigActivitiesCategories :[[String:String]]!
     var allCategories: [[String:String]]!
+    var i = 0
     var switchStates = [Int: Bool]()
+   // let masterSubClassDictionary = [“Water": waterArray , “Attractions": attractionsArray]
     override func viewDidLoad() {
         super.viewDidLoad()
         
         foodCategories = yelpCategories()
         activitiesCategories = yelpActivitiesCategories()
+        bigActivitiesCategories = bigActivities()
         allCategories = yelpCategories() + bigActivities()
-        print(allCategories.count)
+        print(allCategories)
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -53,26 +57,31 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         // Dispose of any resources that can be recreated.
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
-        // THIS IS ONLY GOING TO DISPLAY ONE SECTION!
-        // What you want to do is figure out which section it's currently on and return how many rows it should display
-        // for that section.
-        // sections start at 0 and goes up.
-        // http://stackoverflow.com/questions/29472327/can-i-have-a-different-number-of-rows-in-each-section-of-a-master-detail-app
-        // Easier to understand one: http://stackoverflow.com/questions/32080368/configure-uitableview-with-different-number-of-rows-in-different-sections
-        // - Josh
-        
-        
-        return allCategories.count
+        switch(section)
+        {
+        case 0:
+            return 169
+        case 1:
+            return 11
+        default:
+            return 0
+        }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCellTableViewCell
-        
-        cell.switchLabel.text = allCategories[indexPath.row]["name"]
+        switch(indexPath.section)
+        {
+        case 0:
+        cell.switchLabel?.text = allCategories[indexPath.row]["name"]
         cell.delegate = self
-        
         cell.onSwitch.on = switchStates [indexPath.row] ?? true
+        case 1:
+        cell.switchLabel.text = bigActivitiesCategories[indexPath.row]["name"]
+        cell.delegate = self
+        cell.onSwitch.on = switchStates [indexPath.row] ?? true
+        default:
+            cell.switchLabel.text = foodCategories[indexPath.row]["error"]
+        }
         return cell
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -93,13 +102,10 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             headerCell.headerLabel.text = "Food";
             //return sectionHeaderView
         case 1:
-            headerCell.headerLabel.text = "Asia";
-            //return sectionHeaderView
-        case 2:
-            headerCell.headerLabel.text = "South America";
+            headerCell.headerLabel.text = "Activities";
             //return sectionHeaderView
         default:
-            headerCell.headerLabel.text = "Other";
+            headerCell.headerLabel.text = "Error";
         }
         
         return headerCell
@@ -117,10 +123,10 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         //selectedCategories.removeAll()
         
         for (row, isSelected) in switchStates {
-            if row < 169 {
-                if isSelected {
-                    selectedCategories.append(allCategories[row]["code"]!)
-                }
+            if row < 169 && isSelected {
+                
+                selectedCategories.append(allCategories[row]["code"]!)
+                print(allCategories[row]["code"])
             }
             else
             {
@@ -129,11 +135,8 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                 }
             }
         }
-        var i = 0
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
-        for i = 0; i < selectedCategories.count; i++ {
-            print(selectedCategories[i])
-        }
+        
     }
     func yelpCategories() -> [[String:String]] {
         return [["name" : "Afghan", "code": "afghani"],
@@ -427,5 +430,45 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    /*var
+    
+    var professionalSportsArray[] =             [BasicValue(name : "Amateur Sports Teams", code: "amateursportsteams"),
+    BasicValue(name : "Professional Sports Teams", code: "sportsteams"),
+    BasicValue(name : "Stadiums & Arenas", code: "stadiumsarenas")],
+    
+    var sportsArray[] = [BasicValue(name : "Archery", code: "archery"),
+     BasicValue(name : "Badminton", code: "badminton"),
+     BasicValue(name : "Basketball Courts", code: "basketballcourts"),
+     BasicValue(name : "Batting Cages", code: "battingcages"),
+     BasicValue(name : "Bike Rentals", code: "bikerentals"),
+     BasicValue(name : "Boating", code: "boating"),
+     BasicValue(name : "Bowling", code: "bowling"),
+     BasicValue( name : "Disc Golf", code: "discgolf"),
+     BasicValue(name : "Golf", code: "golf"),
+     BasicValue(name : "Gun/Rifle", code: "gun_ranges"),
+     BasicValue(name : "Gymnastics", code: "gymnastics"),
+     BasicValue(name : "Horseback Riding", code: "horsebackriding"),
+     BasicValue(name : "Rock Climbing", code: "rock_climbing"),
+     BasicValue(name : "Soccer", code: "football"),
+     BasicValue(name : "Squash", code: "squash"),
+     BasicValue(name : "Tennis", code: "tennis"),
+     BasicValue( name : "Yoga", code: "yoga")]
+    
+    
+    var waterArray[] = [BasicValue(name : "Beaches", code: "beaches"),
+    BasicValue(name : "Fishing", code: "fishing"),
+    BasicValue(name : "Kiteboarding", code: "kiteboarding"),
+    BasicValue(name : "Lakes", code: "lakes"),
+    BasicValue(name : "Paddleboarding", code: "paddleboarding"),
+    BasicValue(name : "Scuba Diving", code: "scuba"),
+    BasicValue(name : "Surfing", code: "surfing"),
+    BasicValue(name : "Swimming Pools", code: "swimmingpools"),
+    BasicValue(name : "Tubing", code: "tubing")]*/
+    
 }
+/*
+class BasicValue {
+                var name: String
+                var code: String
+}*/
