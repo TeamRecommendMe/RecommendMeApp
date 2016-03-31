@@ -46,7 +46,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidLoad()
 
 
-    
+        //self.tableView.backgroundColor = UIColor.clearColor();
         userDefaults.setBool(true, forKey: "userExists")
         
         foodCategories = yelpCategories()
@@ -98,7 +98,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("Header") as! HeaderCell
-        headerCell.backgroundColor = UIColor.cyanColor()
+        headerCell.backgroundColor = UIColor.grayColor()
         // Each section is represented in a zero-based format just like how an array is. This finds which section it is on 
         // Updates the header to show a new title. Can you guess what's wrong here? Hint: You already declared how many sections it has from the func numberOfSectionsInTableView.
         // - Josh
