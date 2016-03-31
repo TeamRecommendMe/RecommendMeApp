@@ -36,25 +36,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Azu-a3-uLP">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Azu-a3-uLP">
                                                     <rect key="frame" x="13" y="8" width="81" height="63"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMq-LE-DSd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMq-LE-DSd">
                                                     <rect key="frame" x="128" y="26" width="157" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="cMq-LE-DSd" firstAttribute="top" secondItem="dRH-tj-D6p" secondAttribute="top" constant="26" id="9BA-pL-nlF"/>
-                                                <constraint firstAttribute="bottom" secondItem="Azu-a3-uLP" secondAttribute="bottom" constant="16" id="PUi-2o-QbJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="cMq-LE-DSd" secondAttribute="bottom" constant="34" id="QlI-8K-jN2"/>
-                                                <constraint firstItem="Azu-a3-uLP" firstAttribute="leading" secondItem="dRH-tj-D6p" secondAttribute="leading" constant="13" id="R96-mg-rWY"/>
-                                                <constraint firstAttribute="trailing" secondItem="cMq-LE-DSd" secondAttribute="trailing" constant="35" id="s0C-NX-maW"/>
-                                                <constraint firstItem="Azu-a3-uLP" firstAttribute="top" secondItem="dRH-tj-D6p" secondAttribute="top" constant="8" id="wGB-uz-qXD"/>
-                                                <constraint firstItem="cMq-LE-DSd" firstAttribute="leading" secondItem="Azu-a3-uLP" secondAttribute="trailing" constant="34" id="xrd-F2-rFb"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="headerImage" destination="Azu-a3-uLP" id="Uaq-UX-5Ll"/>
@@ -114,7 +105,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Done" id="dF2-YX-hdY">
                             <connections>
                                 <action selector="doneButton:" destination="BYZ-38-t0r" id="aR7-hc-JTV"/>
-                                <segue destination="jk0-6c-hiD" kind="show" id="n6h-G2-PcZ"/>
+                                <segue destination="jk0-6c-hiD" kind="show" identifier="moveMain" id="n6h-G2-PcZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

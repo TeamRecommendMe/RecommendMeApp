@@ -23,6 +23,7 @@
 
 import UIKit
 
+
 @ objc protocol InitialSettingsViewControllerDelegate {
     optional func initialSettingsViewController (initialSettingsViewController: InitialSettingsViewController, didUpdateFilters filters: [String:AnyObject])
 }
@@ -38,10 +39,19 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     var allCategories: [[String:String]]!
     var i = 0
     var switchStates = [Int: Bool]()
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    //userDefaults.setBool(false, forKey: "userExists")
    // let masterSubClassDictionary = [“Water": waterArray , “Attractions": attractionsArray]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if userDefaults.boolForKey("userExists") == true
+        {
+            performSegueWithIdentifier("moveMain", sender: nil)
+        }
+        else
+        {
+            userDefaults.setBool(true, forKey: "userExists")
+        }
         foodCategories = yelpCategories()
        // activitiesCategories = yelpActivitiesCategories()
         bigActivitiesCategories = bigActivities()
@@ -98,12 +108,10 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         
         switch (section) {
         case 0:
-            headerCell.headerLabel.text = "Food"
+           headerCell.headerLabel.text = "Food"
             print("\(headerCell.headerLabel.text)")
-           // return sectionHeaderView
         case 1:
             headerCell.headerLabel.text = "Activities"
-            //return sectionHeaderView
         default:
             headerCell.headerLabel.text = "Error"
         }
@@ -167,7 +175,6 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             }
         }
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
-        
     }
     func yelpCategories() -> [[String:String]] {
         return [["name" : "Afghan", "code": "afghani"],
