@@ -20,8 +20,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     
     var foodCategories: [[String: String]]!
     var activitiesCategories: [[String: String]]!
-    var advSwitchStates = [Int: Bool]()
-    
+    var advSwitchStates = [NSIndexPath: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,23 +54,22 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+
         return 2 // Food section and Big Activities.
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         
-        print("\(section)")
         switch (section) {
             // section 0 is foods and there is 168 of them
         case 0:
-            print("\(section)")
+
             return 169
             
             // section 1 is big activities and there is 11 of them.
         case 1:
-            print("\(section)")
+           
             return 11
         default:
             return 0
@@ -92,20 +90,22 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
             
         case 1:
             cell.lblCategoryItem.text = activitiesCategories[indexPath.row]["name"]
+            
 
         default:
+            cell.advOnOffSwitch.on = false
             return cell
         }
         
-        
-        if advSwitchStates[indexPath.row] != nil {
+        if advSwitchStates[indexPath] != nil {
             
-            cell.advOnOffSwitch.on = advSwitchStates[indexPath.row]!
+            
+            cell.advOnOffSwitch.on = advSwitchStates[indexPath]!
         }
         else {
             cell.advOnOffSwitch.on = false
         }
-        cell.advOnOffSwitch.on = advSwitchStates[indexPath.row] ?? false
+        cell.advOnOffSwitch.on = advSwitchStates[indexPath] ?? false
         
         return cell
     }
@@ -138,11 +138,15 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     
     func switchCell(advSwitchCell: advDataCell,didChangeValue value: Bool) {
         let indexPath = tableView.indexPathForCell(advSwitchCell)!
+        let numIndex = indexPath.section
+        print (indexPath)
+        print (numIndex)
         
         print("This advanced filter controller has received the switch event.")
-        advSwitchStates[indexPath.row] = value
+        advSwitchStates[indexPath] = value
         
     }
+    
     
     
     func btnSearchPressed(sender: UIBarButtonItem) {
@@ -153,16 +157,23 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         var testName: String
         var testCode: String
         
-        for (row, isSelected) in advSwitchStates {
+        for (NSIndexPath, isSelected) in advSwitchStates {
             if isSelected {
-                testName = foodCategories[row]["name"]!
-                testCode = foodCategories[row]["code"]!
                 
-                print("\(testName) \(testCode) was selected")
+                if(NSIndexPath.section == 0){
+                    testName = foodCategories[NSIndexPath.row]["name"]!
+                    testCode = foodCategories[NSIndexPath.row]["code"]!
+                    print("\(testName) \(testCode) was selected")
+                }
+                else if(NSIndexPath.section == 1){
+                    testName = activitiesCategories[NSIndexPath.row]["name"]!
+                    testCode = activitiesCategories[NSIndexPath.row]["code"]!
+                    print("\(testName) \(testCode) was selected")
+                }
                 
-                print("Adding values into the array of dictionaries")
+                                print("Adding values into the array of dictionaries")
                 
-                selectedCategories.append(["name" : testName, "code": testCode])
+               // selectedCategories.append(["name" : testName, "code": testCode])
                 
                 print("There is a total of \(selectedCategories.count) items in selected categories.")
                 
@@ -188,6 +199,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         
     }
     
+
     
     func btnCancelPressed(sender: UIBarButtonItem) {
         
@@ -372,17 +384,17 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     
     func AdvBigActivities() -> [[String:String]]
     {
-        return [["name" : "Attractions"],
-            ["name" : "Beauty and Spas"],
-            ["name" : "Entertainment"],
-            ["name" : "Great Outdoors/Extreme"],
-            ["name" : "Landmarks/Historical Buildings"],
-            ["name" : "Nightlife"],
-            ["name" : "Parks"],
-            ["name" : "Pets"],
-            ["name" : "Professional Sporting Events"],
-            ["name" : "Sports"],
-            ["name" : "Water"]]
+        return [["name" : "Attractions", "code": "attract"],
+            ["name" : "Beauty and Spas", "code": "beautyNSpas"],
+            ["name" : "Entertainment", "code": "Ent"],
+            ["name" : "Great Outdoors/Extreme", "code": "GOE"],
+            ["name" : "Landmarks/Historical Buildings", "code": "landmarks"],
+            ["name" : "Nightlife", "code": "night"],
+            ["name" : "Parks", "code": "parks"],
+            ["name" : "Pets", "code": "pets"],
+            ["name" : "Professional Sporting Events", "code": "pro"],
+            ["name" : "Sports", "code": "sports"],
+            ["name" : "Water", "code": "water"]]
     }
     
     
