@@ -12,17 +12,25 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var userDefaults = NSUserDefaults.standardUserDefaults()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+ 
         let navigationBarAppearace = UINavigationBar.appearance()
         
         navigationBarAppearace.tintColor = UIColor.whiteColor()
         navigationBarAppearace.barTintColor = uiColorFromHex(0x252b39)
         
         navigationBarAppearace.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Verdana-BoldItalic", size: 17)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        if userDefaults.boolForKey("userExists") == true
+        {
+            let vc = storyboard.instantiateViewControllerWithIdentifier("NavMainMenu")
+            self.window?.rootViewController = vc
+        }
         
         return true
     }

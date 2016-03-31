@@ -44,14 +44,11 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
    // let masterSubClassDictionary = [“Water": waterArray , “Attractions": attractionsArray]
     override func viewDidLoad() {
         super.viewDidLoad()
-        if userDefaults.boolForKey("userExists") == true
-        {
-            performSegueWithIdentifier("moveMain", sender: nil)
-        }
-        else
-        {
-            userDefaults.setBool(true, forKey: "userExists")
-        }
+
+
+    
+        userDefaults.setBool(true, forKey: "userExists")
+        
         foodCategories = yelpCategories()
        // activitiesCategories = yelpActivitiesCategories()
         bigActivitiesCategories = bigActivities()
