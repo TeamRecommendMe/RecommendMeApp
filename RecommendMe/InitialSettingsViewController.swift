@@ -38,8 +38,11 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     var  bigActivitiesCategories :[[String:String]]!
     var allCategories: [[String:String]]!
     var i = 0
-    var switchStates = [Int: Bool]()
+    var switchStates = [NSIndexPath: Bool]()
     let userDefaults = NSUserDefaults.standardUserDefaults()
+   // let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    
+    
     //userDefaults.setBool(false, forKey: "userExists")
    // let masterSubClassDictionary = [“Water": waterArray , “Attractions": attractionsArray]
     override func viewDidLoad() {
@@ -48,7 +51,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
 
         self.tableView.backgroundColor = UIColor.clearColor();
         userDefaults.setBool(true, forKey: "userExists")
-        
+        let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
         foodCategories = yelpCategories()
        // activitiesCategories = yelpActivitiesCategories()
         bigActivitiesCategories = bigActivities()
@@ -81,11 +84,11 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         {
         case 0:
         cell.switchLabel?.text = allCategories[indexPath.row]["name"]
-        cell.onSwitch.on = switchStates [indexPath.row] ?? true
+        cell.onSwitch.on = switchStates [indexPath] ?? true
         case 1:
         cell.switchLabel.text = bigActivitiesCategories[indexPath.row]["name"]
         //cell.delegate = self
-        cell.onSwitch.on = switchStates [indexPath.row] ?? true
+        cell.onSwitch.on = switchStates [indexPath] ?? true
         default:
             cell.switchLabel.text = foodCategories[indexPath.row]["error"]
         }
@@ -119,59 +122,42 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     
     func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) {
         let indexPath = tableView.indexPathForCell(switchCell)!
-        switchStates[indexPath.row] = value
+        switchStates[indexPath] = value
         print("filters view controller got the switch event")
     }
-    @IBAction func doneButton(sender: AnyObject) {
-        
+    func doneButton(sender: UIBarButtonItem) {
+        print("im pressed")
         let filters = [String:AnyObject]()
-        var selectedCategories = [String]()
+        var selectedFoodCategories = [[String:String]]()
+        var selectedActivitiesCategories = [[String:String]]()
+        var catName: String
+        var codeName: String
         //selectedCategories.removeAll()
         
-        for (row, isSelected) in switchStates {
-            if row <= 169 && isSelected {
-                
-                selectedCategories.append(allCategories[row]["code"]!)
-                print("\(allCategories[row]["code"])")
-            }
-            else
-            {
-                if row == 170 && isSelected {
-                    selectedCategories.append(attractionsList()[row]["code"]!)
+        for (NSIndexPath, isSelected) in switchStates {
+            if isSelected {
+                if NSIndexPath.section == 0
+                {
+                    catName = foodCategories[NSIndexPath.row]["name"]!
+                    codeName = foodCategories[NSIndexPath.row]["code"]!
+                    selectedFoodCategories.append(["name":catName, "code": codeName])
+                    userDefaults.setObject(selectedFoodCategories, forKey: "selectedFoods")
+                    print("\(catName)")
+                    print("\(codeName)")
                 }
-                if row == 171 && isSelected {
-                    selectedCategories.append(beautyList()[row]["code"]!)
-                }
-                if row == 172 && isSelected {
-                    selectedCategories.append(entertainmentList()[row]["code"]!)
-                }
-                if row == 173 && isSelected {
-                    selectedCategories.append(extremeList()[row]["code"]!)
-                }
-                if row == 174 && isSelected {
-                    selectedCategories.append(landmarksList()[row]["code"]!)
-                }
-                if row == 175 && isSelected {
-                    selectedCategories.append(nightlifeList()[row]["code"]!)
-                }
-                if row == 176 && isSelected {
-                    selectedCategories.append(parksList()[row]["code"]!)
-                }
-                if row == 177 && isSelected {
-                    selectedCategories.append(petsList()[row]["code"]!)
-                }
-                if row == 178 && isSelected {
-                    selectedCategories.append(profSportsList()[row]["code"]!)
-                }
-                if row == 179 && isSelected {
-                    selectedCategories.append(sportsList()[row]["code"]!)
-                }
-                if row == 180 && isSelected {
-                    selectedCategories.append(waterList()[row]["code"]!)
-                    print("I am selected at 180")
+                else if NSIndexPath.section == 1
+                {
+                    catName = activitiesCategories[NSIndexPath.row]["name"]!
+                    codeName = activitiesCategories[NSIndexPath.row]["code"]!
+                    selectedActivitiesCategories.append(["name": catName, "code": codeName])
+                    userDefaults.setObject(selectedActivitiesCategories, forKey: "selectedActivities")
+                    print(catName)
+                    print(codeName)
                 }
             }
         }
+        //let vc = storyboard.instantiateViewControllerWithIdentifier("NavMainMenu")
+        self.performSegueWithIdentifier("moveMain", sender: nil)
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
     }
     func yelpCategories() -> [[String:String]] {
@@ -469,17 +455,17 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     }
     func bigActivities() -> [[String:String]]
     {
-                return [["name" : "Attractions"],
-                ["name" : "Beauty and Spas"],
-                ["name" : "Entertainment"],
-                ["name" : "Great Outdoors/Extreme"],
-                ["name" : "Landmarks/Historical Buildings"],
-                ["name" : "Nightlife"],
-                ["name" : "Parks"],
-                ["name" : "Pets"],
-                ["name" : "Professional Sporting Events"],
-                ["name" : "Sports"],
-                ["name" : "Water"]]
+                return [["name" : "Attractions", "code": "yolo"],
+                ["name" : "Beauty and Spas", "code": "yolo1"],
+                ["name" : "Entertainment", "code": "yolo2"],
+                ["name" : "Great Outdoors/Extreme", "code": "yolo3"],
+                ["name" : "Landmarks/Historical Buildings", "code": "yolo4"],
+                ["name" : "Nightlife", "code": "yolo5"],
+                ["name" : "Parks", "code": "yolo6"],
+                ["name" : "Pets", "code": "yolo7"],
+                ["name" : "Professional Sporting Events", "code": "yolo8"],
+                ["name" : "Sports", "code": "yolo9"],
+                ["name" : "Water", "code": "yolo10"]]
     }
     /*
     // MARK: - Navigation

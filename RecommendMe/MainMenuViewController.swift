@@ -14,7 +14,7 @@ class MainMenuViewController: UIViewController {
     
     
     // Temp saved NSUserDefaults
-    let CategoryDefaults = NSUserDefaults.standardUserDefaults()
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     var tempFoodCategories: [[String: String]]!
     
     
@@ -37,15 +37,19 @@ class MainMenuViewController: UIViewController {
         
         
         // Temp food categories
-        tempFoodCategories = tempYelpCategories()
+        //tempFoodCategories = tempYelpCategories()
         
         // Save defaults
-        CategoryDefaults.setObject(tempFoodCategories, forKey: "TempUserSelected")
+        //CategoryDefaults.setObject(tempFoodCategories, forKey: "TempUserSelected")
         
         // Reading from NSUserDefaults example
         
-        let testDictionary = CategoryDefaults.objectForKey("TempUserSelected") as? [[String: String]] ?? [[String: String]]()
-        
+        let testDictionary = userDefaults.objectForKey("selectedFoods") as? [[String: String]] ?? [[String: String]]()
+        for item in testDictionary {
+            for (key, value) in item{
+                print("\(key), \(value)")
+            }
+        }
         
         
         
