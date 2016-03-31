@@ -46,7 +46,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidLoad()
 
 
-        //self.tableView.backgroundColor = UIColor.clearColor();
+        self.tableView.backgroundColor = UIColor.clearColor();
         userDefaults.setBool(true, forKey: "userExists")
         
         foodCategories = yelpCategories()
@@ -76,19 +76,20 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCellTableViewCell
+        cell.delegate = self
         switch(indexPath.section)
         {
         case 0:
         cell.switchLabel?.text = allCategories[indexPath.row]["name"]
-        cell.delegate = self
         cell.onSwitch.on = switchStates [indexPath.row] ?? true
         case 1:
         cell.switchLabel.text = bigActivitiesCategories[indexPath.row]["name"]
-        cell.delegate = self
+        //cell.delegate = self
         cell.onSwitch.on = switchStates [indexPath.row] ?? true
         default:
             cell.switchLabel.text = foodCategories[indexPath.row]["error"]
         }
+
         return cell
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -118,7 +119,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     
     func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) {
         let indexPath = tableView.indexPathForCell(switchCell)!
-        switchStates [indexPath.row] = value
+        switchStates[indexPath.row] = value
         print("filters view controller got the switch event")
     }
     @IBAction func doneButton(sender: AnyObject) {
