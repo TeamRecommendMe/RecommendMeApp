@@ -21,7 +21,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     var foodCategories: [[String: String]]!
     var activitiesCategories: [[String: String]]!
     var advSwitchStates = [Int: Bool]()
-    
+    var advSwitchStatesSectionTwo = [Int: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,23 +55,22 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+
         return 2 // Food section and Big Activities.
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         
-        print("\(section)")
         switch (section) {
             // section 0 is foods and there is 168 of them
         case 0:
-            print("\(section)")
+
             return 169
             
             // section 1 is big activities and there is 11 of them.
         case 1:
-            print("\(section)")
+           
             return 11
         default:
             return 0
@@ -92,13 +91,15 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
             
         case 1:
             cell.lblCategoryItem.text = activitiesCategories[indexPath.row]["name"]
+        
 
         default:
+            cell.advOnOffSwitch.on = false
             return cell
         }
         
-        
         if advSwitchStates[indexPath.row] != nil {
+            
             
             cell.advOnOffSwitch.on = advSwitchStates[indexPath.row]!
         }
@@ -138,6 +139,9 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     
     func switchCell(advSwitchCell: advDataCell,didChangeValue value: Bool) {
         let indexPath = tableView.indexPathForCell(advSwitchCell)!
+        let numIndex = indexPath.section
+        print (indexPath)
+        print (numIndex)
         
         print("This advanced filter controller has received the switch event.")
         advSwitchStates[indexPath.row] = value

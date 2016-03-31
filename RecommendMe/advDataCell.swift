@@ -17,6 +17,8 @@ class advDataCell: UITableViewCell {
 
     @IBOutlet weak var lblCategoryItem: UILabel!
     @IBOutlet weak var advOnOffSwitch: UISwitch!
+    
+    
     weak var advDelegate: AdvSwitchCellDelegate?
     
     override func awakeFromNib() {
