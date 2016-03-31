@@ -8,13 +8,19 @@
 
 import UIKit
 
-class AdvancedFilterViewController: UITableViewController {
+@objc protocol AdvFiltersViewControllerDelegate {
+    optional func advancedfiltersViewController(AdvancedFilterViewController: AdvancedFilterViewController, didUpdateFilters advfilters: [String: AnyObject])
+}
+
+
+class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate {
 
     
     @IBOutlet var advTableView: UITableView!
     
     var foodCategories: [[String: String]]!
     var activitiesCategories: [[String: String]]!
+    var advSwitchStates = [Int: Bool]()
     
     
     override func viewDidLoad() {
@@ -23,6 +29,8 @@ class AdvancedFilterViewController: UITableViewController {
         navigationItem.title = "Advance Filter"
         
         let btnBack = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "btnCancelPressed:")
+        
+        let btnSearch = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .Plain, target: self, action: "btnSearchPressed:")
         
             
         foodCategories = AdvYelpCategories()
@@ -75,14 +83,30 @@ class AdvancedFilterViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("advCell", forIndexPath: indexPath) as! advDataCell
         
+        cell.advDelegate = self
+        
         switch(indexPath.section) {
         case 0:
             cell.lblCategoryItem.text = foodCategories[indexPath.row]["name"]
+
+            
         case 1:
             cell.lblCategoryItem.text = activitiesCategories[indexPath.row]["name"]
+
         default:
             return cell
         }
+        
+        
+        if advSwitchStates[indexPath.row] != nil {
+            
+            cell.advOnOffSwitch.on = advSwitchStates[indexPath.row]!
+        }
+        else {
+            cell.advOnOffSwitch.on = false
+        }
+        cell.advOnOffSwitch.on = advSwitchStates[indexPath.row] ?? false
+        
         return cell
     }
     
@@ -110,6 +134,60 @@ class AdvancedFilterViewController: UITableViewController {
         
         return advHeaderCell
     }
+    
+    
+    func switchCell(advSwitchCell: advDataCell,didChangeValue value: Bool) {
+        let indexPath = tableView.indexPathForCell(advSwitchCell)!
+        
+        print("This advanced filter controller has received the switch event.")
+        advSwitchStates[indexPath.row] = value
+        
+    }
+    
+    
+    func btnSearchPressed(sender: UIBarButtonItem) {
+        print("Search button is pressed")
+        
+        var selectedCategories = [[String: String]]()
+        //var advfilters = [String: AnyObject]()
+        var testName: String
+        var testCode: String
+        
+        for (row, isSelected) in advSwitchStates {
+            if isSelected {
+                testName = foodCategories[row]["name"]!
+                testCode = foodCategories[row]["code"]!
+                
+                print("\(testName) \(testCode) was selected")
+                
+                print("Adding values into the array of dictionaries")
+                
+                selectedCategories.append(["name" : testName, "code": testCode])
+                
+                print("There is a total of \(selectedCategories.count) items in selected categories.")
+                
+                print("Printing items appended in selected Categories")
+                
+                // Not the best way to display the array of dictionaries but it works.
+                
+                for item in selectedCategories {
+                    
+                    for(key, value) in item {
+                        print("\(key): \(value)")
+                    }
+                }
+                
+            }
+            else{
+                print("failed to select anything")
+            }
+        }
+        
+        print("Search button is pressed func is complete!")
+        
+        
+    }
+    
     
     func btnCancelPressed(sender: UIBarButtonItem) {
         
