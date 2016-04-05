@@ -70,9 +70,9 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         switch(section)
         {
         case 0:
-            return 169
+            return allCategories.count
         case 1:
-            return 11
+            return bigActivitiesCategories.count
         default:
             return 0
         }
@@ -140,15 +140,153 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                 {
                     catName = foodCategories[NSIndexPath.row]["name"]!
                     codeName = foodCategories[NSIndexPath.row]["code"]!
-                    selectedFoodCategories.append(["name":catName, "code": codeName])
-                    userDefaults.setObject(selectedFoodCategories, forKey: "selectedFoods")
-                    print("\(catName)")
-                    print("\(codeName)")
+                    switch(catName){
+                    case "African":
+                        var africanDict = africanList()
+                        for i in 0 ..< africanList().count {
+                            selectedFoodCategories.append(africanDict[i])
+                        }
+                        //print(selectedFoodCategories)
+                        
+                    break
+                    case "American":
+                        var americanDict = americanList()
+                        for i in 0 ..< americanList().count {
+                             selectedFoodCategories.append(americanDict[i])
+                        }
+                        
+                    break
+                    case "Australian":
+                        var australianDict = attractionsList()
+                        for i in 0 ..< australianList().count {
+                             selectedFoodCategories.append(australianDict[i])
+                        }
+                        
+                    break
+                    case "Asian":
+                        var asianDict = asianList()
+                        for i in 0 ..< asianList().count {
+                             selectedFoodCategories.append(asianDict[i])
+                        }
+                        
+                    break
+                    case "Breakfast":
+                        var breakfastDict = attractionsList()
+                        for i in 0 ..< breakfastList().count {
+                             selectedFoodCategories.append(breakfastDict[i])
+                        }
+                        
+                    break
+                    case "Chinese":
+                        var chineseDict = chineseList()
+                        for i in 0 ..< chineseList().count {
+                             selectedFoodCategories.append(chineseDict[i])
+                        }
+                        
+                    break
+                    case "Deserts":
+                        var desertsDict = desertList()
+                        for i in 0 ..< desertList().count {
+                             selectedFoodCategories.append(desertsDict[i])
+                        }
+                        
+                    break
+                    case "European":
+                        var europeanDict = europeanList()
+                        for i in 0 ..< europeanList().count {
+                             selectedFoodCategories.append(europeanDict[i])
+                        }
+                        
+                    break
+                    case "Fast Food":
+                        var fastfoodDict = fastfoodList()
+                        for i in 0 ..< fastfoodList().count {
+                             selectedFoodCategories.append(fastfoodDict[i])
+                        }
+                        
+                    break
+                    case "French":
+                        var frenchDict = frenchList()
+                        for i in 0 ..< frenchList().count {
+                             selectedFoodCategories.append(frenchDict[i])
+                        }
+                        
+                    break
+                    case "Healthy":
+                        var healthyDict = healthyList()
+                        for i in 0 ..< healthyList().count {
+                            selectedFoodCategories.append(healthyDict[i])
+                        }
+                        
+                    break
+                    case "Italian":
+                        var italianDict = italianList()
+                        for i in 0 ..< italianList().count {
+                            selectedFoodCategories.append(italianDict[i])
+                        }
+                        
+                    break
+                    case "Indian":
+                        var indianDict = attractionsList()
+                        for i in 0 ..< indianList().count {
+                            selectedFoodCategories.append(indianDict[i])
+                        }
+                        
+                    break
+                    case "Japanese":
+                        var japaneseDict = japaneseList()
+                        for i in 0 ..< japaneseList().count {
+                            selectedFoodCategories.append(japaneseDict[i])
+                        }
+                        
+                    break
+                    case "Latin American":
+                        var latinDict = latinAmericanList()
+                        for i in 0 ..< latinAmericanList().count {
+                            selectedFoodCategories.append(latinDict[i])
+                        }
+                        
+                    break
+                    case "Middle Eastern":
+                        var middleDict = middleEasternList()
+                        for i in 0 ..< middleEasternList().count {
+                            selectedFoodCategories.append(middleDict[i])
+                        }
+                        
+                    break
+                    case "Medditeranian":
+                        var meddDict = medditeranianList()
+                        for i in 0 ..< medditeranianList().count {
+                            selectedFoodCategories.append(meddDict[i])
+                        }
+                        
+                    break
+                    case "Thai":
+                        var thaiDict = thaiList()
+                        for i in 0 ..< thaiList().count {
+                            selectedFoodCategories.append(thaiDict[i])
+                        }
+                        
+                    break
+                    case "Other":
+                        var otherDict = otherList()
+                        for i in 0 ..< otherList().count {
+                            selectedFoodCategories.append(otherDict[i])
+                        }
+                        
+                    break
+                    default:
+                    break
+                    }
+                    //print("\(catName)")
+                   // print("\(codeName)")
                 }
                 else if NSIndexPath.section == 1
                 {
                     catName = bigActivitiesCategories[NSIndexPath.row]["name"]!
                     codeName = bigActivitiesCategories[NSIndexPath.row]["code"]!
+                   // print(catName)
+                   // print(codeName)
                     switch (catName){
                         case "Attractions":
                             var attractionsDict = attractionsList()
@@ -194,12 +332,12 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                                 
                             
                         break
-                        case "Beauty and Spas":
+                    case "Beauty and Spas":
                             var beautyDict = beautyList()
                             for i in 0 ..< beautyList().count {
                                 selectedActivitiesCategories.append(beautyDict[i])
                             }
-                        break
+                            break
                         case "Entertainment":
                             var entertainmentDict = entertainmentList()
                             for i in 0 ..< beautyList().count {
@@ -257,187 +395,221 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                         default:
                         break
                     }
-                    selectedActivitiesCategories.append(["name": catName, "code": codeName])
-                    userDefaults.setObject(selectedActivitiesCategories, forKey: "selectedActivities")
-                    print(catName)
-                    print(codeName)
+                   // selectedActivitiesCategories.append(["name": catName, "code": codeName])
+
+                   // print(catName)
+                    //print(codeName)
                 }
             }
+            print("These are the foods selected")
+            print(selectedFoodCategories)
+            userDefaults.setObject(selectedActivitiesCategories, forKey: "selectedActivities")
+            userDefaults.setObject(selectedActivitiesCategories, forKey: "selectedFoods")
+            print("Printing what is saved to userDefaults")
+            print(userDefaults.arrayForKey("selectedFoods"))
         }
         //let vc = storyboard.instantiateViewControllerWithIdentifier("NavMainMenu")
+        //print(selectedActivitiesCategories)
+        //print(selectedFoodCategories)
         self.performSegueWithIdentifier("moveMain", sender: nil)
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
     }
     func yelpCategories() -> [[String:String]] {
-        return [["name" : "Afghan", "code": "afghani"],
-            ["name" : "African", "code": "african"],
-            ["name" : "American, New", "code": "newamerican"],
-            ["name" : "American, Traditional", "code": "tradamerican"],
-            ["name" : "Arabian", "code": "arabian"],
-            ["name" : "Argentine", "code": "argentine"],
+        return [
+            /*["name" : "Argentine", "code": "argentine"],
             ["name" : "Armenian", "code": "armenian"],
-            ["name" : "Asian Fusion", "code": "asianfusion"],
-            ["name" : "Asturian", "code": "asturian"],
-            ["name" : "Australian", "code": "australian"],
-            ["name" : "Austrian", "code": "austrian"],
             ["name" : "Baguettes", "code": "baguettes"],
             ["name" : "Bangladeshi", "code": "bangladeshi"],
-            ["name" : "Barbeque", "code": "bbq"],
             ["name" : "Basque", "code": "basque"],
             ["name" : "Bavarian", "code": "bavarian"],
-            ["name" : "Beer Garden", "code": "beergarden"],
-            ["name" : "Beer Hall", "code": "beerhall"],
-            ["name" : "Beisl", "code": "beisl"],
-            ["name" : "Belgian", "code": "belgian"],
-            ["name" : "Bistros", "code": "bistros"],
-            ["name" : "Black Sea", "code": "blacksea"],
-            ["name" : "Brasseries", "code": "brasseries"],
-            ["name" : "Brazilian", "code": "brazilian"],
-            ["name" : "Breakfast & Brunch", "code": "breakfast_brunch"],
-            ["name" : "British", "code": "british"],
-            ["name" : "Buffets", "code": "buffets"],
-            ["name" : "Bulgarian", "code": "bulgarian"],
-            ["name" : "Burgers", "code": "burgers"],
-            ["name" : "Burmese", "code": "burmese"],
-            ["name" : "Cafes", "code": "cafes"],
-            ["name" : "Cafeteria", "code": "cafeteria"],
-            ["name" : "Cajun/Creole", "code": "cajun"],
-            ["name" : "Cambodian", "code": "cambodian"],
-            ["name" : "Canadian", "code": "New)"],
-            ["name" : "Canteen", "code": "canteen"],
-            ["name" : "Caribbean", "code": "caribbean"],
-            ["name" : "Catalan", "code": "catalan"],
-            ["name" : "Chech", "code": "chech"],
-            ["name" : "Cheesesteaks", "code": "cheesesteaks"],
-            ["name" : "Chicken Shop", "code": "chickenshop"],
-            ["name" : "Chicken Wings", "code": "chicken_wings"],
-            ["name" : "Chilean", "code": "chilean"],
-            ["name" : "Chinese", "code": "chinese"],
-            ["name" : "Comfort Food", "code": "comfortfood"],
-            ["name" : "Corsican", "code": "corsican"],
-            ["name" : "Creperies", "code": "creperies"],
-            ["name" : "Cuban", "code": "cuban"],
-            ["name" : "Curry Sausage", "code": "currysausage"],
-            ["name" : "Cypriot", "code": "cypriot"],
-            ["name" : "Czech", "code": "czech"],
-            ["name" : "Czech/Slovakian", "code": "czechslovakian"],
-            ["name" : "Danish", "code": "danish"],
-            ["name" : "Delis", "code": "delis"],
-            ["name" : "Diners", "code": "diners"],
-            ["name" : "Dumplings", "code": "dumplings"],
-            ["name" : "Eastern European", "code": "eastern_european"],
-            ["name" : "Ethiopian", "code": "ethiopian"],
-            ["name" : "Fast Food", "code": "hotdogs"],
-            ["name" : "Filipino", "code": "filipino"],
-            ["name" : "Fish & Chips", "code": "fishnchips"],
-            ["name" : "Fondue", "code": "fondue"],
-            ["name" : "Food Court", "code": "food_court"],
-            ["name" : "Food Stands", "code": "foodstands"],
-            ["name" : "French", "code": "french"],
-            ["name" : "French Southwest", "code": "sud_ouest"],
-            ["name" : "Galician", "code": "galician"],
-            ["name" : "Gastropubs", "code": "gastropubs"],
-            ["name" : "Georgian", "code": "georgian"],
-            ["name" : "German", "code": "german"],
-            ["name" : "Giblets", "code": "giblets"],
-            ["name" : "Gluten-Free", "code": "gluten_free"],
-            ["name" : "Greek", "code": "greek"],
-            ["name" : "Halal", "code": "halal"],
-            ["name" : "Hawaiian", "code": "hawaiian"],
-            ["name" : "Heuriger", "code": "heuriger"],
-            ["name" : "Himalayan/Nepalese", "code": "himalayan"],
-            ["name" : "Hong Kong Style Cafe", "code": "hkcafe"],
-            ["name" : "Hot Dogs", "code": "hotdog"],
-            ["name" : "Hot Pot", "code": "hotpot"],
-            ["name" : "Hungarian", "code": "hungarian"],
-            ["name" : "Iberian", "code": "iberian"],
-            ["name" : "Indian", "code": "indpak"],
-            ["name" : "Indonesian", "code": "indonesian"],
-            ["name" : "International", "code": "international"],
-            ["name" : "Irish", "code": "irish"],
-            ["name" : "Island Pub", "code": "island_pub"],
-            ["name" : "Israeli", "code": "israeli"],
-            ["name" : "Italian", "code": "italian"],
-            ["name" : "Japanese", "code": "japanese"],
-            ["name" : "Jewish", "code": "jewish"],
-            ["name" : "Kebab", "code": "kebab"],
-            ["name" : "Korean", "code": "korean"],
-            ["name" : "Kosher", "code": "kosher"],
-            ["name" : "Kurdish", "code": "kurdish"],
-            ["name" : "Laos", "code": "laos"],
-            ["name" : "Laotian", "code": "laotian"],
-            ["name" : "Latin American", "code": "latin"],
-            ["name" : "Live/Raw Food", "code": "raw_food"],
-            ["name" : "Lyonnais", "code": "lyonnais"],
-            ["name" : "Malaysian", "code": "malaysian"],
-            ["name" : "Meatballs", "code": "meatballs"],
-            ["name" : "Mediterranean", "code": "mediterranean"],
-            ["name" : "Mexican", "code": "mexican"],
-            ["name" : "Middle Eastern", "code": "mideastern"],
-            ["name" : "Milk Bars", "code": "milkbars"],
-            ["name" : "Modern Australian", "code": "modern_australian"],
-            ["name" : "Modern European", "code": "modern_european"],
-            ["name" : "Mongolian", "code": "mongolian"],
-            ["name" : "Moroccan", "code": "moroccan"],
-            ["name" : "New Zealand", "code": "newzealand"],
-            ["name" : "Night Food", "code": "nightfood"],
-            ["name" : "Norcinerie", "code": "norcinerie"],
-            ["name" : "Open Sandwiches", "code": "opensandwiches"],
-            ["name" : "Oriental", "code": "oriental"],
-            ["name" : "Pakistani", "code": "pakistani"],
-            ["name" : "Parent Cafes", "code": "eltern_cafes"],
-            ["name" : "Parma", "code": "parma"],
-            ["name" : "Persian/Iranian", "code": "persian"],
-            ["name" : "Peruvian", "code": "peruvian"],
-            ["name" : "Pita", "code": "pita"],
-            ["name" : "Pizza", "code": "pizza"],
-            ["name" : "Polish", "code": "polish"],
-            ["name" : "Portuguese", "code": "portuguese"],
-            ["name" : "Potatoes", "code": "potatoes"],
-            ["name" : "Poutineries", "code": "poutineries"],
-            ["name" : "Pub Food", "code": "pubfood"],
-            ["name" : "Rice", "code": "riceshop"],
-            ["name" : "Romanian", "code": "romanian"],
-            ["name" : "Rotisserie Chicken", "code": "rotisserie_chicken"],
-            ["name" : "Rumanian", "code": "rumanian"],
-            ["name" : "Russian", "code": "russian"],
-            ["name" : "Salad", "code": "salad"],
-            ["name" : "Sandwiches", "code": "sandwiches"],
-            ["name" : "Scandinavian", "code": "scandinavian"],
-            ["name" : "Scottish", "code": "scottish"],
-            ["name" : "Seafood", "code": "seafood"],
-            ["name" : "Serbo Croatian", "code": "serbocroatian"],
-            ["name" : "Signature Cuisine", "code": "signature_cuisine"],
+           
+
+        
             ["name" : "Singaporean", "code": "singaporean"],
             ["name" : "Slovakian", "code": "slovakian"],
+            ["name" : "Swedish", "code": "swedish"],*/
+        
+        ["name" : "African", "code": "a"],
+            ["name" : "American", "code": "b"],
+            ["name" : "Austrialian", "code": "c"],
+            ["name" : "Asian", "code": "d"],
+            ["name" : "Breakfast", "code": "e"],
+            ["name" : "Chinese", "code": "f"],
+            ["name" : "Deserts", "code": "g"],
+            ["name" : "European", "code": "h"],
+            ["name" : "Fast Food", "code": "i"],
+            ["name" : "French", "code": "j"],
+            ["name" : "Healthy", "code": "k"],
+            ["name" : "Italian", "code": "l"],
+            ["name" : "Indian", "code": "m"],
+            ["name" : "Japaneese", "code": "n"],
+            ["name" : "Latin American", "code": "o"],
+            ["name" : "Middle Eastern", "code": "p"],
+            ["name" : "Medditeranian", "code": "q"],
+            ["name" : "Thai", "code": "r"],
+            ["name" : "Other", "code": "s"]]
+    }
+    func africanList() -> [[String:String]]{
+        return [["name" : "African", "code": "african"],
+                ["name" : "Ethiopian", "code": "ethiopian"]]
+    }
+    func americanList() -> [[String:String]]
+    {
+        return [["name" : "American, New", "code": "newamerican"],
+            ["name" : "American, Traditional", "code": "tradamerican"],
+            ["name" : "Burgers", "code": "burgers"],
+            ["name" : "Barbeque", "code": "bbq"],
+            ["name" : "Cheesesteaks", "code": "cheesesteaks"],
+            ["name" : "Chicken Wings", "code": "chicken_wings"],
+            ["name" : "Diners", "code": "diners"],
+            ["name" : "Dumplings", "code": "dumplings"],
+            ["name" : "Hot Dogs", "code": "hotdog"],
             ["name" : "Soul Food", "code": "soulfood"],
-            ["name" : "Soup", "code": "soup"],
             ["name" : "Southern", "code": "southern"],
-            ["name" : "Spanish", "code": "spanish"],
             ["name" : "Steakhouses", "code": "steak"],
-            ["name" : "Sushi Bars", "code": "sushi"],
-            ["name" : "Swabian", "code": "swabian"],
-            ["name" : "Swedish", "code": "swedish"],
-            ["name" : "Swiss Food", "code": "swissfood"],
-            ["name" : "Tabernas", "code": "tabernas"],
-            ["name" : "Taiwanese", "code": "taiwanese"],
-            ["name" : "Tapas Bars", "code": "tapas"],
-            ["name" : "Tapas/Small Plates", "code": "tapasmallplates"],
             ["name" : "Tex-Mex", "code": "tex-mex"],
-            ["name" : "Thai", "code": "thai"],
-            ["name" : "Traditional Norwegian", "code": "norwegian"],
-            ["name" : "Traditional Swedish", "code": "traditional_swedish"],
-            ["name" : "Trattorie", "code": "trattorie"],
-            ["name" : "Turkish", "code": "turkish"],
-            ["name" : "Ukrainian", "code": "ukrainian"],
-            ["name" : "Uzbek", "code": "uzbek"],
-            ["name" : "Vegan", "code": "vegan"],
-            ["name" : "Vegetarian", "code": "vegetarian"],
-            ["name" : "Venison", "code": "venison"],
-            ["name" : "Vietnamese", "code": "vietnamese"],
-            ["name" : "Wok", "code": "wok"],
-            ["name" : "Wraps", "code": "wraps"],
-            ["name" : "Yugoslav", "code": "yugoslav"]]
+            ["name" : "Pizza", "code": "pizza"]]
+    }
+    func australianList() -> [[String:String]] {
+        return [
+         ["name" : "Australian", "code": "australian"],
+         ["name" : "Fish & Chips", "code": "fishnchips"],//Austrialian
+         ["name" : "Modern Australian", "code": "modern_australian"]]
+    }
+    func asianList() -> [[String:String]] {
+        return [["name" : "Asian Fusion", "code": "asianfusion"],
+            ["name" : "Burmese", "code": "burmese"], //Asian
+            ["name" : "Cambodian", "code": "cambodian"],//Asian
+            ["name" : "Himalayan/Nepalese", "code": "himalayan"],//Asian
+            ["name" : "Korean", "code": "korean"],//Asian
+            ["name" : "Malaysian", "code": "malaysian"],//Asian
+            ["name" : "Oriental", "code": "oriental"], //Asian
+            ["name" : "Vietnamese", "code": "vietnamese"]]
+    }
+    func breakfastList() -> [[String:String]] {
+        return [["name" : "Breakfast & Brunch", "code": "breakfast_brunch"],//Breakfast
+            ["name" : "Cafes", "code": "cafes"], //Breakfast
+            ["name" : "Creperies", "code": "creperies"],//Breakfast
+            ["name" : "Parent Cafes", "code": "eltern_cafes"]]
+    }
+    func latinAmericanList() -> [[String:String]] {
+        return [["name" : "Brazilian", "code": "brazilian"],//Latin American
+            ["name" : "Catalan", "code": "catalan"], //Latin American
+            ["name" : "Chilean", "code": "chilean"], //Latin America
+            ["name" : "Cuban", "code": "cuban"],//Latin American
+            ["name" : "Galician", "code": "galician"],//Latin American
+            ["name" : "Latin American", "code": "latin"],//Latin American
+            ["name" : "Mexican", "code": "mexican"], //Latin America
+            ["name" : "Peruvian", "code": "peruvian"],//Latin America
+            ["name" : "Portuguese", "code": "portuguese"], //Latin American
+            ["name" : "Spanish", "code": "spanish"]]
+    }
+    func chineseList() -> [[String:String]] {
+        return [["name" : "Chinese", "code": "chinese"], //Chinese/Asian
+                ["name" : "Hong Kong Style Cafe", "code": "hkcafe"],
+                ["name" : "Mongolian", "code": "mongolian"]]//Chinese
+    }
+    func desertList() -> [[String:String]] {
+        return [["name" : "Fondue", "code": "fondue"], //Deserts
+            ["name" : "Milk Bars", "code": "milkbars"]]
+    }
+    func europeanList() -> [[String:String]]{
+       return [["name" : "Austrian", "code": "austrian"],
+        ["name" : "Asturian", "code": "asturian"],
+        ["name" : "Beisl", "code": "beisl"],
+        ["name" : "Belgian", "code": "belgian"],//Europe
+        ["name" : "British", "code": "british"], //Europe
+        ["name" : "Bulgarian", "code": "bulgarian"], //Europe
+        ["name" : "Chech", "code": "chech"], //European
+        ["name" : "Czech", "code": "czech"], //Europe
+        ["name" : "Czech/Slovakian", "code": "czechslovakian"],//Europe
+        ["name" : "Danish", "code": "danish"], //Europe
+        ["name" : "Eastern European", "code": "eastern_european"], //European
+        ["name" : "German", "code": "german"],//European
+        ["name" : "Greek", "code": "greek"], //European
+        ["name" : "Heuriger", "code": "heuriger"],//European
+        ["name" : "Hungarian", "code": "hungarian"], //European
+        ["name" : "Iberian", "code": "iberian"],//Europe
+        ["name" : "Irish", "code": "irish"],//Europe
+        ["name" : "Modern European", "code": "modern_european"], //European
+        ["name" : "Polish", "code": "polish"], //Europe
+        ["name" : "Scandinavian", "code": "scandinavian"],//European
+        ["name" : "Scottish", "code": "scottish"],//European
+        ["name" : "Swiss Food", "code": "swissfood"],//European
+        ["name" : "Turkish", "code": "turkish"],//European
+        ["name" : "Yugoslav", "code": "yugoslav"]]//European
+
+        
+    }
+    func fastfoodList() -> [[String:String]] {
+        return [["name" : "Fast Food", "code": "hotdogs"]]//fastfood
+    }
+    func frenchList() -> [[String:String]]{
+        return [["name" : "Brasseries", "code": "brasseries"],
+                ["name" : "French", "code": "french"], //French/European
+                ["name" : "French Southwest", "code": "sud_ouest"]]
+    }
+    func healthyList() -> [[String:String]] {
+        return [["name" : "Gluten-Free", "code": "gluten_free"],//Healthy?
+            ["name" : "Salad", "code": "salad"],// Healthy
+            ["name" : "Vegan", "code": "vegan"], //Healthy
+            ["name" : "Vegetarian", "code": "vegetarian"]]
+    }
+    func italianList() -> [[String:String]]{
+        return [["name" : "Italian", "code": "italian"], //Italian/Europe
+            ["name" : "Norcinerie", "code": "norcinerie"],
+            ["name" : "Corsican", "code": "corsican"]]
+    }
+    func indianList() -> [[String:String]]{
+        return [ ["name" : "Indian", "code": "indpak"],//Indian
+            ["name" : "Indonesian", "code": "indonesian"]]
+    }
+
+
+    func japaneseList() -> [[String:String]] {
+        return [["name" : "Japanese", "code": "japanese"],//Japaneese
+            ["name" : "Sushi Bars", "code": "sushi"],
+]
+    }
+    func middleEasternList() -> [[String:String]] {
+        return [["name" : "Afghan", "code": "afghani"],//Middle Eastern]
+            ["name" : "Arabian", "code": "arabian"],//Middle Eastern
+            ["name" : "Halal", "code": "halal"], //Middle East/Muslim????
+            ["name" : "Israeli", "code": "israeli"], //Middle eastern
+            ["name" : "Kebab", "code": "kebab"],//Middle East
+            ["name" : "Middle Eastern", "code": "mideastern"], //Middle Eastern
+            ["name" : "Moroccan", "code": "moroccan"],//Middle eastern
+            ["name" : "Pakistani", "code": "pakistani"], //Middle East
+            ["name" : "Persian/Iranian", "code": "persian"]] //Middle eastern
+
+
+        
+    }
+    func medditeranianList() -> [[String:String]] {
+        return [["name" : "Mediterranean", "code": "mediterranean"],//Medditeranian 
+            ["name" : "Romanian", "code": "romanian"]]
+    }
+    func thaiList() -> [[String:String]]{
+        return [["name" : "Thai", "code": "thai"]]// Thai
+        }
+
+    func otherList() -> [[String:String]] {
+        return [["name" : "Bistros", "code": "bistros"],//Other
+            ["name" : "Buffets", "code": "buffets"], //Other
+            ["name" : "Cajun/Creole", "code": "cajun"],//French? Or Other.
+            ["name" : "Canadian", "code": "New)"], //North American
+            ["name" : "Caribbean", "code": "caribbean"],//Other
+            ["name" : "Filipino", "code": "filipino"],//Other
+            ["name" : "Georgian", "code": "georgian"],//Other
+            ["name" : "Hawaiian", "code": "hawaiian"], //American/Other
+            ["name" : "Kosher", "code": "kosher"],//Jewish
+            ["name" : "Kurdish", "code": "kurdish"],//Other
+            ["name" : "Night Food", "code": "nightfood"],//Other
+            ["name" : "Open Sandwiches", "code": "opensandwiches"], //Other
+            ["name" : "Poutineries", "code": "poutineries"], //Canadian
+            ["name" : "Rotisserie Chicken", "code": "rotisserie_chicken"],// other
+            ["name" : "Sandwiches", "code": "sandwiches"],//other
+            ["name" : "Seafood", "code": "seafood"]]
     }
     func attractionsList() -> [[String:String]]
     {
