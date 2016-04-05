@@ -158,7 +158,6 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                             {
                                 for(name, code) in activity{
                                     
-                                        
                                 }
                             }
                         break
