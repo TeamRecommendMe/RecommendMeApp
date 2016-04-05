@@ -149,6 +149,42 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                 {
                     catName = activitiesCategories[NSIndexPath.row]["name"]!
                     codeName = activitiesCategories[NSIndexPath.row]["code"]!
+                    switch (catName){
+                        case "Attractions":
+                            var attractionsDict = attractionsList()
+                            var name : String
+                            var code : String
+                            for activity in attractionsDict
+                            {
+                                for(name, code) in activity{
+                                    
+                                        
+                                }
+                            }
+                        break
+                        case "Beauty and Spas":
+                        break
+                        case "Entertainment":
+                        break
+                        case "Great Outdoors/Extreme":
+                        break
+                        case "Landmarks/Historical Buildings":
+                        break
+                        case "Nightlife":
+                        break
+                        case "Parks":
+                        break
+                        case "Pets":
+                        break
+                        case "Professional Sporting Events":
+                        break
+                        case "Sports":
+                        break
+                        case "Water Activities":
+                        break
+                        default:
+                        break
+                    }
                     selectedActivitiesCategories.append(["name": catName, "code": codeName])
                     userDefaults.setObject(selectedActivitiesCategories, forKey: "selectedActivities")
                     print(catName)
@@ -465,7 +501,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                 ["name" : "Pets", "code": "yolo7"],
                 ["name" : "Professional Sporting Events", "code": "yolo8"],
                 ["name" : "Sports", "code": "yolo9"],
-                ["name" : "Water", "code": "yolo10"]]
+                ["name" : "Water Activities", "code": "yolo10"]]
     }
     /*
     // MARK: - Navigation
