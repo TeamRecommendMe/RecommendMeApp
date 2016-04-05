@@ -840,7 +840,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="resultsTableView" destination="393-9Q-Z5w" id="gIl-Fh-EzG"/>
-                        <outlet property="tableView" destination="393-9Q-Z5w" id="oxM-0E-qhn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2X-IX-7CH" userLabel="First Responder" sceneMemberID="firstResponder"/>

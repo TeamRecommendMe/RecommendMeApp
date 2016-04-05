@@ -13,14 +13,14 @@ class ResultsTableViewController: UITableViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     
     
-    var searchController = UISearchController()
+//    var searchController = UISearchController()
     var businesses: [Business]!
     var businessesSectionTwo: [Business]!
-    var businessesSectionThree: [Business]!
-    var businessesSectionFour: [Business]!
-    var businessesSectionFive: [Business]!
+//    var businessesSectionThree: [Business]!
+//    var businessesSectionFour: [Business]!
+ //   var businessesSectionFive: [Business]!
     
-    var resultsName = ["Thai","Italian", "Japanese", "Chinese", "Mexican"]
+//    var resultsName = ["Thai","Italian", "Japanese", "Chinese", "Mexican"]
     
    // var filteredBusiness: [Business]?
     
@@ -37,13 +37,7 @@ class ResultsTableViewController: UITableViewController {
                 print(business.name!)
                 print(business.address!)
             }
-            
-            
-
-
         })
-        
-        
         
         /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
@@ -57,32 +51,17 @@ class ResultsTableViewController: UITableViewController {
         */
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 5
-    }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let resultsHeaderCell = tableView.dequeueReusableCellWithIdentifier("resultsHeader") as! ResultsHeaderCell
-        switch(section){
-        case 0:
-            resultsHeaderCell.lblHeaderTitle.text = "Thai Foods"
-        case 1:
-            resultsHeaderCell.lblHeaderTitle.text = "Italian Food"
-        case 2:
-            resultsHeaderCell.lblHeaderTitle.text = "Japanese Food"
-        case 3:
-            resultsHeaderCell.lblHeaderTitle.text = "Chinese Food"
-        default:
-            resultsHeaderCell.lblHeaderTitle.text = "Mexican"
+    
+   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if businesses != nil {
+            return 5
         }
-            return resultsHeaderCell
-    
+        else {
+        
+            return 0
     }
     
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 4
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -92,9 +71,6 @@ class ResultsTableViewController: UITableViewController {
         
         return cell
     }
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

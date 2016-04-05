@@ -24,7 +24,7 @@ class ResultsDataCell: UITableViewCell {
         didSet {
             lblBusinessName.text = business.name
             lblBusinessAddress.text = business.address
-            businessProfileImage.setImageWithURL(business.ratingImageURL!)
+            businessProfileImage.setImageWithURL(business.imageURL!)
         }
     }
     
