@@ -40,11 +40,16 @@ class YelpClient: BDBOAuth1SessionManager {
         super.init(coder: aDecoder)
     }
     
+    override init(baseURL url: NSURL!, sessionConfiguration configuration: NSURLSessionConfiguration!) {
+        super.init(baseURL: url, sessionConfiguration: configuration)
+    }
+    
     init(consumerKey key: String!, consumerSecret secret: String!, accessToken: String!, accessSecret: String!) {
         self.accessToken = accessToken
         self.accessSecret = accessSecret
         let baseUrl = NSURL(string: "https://api.yelp.com/v2/")
-        super.init(baseURL: baseUrl, consumerKey: key, consumerSecret: secret);
+        
+        super.init(baseURL: baseUrl, consumerKey: key, consumerSecret: secret)
         
         let token = BDBOAuth1Credential(token: accessToken, secret: accessSecret, expiration: nil)
         self.requestSerializer.saveAccessToken(token)

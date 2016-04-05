@@ -10,6 +10,9 @@
 		948D1D4E1CA74F8F0051319D /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948D1D4D1CA74F8F0051319D /* HeaderCell.swift */; };
 		94A1E1D01CA720F0009B0A20 /* SwitchCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1E1CF1CA720F0009B0A20 /* SwitchCellTableViewCell.swift */; };
 		B46CF52D5496B332BBB288D5 /* Pods_RecommendMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5606B7B2809000C22EC51E /* Pods_RecommendMe.framework */; };
+		EE18D3B21CB2BB1A0012745E /* ResultsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE18D3B11CB2BB1A0012745E /* ResultsHeaderCell.swift */; };
+		EE18D3B41CB2BB350012745E /* ResultsDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE18D3B31CB2BB350012745E /* ResultsDataCell.swift */; };
+		EE18D3B61CB2BB630012745E /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE18D3B51CB2BB630012745E /* ResultsTableViewController.swift */; };
 		EE1BFD421CA98A0D0008FA25 /* AdvancedFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BFD411CA98A0D0008FA25 /* AdvancedFilterViewController.swift */; };
 		EE1BFD461CA98CFE0008FA25 /* AdvancedHeaderCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BFD451CA98CFE0008FA25 /* AdvancedHeaderCellTableViewCell.swift */; };
 		EE1BFD481CA9ADE90008FA25 /* advDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BFD471CA9ADE90008FA25 /* advDataCell.swift */; };
@@ -34,6 +37,9 @@
 		94A1E1CF1CA720F0009B0A20 /* SwitchCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCellTableViewCell.swift; sourceTree = "<group>"; };
 		989E245E98E83207E92B3185 /* Pods-RecommendMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecommendMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.debug.xcconfig"; sourceTree = "<group>"; };
 		9E30ECBB7E68F5F9EBF7DECE /* Pods-RecommendMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecommendMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.release.xcconfig"; sourceTree = "<group>"; };
+		EE18D3B11CB2BB1A0012745E /* ResultsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsHeaderCell.swift; sourceTree = "<group>"; };
+		EE18D3B31CB2BB350012745E /* ResultsDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsDataCell.swift; sourceTree = "<group>"; };
+		EE18D3B51CB2BB630012745E /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		EE1BFD411CA98A0D0008FA25 /* AdvancedFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedFilterViewController.swift; sourceTree = "<group>"; };
 		EE1BFD451CA98CFE0008FA25 /* AdvancedHeaderCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedHeaderCellTableViewCell.swift; sourceTree = "<group>"; };
 		EE1BFD471CA9ADE90008FA25 /* advDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = advDataCell.swift; sourceTree = "<group>"; };
@@ -141,6 +147,8 @@
 				948D1D4D1CA74F8F0051319D /* HeaderCell.swift */,
 				EE1BFD451CA98CFE0008FA25 /* AdvancedHeaderCellTableViewCell.swift */,
 				EE1BFD471CA9ADE90008FA25 /* advDataCell.swift */,
+				EE18D3B11CB2BB1A0012745E /* ResultsHeaderCell.swift */,
+				EE18D3B31CB2BB350012745E /* ResultsDataCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -153,6 +161,7 @@
 				EE245A451CA1FC5300DF2A76 /* PlannerViewController.swift */,
 				EE245A4B1CA37E3000DF2A76 /* InitialSettingsViewController.swift */,
 				EE1BFD411CA98A0D0008FA25 /* AdvancedFilterViewController.swift */,
+				EE18D3B51CB2BB630012745E /* ResultsTableViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -295,10 +304,13 @@
 				EE1BFD421CA98A0D0008FA25 /* AdvancedFilterViewController.swift in Sources */,
 				EE245A461CA1FC5300DF2A76 /* PlannerViewController.swift in Sources */,
 				948D1D4E1CA74F8F0051319D /* HeaderCell.swift in Sources */,
+				EE18D3B41CB2BB350012745E /* ResultsDataCell.swift in Sources */,
+				EE18D3B61CB2BB630012745E /* ResultsTableViewController.swift in Sources */,
 				EE2961151C99D92C00A088E8 /* YelpClient.swift in Sources */,
 				EE1BFD481CA9ADE90008FA25 /* advDataCell.swift in Sources */,
 				94A1E1D01CA720F0009B0A20 /* SwitchCellTableViewCell.swift in Sources */,
 				EE83BE241C7D3FC20002DF50 /* AppDelegate.swift in Sources */,
+				EE18D3B21CB2BB1A0012745E /* ResultsHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
