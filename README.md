@@ -16,10 +16,10 @@
 The following **required** functionality is completed:
 
 - [ ] Opens Google Maps to give user detailed navigation directions and street views.
-- [ ] Initial Settings page that at first ever start of the application ask users preferences of activities they like and dislike doing.
+- [x] Initial Settings page that at first ever start of the application ask users preferences of activities they like and dislike doing.
 - [ ] Main Menu view controller where the user can select from to which item they want to do a recommend search from.
 - [x] Main Menu uses UI Gesture Recognizers to swipe to different view controllers.
-- [ ] Advanced search to fine-tune both activities and restaurants.
+- [x] Advanced search to fine-tune both activities and restaurants.
 - [ ] Detail view controller of the selected places.
 - [x] About page to give credit to the people who help create this and the technologies that must be credited to.
 
@@ -33,6 +33,11 @@ The following **optional** features are implemented:
 ## Walkthrough March 23rd:
 ![group1](https://cloud.githubusercontent.com/assets/14221032/14008540/09d5bc74-f13f-11e5-955d-ef786fbb691c.gif)
 
+
+## Walkthrough March 30th:
+![sprint2](https://cloud.githubusercontent.com/assets/14221032/14167464/6219a422-f6d0-11e5-8cdb-b79ea6b858f0.gif)
+
+Note: Advanced Settings doesn't go anywhere at the moment.
 
     Copyright [2016] [Team Recommend Me]
 
