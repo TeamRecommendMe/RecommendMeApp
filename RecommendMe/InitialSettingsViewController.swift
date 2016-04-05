@@ -37,7 +37,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     var activitiesCategories:[[String:String]]!
     var  bigActivitiesCategories :[[String:String]]!
     var allCategories: [[String:String]]!
-    var i = 0
+   // var i = 0
     var switchStates = [NSIndexPath: Bool]()
     let userDefaults = NSUserDefaults.standardUserDefaults()
    // let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -147,39 +147,86 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                 }
                 else if NSIndexPath.section == 1
                 {
-                    catName = activitiesCategories[NSIndexPath.row]["name"]!
-                    codeName = activitiesCategories[NSIndexPath.row]["code"]!
+                    catName = bigActivitiesCategories[NSIndexPath.row]["name"]!
+                    codeName = bigActivitiesCategories[NSIndexPath.row]["code"]!
                     switch (catName){
                         case "Attractions":
                             var attractionsDict = attractionsList()
-                            var name : String
-                            var code : String
-                            for activity in attractionsDict
+                            //var name : String
+                            //var code : String
+                            /*for activity in attractionsDict
                             {
                                 for(name, code) in activity{
                                     
                                 }
+                            }*/
+                            print(attractionsDict)
+                            //selectedActivitiesCategories.append(attractionsDict)
+                            for var i = 0; i < 14; i++ {
+                                //print(attractionsDict[i])
+                                selectedActivitiesCategories.append(attractionsDict[i])
+                                print(selectedActivitiesCategories)
                             }
                         break
                         case "Beauty and Spas":
+                            var beautyDict = beautyList()
+                            for i in 0 ..< beautyList().count {
+                                selectedActivitiesCategories.append(beautyDict[i])
+                            }
                         break
                         case "Entertainment":
+                            var entertainmentDict = entertainmentList()
+                            for i in 0 ..< beautyList().count {
+                                selectedActivitiesCategories.append(entertainmentDict[i])
+                            }
                         break
                         case "Great Outdoors/Extreme":
+                            var extremeDict = extremeList()
+                            for i in 0 ..< extremeList().count {
+                                selectedActivitiesCategories.append(extremeDict[i])
+                            }
                         break
                         case "Landmarks/Historical Buildings":
+                            var landmarksDict = landmarksList()
+                            for i in 0 ..< landmarksList().count {
+                                selectedActivitiesCategories.append(landmarksDict[i])
+                            }
                         break
                         case "Nightlife":
+                            var nightlifeDict = nightlifeList()
+                            for i in 0 ..< nightlifeList().count {
+                                selectedActivitiesCategories.append(nightlifeDict[i])
+                            }
                         break
                         case "Parks":
+                            var parksDict = parksList()
+                            for i in 0 ..< parksList().count {
+                                selectedActivitiesCategories.append(parksDict[i])
+                            }
                         break
                         case "Pets":
+                            var petsDict = petsList()
+                            for i in 0 ..< petsList().count {
+                                selectedActivitiesCategories.append(petsDict[i])
+                            }
                         break
                         case "Professional Sporting Events":
+                            var profSportsDict = profSportsList()
+                            for i in 0 ..< profSportsList().count {
+                                selectedActivitiesCategories.append(profSportsDict[i])
+                            }
                         break
                         case "Sports":
+                            var sportsDict = sportsList()
+                            for i in 0 ..< sportsList().count {
+                                selectedActivitiesCategories.append(sportsDict[i])
+                            }
                         break
                         case "Water Activities":
+                            var waterDict = waterList()
+                            for i in 0 ..< waterList().count {
+                                selectedActivitiesCategories.append(waterDict[i])
+                            }
                         break
                         default:
                         break
