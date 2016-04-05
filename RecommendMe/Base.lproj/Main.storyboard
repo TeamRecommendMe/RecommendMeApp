@@ -794,35 +794,52 @@
                                     <outlet property="lblHeaderTitle" destination="07c-Nb-Nd8" id="IK8-Wb-BBk"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultsDataCell" rowHeight="215" id="SXd-KB-vRb" customClass="ResultsDataCell" customModule="RecommendMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="137" width="414" height="215"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultsDataCell" rowHeight="220" id="SXd-KB-vRb" customClass="ResultsDataCell" customModule="RecommendMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="137" width="414" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SXd-KB-vRb" id="LPo-3h-VW2">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="214"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="219"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eZH-8V-jlV">
-                                            <rect key="frame" x="87" y="13" width="240" height="128"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timo Wine Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDi-by-A98">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timo Wine Bar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDi-by-A98">
                                             <rect key="frame" x="154" y="149" width="106" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8801 N Central Ave" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFy-MI-yNy">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8801 N Central Ave" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFy-MI-yNy">
                                             <rect key="frame" x="137" y="168" width="140" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phoenix, AZ 85020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahP-iG-6aP">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phoenix, AZ 85020" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahP-iG-6aP">
                                             <rect key="frame" x="137" y="187" width="140" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eZH-8V-jlV">
+                                            <rect key="frame" x="87" y="13" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="128" id="alC-af-X5h"/>
+                                                <constraint firstAttribute="width" constant="240" id="euw-AH-bCe"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="eZH-8V-jlV" firstAttribute="top" secondItem="LPo-3h-VW2" secondAttribute="topMargin" constant="5" id="3GK-qP-gLJ"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="AFy-MI-yNy" secondAttribute="trailing" constant="129" id="3vZ-uH-nUv"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ahP-iG-6aP" secondAttribute="trailing" constant="129" id="5vi-CM-18n"/>
+                                        <constraint firstItem="ahP-iG-6aP" firstAttribute="top" secondItem="SDi-by-A98" secondAttribute="bottom" constant="18" id="866-vX-eze"/>
+                                        <constraint firstItem="ahP-iG-6aP" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leadingMargin" constant="129" id="Up8-ku-QXr"/>
+                                        <constraint firstItem="eZH-8V-jlV" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leadingMargin" constant="79" id="Z11-0y-Cw0"/>
+                                        <constraint firstItem="AFy-MI-yNy" firstAttribute="top" secondItem="eZH-8V-jlV" secondAttribute="bottom" constant="27" id="eEh-YE-MW9"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="SDi-by-A98" secondAttribute="trailing" constant="146" id="fMV-L6-qbA"/>
+                                        <constraint firstItem="SDi-by-A98" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leadingMargin" constant="146" id="rnR-2p-Dso"/>
+                                        <constraint firstItem="SDi-by-A98" firstAttribute="top" secondItem="eZH-8V-jlV" secondAttribute="bottom" constant="8" id="tQA-1p-BYG"/>
+                                        <constraint firstItem="AFy-MI-yNy" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leadingMargin" constant="129" id="vSZ-YV-IAo"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="businessProfileImage" destination="eZH-8V-jlV" id="IwK-Cr-tK9"/>

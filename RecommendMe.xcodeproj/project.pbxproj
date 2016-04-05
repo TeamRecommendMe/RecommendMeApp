@@ -10,22 +10,6 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>0576A5F687EB692953003165</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>989E245E98E83207E92B3185</string>
-				<string>2A5B04815867B55A9DF20FA5</string>
-				<string>238A98E9340D7AEA69F92C88</string>
-				<string>FE0E1A3ECBE54827C4414CD7</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>0E6E5FDF10023A29FF88EE2E</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -45,17 +29,31 @@
 			<key>shellPath</key>
 			<string>/bin/sh</string>
 			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh"
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe-resources.sh"
 </string>
 			<key>showEnvVarsInLog</key>
 			<string>0</string>
 		</dict>
-		<key>1471157E4B8ADB8B6A74C50D</key>
+		<key>3E481C29560FBBB3723F1840</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-RecommendMe.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3F61EBA276A01AE0401421AC</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>6D5606B7B2809000C22EC51E</string>
-				<string>4C4D18CCC45AB080C7F6CB1D</string>
+				<string>9419073408F915D68D9ABB04</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -64,68 +62,12 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>165708E6E03E95A3A0306412</key>
+		<key>52E3402A6BEB08023E5DEEFB</key>
 		<dict>
 			<key>fileRef</key>
-			<string>4C4D18CCC45AB080C7F6CB1D</string>
+			<string>9419073408F915D68D9ABB04</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>238A98E9340D7AEA69F92C88</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods.debug.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods/Pods.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2A5B04815867B55A9DF20FA5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-RecommendMe.release.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4C4D18CCC45AB080C7F6CB1D</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>6D5606B7B2809000C22EC51E</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods_RecommendMe.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>753C657F7B665D94D668C93A</key>
 		<dict>
@@ -156,6 +98,19 @@ fi
 </string>
 			<key>showEnvVarsInLog</key>
 			<string>0</string>
+		</dict>
+		<key>9419073408F915D68D9ABB04</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_RecommendMe.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>948D1D4D1CA74F8F0051319D</key>
 		<dict>
@@ -197,7 +152,7 @@ fi
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>989E245E98E83207E92B3185</key>
+		<key>A59B6B983B93924A5FB7B7C4</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -206,18 +161,25 @@ fi
 			<key>lastKnownFileType</key>
 			<string>text.xcconfig</string>
 			<key>name</key>
-			<string>Pods-RecommendMe.debug.xcconfig</string>
+			<string>Pods-RecommendMe.release.xcconfig</string>
 			<key>path</key>
-			<string>Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.debug.xcconfig</string>
+			<string>Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.release.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B46CF52D5496B332BBB288D5</key>
+		<key>D91AF5004A1264DEE1CA1134</key>
 		<dict>
-			<key>fileRef</key>
-			<string>6D5606B7B2809000C22EC51E</string>
+			<key>children</key>
+			<array>
+				<string>3E481C29560FBBB3723F1840</string>
+				<string>A59B6B983B93924A5FB7B7C4</string>
+			</array>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>EE18D3B11CB2BB1A0012745E</key>
 		<dict>
@@ -458,8 +420,8 @@ fi
 			<array>
 				<string>EE83BE221C7D3FC20002DF50</string>
 				<string>EE83BE211C7D3FC20002DF50</string>
-				<string>1471157E4B8ADB8B6A74C50D</string>
-				<string>0576A5F687EB692953003165</string>
+				<string>D91AF5004A1264DEE1CA1134</string>
+				<string>3F61EBA276A01AE0401421AC</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -562,8 +524,7 @@ fi
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>B46CF52D5496B332BBB288D5</string>
-				<string>165708E6E03E95A3A0306412</string>
+				<string>52E3402A6BEB08023E5DEEFB</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -963,7 +924,7 @@ fi
 		<key>EE83BE331C7D3FC20002DF50</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>238A98E9340D7AEA69F92C88</string>
+			<string>3E481C29560FBBB3723F1840</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
@@ -987,7 +948,7 @@ fi
 		<key>EE83BE341C7D3FC20002DF50</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>FE0E1A3ECBE54827C4414CD7</string>
+			<string>A59B6B983B93924A5FB7B7C4</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
@@ -1076,25 +1037,10 @@ fi
 			<key>shellPath</key>
 			<string>/bin/sh</string>
 			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh"
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe-frameworks.sh"
 </string>
 			<key>showEnvVarsInLog</key>
 			<string>0</string>
-		</dict>
-		<key>FE0E1A3ECBE54827C4414CD7</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods.release.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods/Pods.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>

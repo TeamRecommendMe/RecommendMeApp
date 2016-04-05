@@ -16,6 +16,7 @@ class ResultsTableViewController: UITableViewController {
 //    var searchController = UISearchController()
     var businesses: [Business]!
     var businessesSectionTwo: [Business]!
+    var arrayNotNil = false
 //    var businessesSectionThree: [Business]!
 //    var businessesSectionFour: [Business]!
  //   var businessesSectionFive: [Business]!
@@ -28,17 +29,31 @@ class ResultsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //tableView.estimatedRowHeight = 220
+        //tableView.rowHeight = UITableViewAutomaticDimension
+        
        
         Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
-            self.tableView.reloadData()
+            
             
             for business in businesses {
                 print(business.name!)
                 print(business.address!)
             }
         })
+        Business.searchWithTerm("Italian", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                self.businessesSectionTwo = businesses
+                self.tableView.reloadData()
+            
+                for business in businesses {
+                    print(business.name!)
+                    print(business.address!)
+                }
+            })
         
+        
+            
         /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
         self.businesses = businesses
@@ -51,23 +66,44 @@ class ResultsTableViewController: UITableViewController {
         */
     }
     
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let resultsSectionCell = tableView.dequeueReusableCellWithIdentifier("resultsHeader") as! ResultsHeaderCell
+        switch(section) {
+        case 0:
+            resultsSectionCell.lblHeaderTitle.text = "Thai Foods"
+        default:
+            resultsSectionCell.lblHeaderTitle.text = "Italian Foods"
+        }
+        return resultsSectionCell
+    }
     
     
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if businesses != nil {
-            return 5
+            return 4
         }
         else {
         
             return 0
-    }
+        }
     
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("resultsDataCell", forIndexPath: indexPath) as! ResultsDataCell
         
-        cell.business = businesses[indexPath.row]
+        switch(indexPath.section) {
+        case 0:
+            cell.business = businesses[indexPath.row]
+        default:
+            cell.business = businessesSectionTwo[indexPath.row]
+        }
+        
         
         return cell
     }

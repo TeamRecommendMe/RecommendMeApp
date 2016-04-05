@@ -161,12 +161,38 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                                 }
                             }*/
                             print(attractionsDict)
+                            print("The attractions Dictionary was printed")
+                        
+                            var categoryName: String
+                            var categoryCode: String
+                        
+                            for activity in attractionsDict
+                            {
+                                    for(key,value) in activity
+                                    {
+                                        categoryName = key
+                                        categoryCode = value
+                                        
+                                        print(categoryName)
+                                        print(categoryCode)
+                                        selectedActivitiesCategories.append(["name": categoryName, "code": categoryCode])
+                                    }
+                            }
+                            
+                            /*
+                            
                             //selectedActivitiesCategories.append(attractionsDict)
                             for var i = 0; i < 14; i++ {
                                 //print(attractionsDict[i])
                                 selectedActivitiesCategories.append(attractionsDict[i])
                                 print(selectedActivitiesCategories)
-                            }
+                                
+                              */
+                                
+                                
+                                
+                                
+                            
                         break
                         case "Beauty and Spas":
                             var beautyDict = beautyList()
