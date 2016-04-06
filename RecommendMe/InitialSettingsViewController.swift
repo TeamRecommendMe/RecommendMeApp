@@ -290,48 +290,10 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                     switch (catName){
                         case "Attractions":
                             var attractionsDict = attractionsList()
-                            //var name : String
-                            //var code : String
-                            /*for activity in attractionsDict
-                            {
-                                for(name, code) in activity{
-                                    
-                                }
-                            }*/
-                            print(attractionsDict)
-                            print("The attractions Dictionary was printed")
-                        
-                            var categoryName: String
-                            var categoryCode: String
-                        
-                            for activity in attractionsDict
-                            {
-                                    for(key,value) in activity
-                                    {
-                                        categoryName = key
-                                        categoryCode = value
-                                        
-                                        print(categoryName)
-                                        print(categoryCode)
-                                        selectedActivitiesCategories.append(["name": categoryName, "code": categoryCode])
-                                    }
-                            }
-                            
-                            /*
-                            
-                            //selectedActivitiesCategories.append(attractionsDict)
-                            for var i = 0; i < 14; i++ {
-                                //print(attractionsDict[i])
+                            for i in 0 ..< attractionsList().count {
                                 selectedActivitiesCategories.append(attractionsDict[i])
-                                print(selectedActivitiesCategories)
-                                
-                              */
-                                
-                                
-                                
-                                
-                            
-                        break
+                            }
+                                break
                     case "Beauty and Spas":
                             var beautyDict = beautyList()
                             for i in 0 ..< beautyList().count {
@@ -404,7 +366,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             print("These are the foods selected")
             print(selectedFoodCategories)
             userDefaults.setObject(selectedActivitiesCategories, forKey: "selectedActivities")
-            userDefaults.setObject(selectedActivitiesCategories, forKey: "selectedFoods")
+            userDefaults.setObject(selectedFoodCategories, forKey: "selectedFoods")
             print("Printing what is saved to userDefaults")
             print(userDefaults.arrayForKey("selectedFoods"))
         }
