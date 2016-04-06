@@ -85,7 +85,7 @@ class ResultsTableViewController: UITableViewController {
         })
         
         
-        Business.searchWithTerm(finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businessesSectionTwo = businesses
             self.tableView.reloadData()
             
@@ -96,7 +96,7 @@ class ResultsTableViewController: UITableViewController {
         })
         
         
-        Business.searchWithTerm(finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businessesSectionThree = businesses
             
             
@@ -108,7 +108,7 @@ class ResultsTableViewController: UITableViewController {
         
         
         
-        Business.searchWithTerm(finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businessesSectionFour = businesses
             
             
@@ -120,7 +120,7 @@ class ResultsTableViewController: UITableViewController {
         
         
         
-        Business.searchWithTerm(finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businessesSectionFive = businesses
             
             

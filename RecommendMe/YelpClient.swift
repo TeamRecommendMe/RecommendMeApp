@@ -30,6 +30,7 @@ class YelpClient: BDBOAuth1SessionManager {
     var accessSecret: String!
     
     
+    
 
     class var sharedInstance : YelpClient {
         struct Static {
@@ -74,7 +75,7 @@ class YelpClient: BDBOAuth1SessionManager {
         
         
         // Default the location to San Francisco
-        var parameters: [String : AnyObject] = ["term": term, "ll": "37.785771,-122.406165"]
+        var parameters: [String : AnyObject] = ["term": term, "ll": "38.785771,-122.406165"]
         
         if sort != nil {
             parameters["sort"] = sort!.rawValue
@@ -105,6 +106,8 @@ class YelpClient: BDBOAuth1SessionManager {
     
     func searchWithTermOffset(term: String, offset:Int, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
+        
+        
         
         // Default the location to San Francisco
         var parameters: [String : AnyObject] = ["term": term, "ll": "37.785771,-122.406165"]
