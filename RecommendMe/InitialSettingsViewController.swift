@@ -50,8 +50,10 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
 
 
         self.tableView.backgroundColor = UIColor.clearColor();
+        
         userDefaults.setBool(true, forKey: "userExists")
         let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
+        let skipButton = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: "skipButton:")
         foodCategories = yelpCategories()
        // activitiesCategories = yelpActivitiesCategories()
         bigActivitiesCategories = bigActivities()
@@ -79,6 +81,9 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCellTableViewCell
+        
+        cell.backgroundColor = UIColor.clearColor()
+
         cell.delegate = self
         switch(indexPath.section)
         {
@@ -157,7 +162,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                         
                     break
                     case "Australian":
-                        var australianDict = attractionsList()
+                        var australianDict = australianList()
                         for i in 0 ..< australianList().count {
                              selectedFoodCategories.append(australianDict[i])
                         }
@@ -171,7 +176,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                         
                     break
                     case "Breakfast":
-                        var breakfastDict = attractionsList()
+                        var breakfastDict = breakfastList()
                         for i in 0 ..< breakfastList().count {
                              selectedFoodCategories.append(breakfastDict[i])
                         }
@@ -227,7 +232,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                         
                     break
                     case "Indian":
-                        var indianDict = attractionsList()
+                        var indianDict = indianList()
                         for i in 0 ..< indianList().count {
                             selectedFoodCategories.append(indianDict[i])
                         }
@@ -375,6 +380,14 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         //print(selectedFoodCategories)
         self.performSegueWithIdentifier("moveMain", sender: nil)
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
+    }
+    func skipButton(sender: UIBarButtonItem) {
+        print("Skippp")
+        var selectedFoodCategories = [[String:String]]()
+        var selectedActivitiesCategories = [[String:String]]()
+
+        self.performSegueWithIdentifier("moveMain", sender: nil)
+
     }
     func yelpCategories() -> [[String:String]] {
         return [
