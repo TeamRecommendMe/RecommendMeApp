@@ -74,7 +74,7 @@ class ResultsTableViewController: UITableViewController {
         
         
        
-        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(finishedShuffledCategories[0], completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
             
@@ -83,15 +83,52 @@ class ResultsTableViewController: UITableViewController {
                 print(business.address!)
             }
         })
-        Business.searchWithTerm("Italian", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-                self.businessesSectionTwo = businesses
-                self.tableView.reloadData()
+        
+        
+        Business.searchWithTerm(finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businessesSectionTwo = businesses
+            self.tableView.reloadData()
             
-                for business in businesses {
-                    print(business.name!)
-                    print(business.address!)
-                }
-            })
+            for business in businesses {
+                print(business.name!)
+                print(business.address!)
+            }
+        })
+        
+        
+        Business.searchWithTerm(finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businessesSectionThree = businesses
+            
+            
+            for business in businesses {
+                print(business.name!)
+                print(business.address!)
+            }
+        })
+        
+        
+        
+        Business.searchWithTerm(finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businessesSectionFour = businesses
+            
+            
+            for business in businesses {
+                print(business.name!)
+                print(business.address!)
+            }
+        })
+        
+        
+        
+        Business.searchWithTerm(finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businessesSectionFive = businesses
+            
+            
+            for business in businesses {
+                print(business.name!)
+                print(business.address!)
+            }
+        })
         
         
             
@@ -108,7 +145,7 @@ class ResultsTableViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 5
     }
     
     
@@ -116,9 +153,15 @@ class ResultsTableViewController: UITableViewController {
         let resultsSectionCell = tableView.dequeueReusableCellWithIdentifier("resultsHeader") as! ResultsHeaderCell
         switch(section) {
         case 0:
-            resultsSectionCell.lblHeaderTitle.text = "Thai Foods"
+            resultsSectionCell.lblHeaderTitle.text = finishedShuffledCategories[0]
+        case 1:
+            resultsSectionCell.lblHeaderTitle.text = finishedShuffledCategories[1]
+        case 2:
+            resultsSectionCell.lblHeaderTitle.text = finishedShuffledCategories[2]
+        case 3:
+            resultsSectionCell.lblHeaderTitle.text = finishedShuffledCategories[3]
         default:
-            resultsSectionCell.lblHeaderTitle.text = "Italian Foods"
+            resultsSectionCell.lblHeaderTitle.text = finishedShuffledCategories[4]
         }
         return resultsSectionCell
     }
@@ -141,8 +184,17 @@ class ResultsTableViewController: UITableViewController {
         switch(indexPath.section) {
         case 0:
             cell.business = businesses[indexPath.row]
-        default:
+        case 1:
             cell.business = businessesSectionTwo[indexPath.row]
+        case 2:
+            cell.business = businessesSectionThree[indexPath.row]
+        case 3:
+            cell.business = businessesSectionThree[indexPath.row]
+        case 4:
+            cell.business = businessesSectionFour[indexPath.row]
+        default:
+            cell.business = businessesSectionFive[indexPath.row]
+            
         }
         
         
