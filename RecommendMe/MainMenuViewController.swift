@@ -1,4 +1,4 @@
-//
+  //
 //  MainMenuViewController.swift
 //  RecommendMe
 //
@@ -12,10 +12,12 @@ import GameplayKit
 class MainMenuViewController: UIViewController {
     let array : [String] = ["a","b","c"]
     
+    var choice: Int!
     
     // Temp saved NSUserDefaults
     let CategoryDefaults = NSUserDefaults.standardUserDefaults()
     var tempFoodCategories: [[String: String]]!
+    
     
     
     
@@ -45,7 +47,7 @@ class MainMenuViewController: UIViewController {
         
         // Reading from NSUserDefaults example
         
-        let testDictionary = CategoryDefaults.objectForKey("selectedFoods") as? [[String: String]] ?? [[String: String]]()
+        let testDictionary = CategoryDefaults.objectForKey("selectedActivities") as? [[String: String]] ?? [[String: String]]()
         for item in testDictionary {
             for (key, value) in item{
                 print("\(key), \(value)")
@@ -114,6 +116,18 @@ class MainMenuViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
+        if(segue.identifier == "recRestaurants") {
+            let recommendRestVC = segue.destinationViewController as! ResultsTableViewController
+            choice = 0
+            recommendRestVC.randomizer = choice
+            
+        }
+        else if(segue.identifier == "recActivities")
+        {
+            let recommendActVC = segue.destinationViewController as! ResultsTableViewController
+            choice = 1
+            recommendActVC.randomizer = choice
+        }
         
         
         
