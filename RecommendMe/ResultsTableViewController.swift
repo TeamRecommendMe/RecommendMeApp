@@ -22,7 +22,7 @@ class ResultsTableViewController: UITableViewController {
     var businessesSectionFive: [Business]!
     var finishedShuffledCategories = [String]()
     var readyToShuffleCategories = [String]()
-    var randomizer = 0 // 0 for restaurants and 1 for activities
+    var randomizer = 1 // 0 for restaurants and 1 for activities
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
@@ -38,7 +38,7 @@ class ResultsTableViewController: UITableViewController {
         
         switch(randomizer) {
         case 0:
-            let selectedFoodCategories = userDefaults.objectForKey("TempUserSelected") as? [[String: String]] ?? [[String: String]]()
+            let selectedFoodCategories = userDefaults.objectForKey("selectedFoods") as? [[String: String]] ?? [[String: String]]()
             
             for item in selectedFoodCategories {
                 for (key, value) in item {
