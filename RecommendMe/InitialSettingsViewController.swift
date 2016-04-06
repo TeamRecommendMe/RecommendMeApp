@@ -47,7 +47,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
    // let masterSubClassDictionary = [“Water": waterArray , “Attractions": attractionsArray]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         self.tableView.backgroundColor = UIColor.clearColor();
         userDefaults.setBool(true, forKey: "userExists")
         let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")

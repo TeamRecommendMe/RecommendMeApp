@@ -19,7 +19,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     let CategoryDefaults = NSUserDefaults.standardUserDefaults()
     var tempFoodCategories: [[String: String]]!
     
-    var locationManager: CLLocationManager!
+    let locationManager = CLLocationManager()
     var latitude: String!
     var longitude: String!
     
@@ -44,9 +44,13 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
         
         self.locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
+        self.locationManager.requestWhenInUseAuthorization()
+        //locationManager.delegate = self
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
         
         
         // Temp food categories
