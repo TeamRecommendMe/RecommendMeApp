@@ -48,7 +48,6 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidLoad()
 
         self.tableView.backgroundColor = UIColor.clearColor();
-        
         userDefaults.setBool(true, forKey: "userExists")
         let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
         let skipButton = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: "skipButton:")

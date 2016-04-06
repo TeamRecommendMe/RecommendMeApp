@@ -26,7 +26,6 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         super.viewDidLoad()
         
         navigationItem.title = "Advance Filter"
-        
         let btnBack = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "btnCancelPressed:")
         
         let btnSearch = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .Plain, target: self, action: "btnSearchPressed:")

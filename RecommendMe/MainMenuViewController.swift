@@ -28,6 +28,7 @@ class MainMenuViewController: UIViewController {
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
         
+
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
