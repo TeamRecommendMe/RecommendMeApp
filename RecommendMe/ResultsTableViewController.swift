@@ -34,7 +34,7 @@ class ResultsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         //tableView.estimatedRowHeight = 220
-        //tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 240
         
         switch(randomizer) {
         case 0:
@@ -144,6 +144,10 @@ class ResultsTableViewController: UITableViewController {
         */
     }
     
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 5
     }
@@ -151,6 +155,12 @@ class ResultsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let resultsSectionCell = tableView.dequeueReusableCellWithIdentifier("resultsHeader") as! ResultsHeaderCell
+        
+        resultsSectionCell.backgroundColor = UIColor.grayColor()
+        resultsSectionCell.lblHeaderTitle.font = UIFont(name: "Verdana-BoldItalic", size: 17)!
+        resultsSectionCell.lblHeaderTitle.textColor = UIColor.whiteColor()
+        
+        
         switch(section) {
         case 0:
             resultsSectionCell.lblHeaderTitle.text = finishedShuffledCategories[0]
