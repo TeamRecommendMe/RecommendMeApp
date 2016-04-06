@@ -8,8 +8,9 @@
 
 import UIKit
 import GameplayKit
+import CoreLocation
 
-class MainMenuViewController: UIViewController {
+class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     let array : [String] = ["a","b","c"]
     
     var choice: Int!
@@ -18,6 +19,9 @@ class MainMenuViewController: UIViewController {
     let CategoryDefaults = NSUserDefaults.standardUserDefaults()
     var tempFoodCategories: [[String: String]]!
     
+    var locationManager: CLLocationManager!
+    var latitude: String!
+    var longitude: String!
     
     
     
@@ -35,8 +39,14 @@ class MainMenuViewController: UIViewController {
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         
-        let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
-        print(shuffled)
+        //let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
+       // print(shuffled)
+        
+        
+        self.locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startMonitoringSignificantLocationChanges()
         
         
         // Temp food categories
@@ -87,6 +97,12 @@ class MainMenuViewController: UIViewController {
     }
     
 
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var locValue: CLLocationCoordinate2D = (manager.location?.coordinate)!
+       
+        
+    }
     
     
     
