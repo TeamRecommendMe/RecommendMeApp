@@ -69,7 +69,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         switch(section)
         {
         case 0:
-            return allCategories.count
+            return foodCategories.count
         case 1:
             return bigActivitiesCategories.count
         default:
