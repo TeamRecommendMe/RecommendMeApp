@@ -56,6 +56,20 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
        // activitiesCategories = yelpActivitiesCategories()
         bigActivitiesCategories = bigActivities()
         allCategories = yelpCategories() + bigActivities()
+        let selectedCats = [["name" : "African", "code": "a"]]
+        /*for selected in selectedCats {
+            if let index = foodCategories.indexOf({$0 == selected}) {
+                switchStates[NSIndexPath(forItem: index, inSection: 0)] = true
+            }
+        }*/
+        for (categoryIndex, _) in foodCategories.enumerate() {
+                print("\(categoryIndex)")
+            switchStates[NSIndexPath(forItem: categoryIndex, inSection: 0)] = true
+        }
+        for (categoryIndex, _) in bigActivitiesCategories.enumerate() {
+                print("\(categoryIndex)")
+            switchStates[NSIndexPath(forItem: categoryIndex, inSection: 1)] = true
+        }
         //print(allCategories)
         tableView.delegate = self
         tableView.dataSource = self
@@ -87,11 +101,11 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         {
         case 0:
         cell.switchLabel?.text = allCategories[indexPath.row]["name"]
-        cell.onSwitch.on = switchStates [indexPath] ?? true
+        cell.onSwitch.on = switchStates [indexPath] ?? false
         case 1:
         cell.switchLabel.text = bigActivitiesCategories[indexPath.row]["name"]
         //cell.delegate = self
-        cell.onSwitch.on = switchStates [indexPath] ?? true
+        cell.onSwitch.on = switchStates [indexPath] ?? false
         default:
             cell.switchLabel.text = foodCategories[indexPath.row]["error"]
         }
@@ -133,6 +147,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         let filters = [String:AnyObject]()
         var selectedFoodCategories = [[String:String]]()
         var selectedActivitiesCategories = [[String:String]]()
+        
         var catName: String
         var codeName: String
         //selectedCategories.removeAll()
