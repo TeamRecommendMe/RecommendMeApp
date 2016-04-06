@@ -118,7 +118,16 @@ class MainMenuViewController: UIViewController {
         if(segue.identifier == "recRestaurants") {
             let recommendRestVC = segue.destinationViewController as! ResultsTableViewController
             choice = 0
+            recommendRestVC.randomizer = choice
+            
         }
+        else if(segue.identifier == "recActivities")
+        {
+            let recommendActVC = segue.destinationViewController as! ResultsTableViewController
+            choice = 1
+            recommendActVC.randomizer = choice
+        }
+        
         
         
     }
