@@ -39,6 +39,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     var allCategories: [[String:String]]!
     var switchStates = [NSIndexPath: Bool]()
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    
    // let storyboard = UIStoryboard(name: "Main", bundle: nil)
     
     
