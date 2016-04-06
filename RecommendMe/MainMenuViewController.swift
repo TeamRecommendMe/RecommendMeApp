@@ -44,7 +44,7 @@ class MainMenuViewController: UIViewController {
         
         // Reading from NSUserDefaults example
         
-        let testDictionary = CategoryDefaults.objectForKey("TempUserSelected") as? [[String: String]] ?? [[String: String]]()
+        let testDictionary = CategoryDefaults.objectForKey("selectedFoods") as? [[String: String]] ?? [[String: String]]()
         for item in testDictionary {
             for (key, value) in item{
                 print("\(key), \(value)")
