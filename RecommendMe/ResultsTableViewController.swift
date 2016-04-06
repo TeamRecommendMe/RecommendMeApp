@@ -17,6 +17,9 @@ class ResultsTableViewController: UITableViewController {
 
     var businesses: [Business]!
     var businessesSectionTwo: [Business]!
+    var businessesSectionThree: [Business]!
+    var businessesSectionFour: [Business]!
+    var businessesSectionFive: [Business]!
     var finishedShuffledCategories = [String]()
     var readyToShuffleCategories = [String]()
     var randomizer = 0 // 0 for restaurants and 1 for activities
