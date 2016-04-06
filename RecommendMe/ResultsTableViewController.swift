@@ -7,23 +7,24 @@
 //
 
 import UIKit
+import GameplayKit
+
 
 class ResultsTableViewController: UITableViewController {
     
     @IBOutlet weak var resultsTableView: UITableView!
     
-    
-//    var searchController = UISearchController()
+
     var businesses: [Business]!
     var businessesSectionTwo: [Business]!
-    var arrayNotNil = false
-//    var businessesSectionThree: [Business]!
-//    var businessesSectionFour: [Business]!
- //   var businessesSectionFive: [Business]!
+    var finishedShuffledCategories = [String]()
+    var readyToShuffleCategories = [String]()
+    var randomizer = 0 // 0 for restaurants and 1 for activities
     
-//    var resultsName = ["Thai","Italian", "Japanese", "Chinese", "Mexican"]
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     
-   // var filteredBusiness: [Business]?
+   // selectedActivities
+    
     
     
     override func viewDidLoad() {
@@ -31,6 +32,39 @@ class ResultsTableViewController: UITableViewController {
         
         //tableView.estimatedRowHeight = 220
         //tableView.rowHeight = UITableViewAutomaticDimension
+        
+        switch(randomizer) {
+        case 0:
+            let selectedFoodCategories = userDefaults.objectForKey("TempUserSelected") as? [[String: String]] ?? [[String: String]]()
+            
+            for item in selectedFoodCategories {
+                for (key, value) in item {
+                    if(key != "code")
+                    {
+                        print(key,value)
+                    }
+                    readyToShuffleCategories.append(value)
+                }
+            }
+        default:
+            let selectedActivityCategories = userDefaults.objectForKey("selectedActivities") as? [[String: String]] ?? [[String: String]]()
+            
+            for item in selectedActivityCategories {
+                for (key, value) in item {
+                    print("\(key)")
+                    readyToShuffleCategories.append(key)
+                }
+            }
+        }
+       
+        
+        // Shuffle the categories and begin creating table.
+       finishedShuffledCategories = shuffleCategories(readyToShuffleCategories)
+        
+        for categories in finishedShuffledCategories {
+            print(categories)
+        }
+        
         
        
         Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
@@ -114,6 +148,38 @@ class ResultsTableViewController: UITableViewController {
     }
     
     
+    func shuffleCategories(categories: [String]) -> [String] {
+        
+        var shuffled = []
+        var name: String
+        var firstFiveCategories = [String]()
+//        var tempCategories: [String]
+        
+        shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(categories)
+        
+        for item in shuffled
+        {
+            print("\(item)")
+            
+            name = item as! String
+            
+            firstFiveCategories.append(name)
+            
+            if(firstFiveCategories.count > 5)
+            {
+                break
+            }
+        }
+        
+        for item in firstFiveCategories {
+            print("\(item)")
+        }
+        
+        return firstFiveCategories
+    }
+    
+    
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -136,6 +202,15 @@ class ResultsTableViewController: UITableViewController {
         }
         
     }
+    
+    
+    
+    */
+    
+    
+    
+    /*
+    
     
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
         
