@@ -42,8 +42,9 @@ class ResultsTableViewController: UITableViewController {
                     if(key != "code")
                     {
                         print(key,value)
+                        readyToShuffleCategories.append(value)
                     }
-                    readyToShuffleCategories.append(value)
+                    
                 }
             }
         default:
@@ -51,8 +52,11 @@ class ResultsTableViewController: UITableViewController {
             
             for item in selectedActivityCategories {
                 for (key, value) in item {
-                    print("\(key)")
-                    readyToShuffleCategories.append(key)
+                    
+                    if(key != "code") {
+                        readyToShuffleCategories.append(value)
+                        
+                    }
                 }
             }
         }
