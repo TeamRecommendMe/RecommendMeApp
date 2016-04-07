@@ -24,7 +24,8 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        self.advTableView.backgroundColor = UIColor.clearColor();
         navigationItem.title = "Advance Filter"
         let btnBack = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "btnCancelPressed:")
         
@@ -79,7 +80,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("advCell", forIndexPath: indexPath) as! advDataCell
-        
+        cell.backgroundColor = UIColor.clearColor()
         cell.advDelegate = self
         
         

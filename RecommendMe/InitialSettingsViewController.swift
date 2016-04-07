@@ -39,7 +39,9 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     var allCategories: [[String:String]]!
     var switchStates = [NSIndexPath: Bool]()
     let userDefaults = NSUserDefaults.standardUserDefaults()
-    
+    var selectedFoodCats: [[String:String]]!
+    var selectedActivitiesCats: [[String:String]]!
+
    // let storyboard = UIStoryboard(name: "Main", bundle: nil)
     
     
@@ -47,29 +49,43 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
    // let masterSubClassDictionary = [“Water": waterArray , “Attractions": attractionsArray]
     override func viewDidLoad() {
         super.viewDidLoad()
+        allCategories = yelpCategories() + bigActivities()
+        foodCategories = yelpCategories()
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         self.tableView.backgroundColor = UIColor.clearColor();
+        if (userDefaults.boolForKey("userExists") == false)
+        {
+            selectedFoodCats = yelpCategories()
+            selectedActivitiesCats = bigActivities()
+            userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
+            userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
+
+        }
         userDefaults.setBool(true, forKey: "userExists")
         let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
         let skipButton = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: "skipButton:")
-        foodCategories = yelpCategories()
        // activitiesCategories = yelpActivitiesCategories()
         bigActivitiesCategories = bigActivities()
-        allCategories = yelpCategories() + bigActivities()
-        let selectedCats = [["name" : "African", "code": "a"]]
-        /*for selected in selectedCats {
-            if let index = foodCategories.indexOf({$0 == selected}) {
+       
+        for selected in userDefaults.arrayForKey("selectedFoodCats")! {
+            if let index = foodCategories.indexOf({$0 == selected as! NSObject}) {
                 switchStates[NSIndexPath(forItem: index, inSection: 0)] = true
             }
-        }*/
-        for (categoryIndex, _) in foodCategories.enumerate() {
+        }
+        for selected in userDefaults.arrayForKey("selectedActivitiesCats")! {
+            if let index = bigActivitiesCategories.indexOf({$0 == selected as! NSObject}) {
+                switchStates[NSIndexPath(forItem: index, inSection: 1)] = true
+            }
+        }
+
+       /* for (categoryIndex, _) in foodCategories.enumerate() {
                 print("\(categoryIndex)")
             switchStates[NSIndexPath(forItem: categoryIndex, inSection: 0)] = true
         }
         for (categoryIndex, _) in bigActivitiesCategories.enumerate() {
                 print("\(categoryIndex)")
             switchStates[NSIndexPath(forItem: categoryIndex, inSection: 1)] = true
-        }
+        }*/
         //print(allCategories)
         tableView.delegate = self
         tableView.dataSource = self
@@ -151,7 +167,8 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         var catName: String
         var codeName: String
         //selectedCategories.removeAll()
-        
+        selectedFoodCats = []
+        selectedActivitiesCats = []
         for (NSIndexPath, isSelected) in switchStates {
             if isSelected {
                 if NSIndexPath.section == 0
@@ -164,6 +181,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                         for i in 0 ..< africanList().count {
                             selectedFoodCategories.append(africanDict[i])
                         }
+                        selectedFoodCats.append(["name" : "African", "code": "a"])
                         //print(selectedFoodCategories)
                         
                     break
@@ -171,127 +189,146 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                         var americanDict = americanList()
                         for i in 0 ..< americanList().count {
                              selectedFoodCategories.append(americanDict[i])
+                            
                         }
-                        
+                        selectedFoodCats.append(["name" : "American", "code": "b"])
+
                     break
-                    case "Australian":
+                    case "Austrialian":
                         var australianDict = australianList()
                         for i in 0 ..< australianList().count {
                              selectedFoodCategories.append(australianDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Austrialian", "code": "c"])
+
                     break
                     case "Asian":
                         var asianDict = asianList()
                         for i in 0 ..< asianList().count {
                              selectedFoodCategories.append(asianDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Asian", "code": "d"])
+
                     break
                     case "Breakfast":
                         var breakfastDict = breakfastList()
                         for i in 0 ..< breakfastList().count {
                              selectedFoodCategories.append(breakfastDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Breakfast", "code": "e"])
+
                     break
                     case "Chinese":
                         var chineseDict = chineseList()
                         for i in 0 ..< chineseList().count {
                              selectedFoodCategories.append(chineseDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Chinese", "code": "f"])
+
                     break
                     case "Deserts":
                         var desertsDict = desertList()
                         for i in 0 ..< desertList().count {
                              selectedFoodCategories.append(desertsDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Deserts", "code": "g"])
+
                     break
                     case "European":
                         var europeanDict = europeanList()
                         for i in 0 ..< europeanList().count {
                              selectedFoodCategories.append(europeanDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "European", "code": "h"])
+
                     break
                     case "Fast Food":
                         var fastfoodDict = fastfoodList()
                         for i in 0 ..< fastfoodList().count {
                              selectedFoodCategories.append(fastfoodDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Fast Food", "code": "i"])
+
                     break
                     case "French":
                         var frenchDict = frenchList()
                         for i in 0 ..< frenchList().count {
                              selectedFoodCategories.append(frenchDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "French", "code": "j"])
+
                     break
                     case "Healthy":
                         var healthyDict = healthyList()
                         for i in 0 ..< healthyList().count {
                             selectedFoodCategories.append(healthyDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Healthy", "code": "k"])
+
                     break
                     case "Italian":
                         var italianDict = italianList()
                         for i in 0 ..< italianList().count {
                             selectedFoodCategories.append(italianDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Italian", "code": "l"])
+
                     break
                     case "Indian":
                         var indianDict = indianList()
                         for i in 0 ..< indianList().count {
                             selectedFoodCategories.append(indianDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Indian", "code": "m"])
+
                     break
                     case "Japanese":
                         var japaneseDict = japaneseList()
                         for i in 0 ..< japaneseList().count {
                             selectedFoodCategories.append(japaneseDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Japanese", "code": "n"])
+
                     break
                     case "Latin American":
                         var latinDict = latinAmericanList()
                         for i in 0 ..< latinAmericanList().count {
                             selectedFoodCategories.append(latinDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Latin American", "code": "o"])
+
                     break
                     case "Middle Eastern":
                         var middleDict = middleEasternList()
                         for i in 0 ..< middleEasternList().count {
                             selectedFoodCategories.append(middleDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Middle Eastern", "code": "p"])
+
                     break
                     case "Medditeranian":
                         var meddDict = medditeranianList()
                         for i in 0 ..< medditeranianList().count {
                             selectedFoodCategories.append(meddDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Medditeranian", "code": "q"])
+
                     break
                     case "Thai":
                         var thaiDict = thaiList()
                         for i in 0 ..< thaiList().count {
                             selectedFoodCategories.append(thaiDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Thai", "code": "r"])
+
                     break
                     case "Other":
                         var otherDict = otherList()
                         for i in 0 ..< otherList().count {
                             selectedFoodCategories.append(otherDict[i])
                         }
-                        
+                        selectedFoodCats.append(["name" : "Other", "code": "s"])
+
                     break
                     default:
                     break
@@ -311,66 +348,77 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                             for i in 0 ..< attractionsList().count {
                                 selectedActivitiesCategories.append(attractionsDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Attractions", "code": "yolo"])
                                 break
                     case "Beauty and Spas":
                             var beautyDict = beautyList()
                             for i in 0 ..< beautyList().count {
                                 selectedActivitiesCategories.append(beautyDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Beauty and Spas", "code": "yolo1"])
                             break
                         case "Entertainment":
                             var entertainmentDict = entertainmentList()
                             for i in 0 ..< beautyList().count {
                                 selectedActivitiesCategories.append(entertainmentDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Entertainment", "code": "yolo2"])
                         break
                         case "Great Outdoors/Extreme":
                             var extremeDict = extremeList()
                             for i in 0 ..< extremeList().count {
                                 selectedActivitiesCategories.append(extremeDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Great Outdoors/Extreme", "code": "yolo3"])
                         break
                         case "Landmarks/Historical Buildings":
                             var landmarksDict = landmarksList()
                             for i in 0 ..< landmarksList().count {
                                 selectedActivitiesCategories.append(landmarksDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Landmarks/Historical Buildings", "code": "yolo4"])
                         break
                         case "Nightlife":
                             var nightlifeDict = nightlifeList()
                             for i in 0 ..< nightlifeList().count {
                                 selectedActivitiesCategories.append(nightlifeDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Nightlife", "code": "yolo5"])
                         break
                         case "Parks":
                             var parksDict = parksList()
                             for i in 0 ..< parksList().count {
                                 selectedActivitiesCategories.append(parksDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Parks", "code": "yolo6"])
                         break
                         case "Pets":
                             var petsDict = petsList()
                             for i in 0 ..< petsList().count {
                                 selectedActivitiesCategories.append(petsDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Pets", "code": "yolo7"])
                         break
                         case "Professional Sporting Events":
                             var profSportsDict = profSportsList()
                             for i in 0 ..< profSportsList().count {
                                 selectedActivitiesCategories.append(profSportsDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Professional Sporting Events", "code": "yolo8"])
                         break
                         case "Sports":
                             var sportsDict = sportsList()
                             for i in 0 ..< sportsList().count {
                                 selectedActivitiesCategories.append(sportsDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Sports", "code": "yolo9"])
                         break
                         case "Water Activities":
                             var waterDict = waterList()
                             for i in 0 ..< waterList().count {
                                 selectedActivitiesCategories.append(waterDict[i])
                             }
+                            selectedActivitiesCats.append(["name" : "Water Activities", "code": "yolo10"])
                         break
                         default:
                         break
@@ -385,6 +433,8 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             print(selectedFoodCategories)
             userDefaults.setObject(selectedActivitiesCategories, forKey: "selectedActivities")
             userDefaults.setObject(selectedFoodCategories, forKey: "selectedFoods")
+            userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
+            userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
             print("Printing what is saved to userDefaults")
             print(userDefaults.arrayForKey("selectedFoods"))
         }
@@ -402,6 +452,8 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         selectedActivitiesCategoriesDict = allActivitiesCategories()
         userDefaults.setObject(selectedActivitiesCategoriesDict, forKey: "selectedActivities")
         userDefaults.setObject(selectedFoodCategoriesDict, forKey: "selectedFoods")
+        userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
+        userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
         self.performSegueWithIdentifier("moveMain", sender: nil)
 
     }
@@ -420,7 +472,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Slovakian", "code": "slovakian"],
             ["name" : "Swedish", "code": "swedish"],*/
         
-        ["name" : "African", "code": "a"],
+            ["name" : "African", "code": "a"],
             ["name" : "American", "code": "b"],
             ["name" : "Austrialian", "code": "c"],
             ["name" : "Asian", "code": "d"],
@@ -433,7 +485,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Healthy", "code": "k"],
             ["name" : "Italian", "code": "l"],
             ["name" : "Indian", "code": "m"],
-            ["name" : "Japaneese", "code": "n"],
+            ["name" : "Japanese", "code": "n"],
             ["name" : "Latin American", "code": "o"],
             ["name" : "Middle Eastern", "code": "p"],
             ["name" : "Medditeranian", "code": "q"],
