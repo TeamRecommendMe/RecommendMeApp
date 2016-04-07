@@ -13,6 +13,7 @@
 		EE18D3B21CB2BB1A0012745E /* ResultsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE18D3B11CB2BB1A0012745E /* ResultsHeaderCell.swift */; };
 		EE18D3B41CB2BB350012745E /* ResultsDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE18D3B31CB2BB350012745E /* ResultsDataCell.swift */; };
 		EE18D3B61CB2BB630012745E /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE18D3B51CB2BB630012745E /* ResultsTableViewController.swift */; };
+		EE1A351D1CB5F4A5006A19C6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A351C1CB5F4A5006A19C6 /* DetailViewController.swift */; };
 		EE1BFD421CA98A0D0008FA25 /* AdvancedFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BFD411CA98A0D0008FA25 /* AdvancedFilterViewController.swift */; };
 		EE1BFD461CA98CFE0008FA25 /* AdvancedHeaderCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BFD451CA98CFE0008FA25 /* AdvancedHeaderCellTableViewCell.swift */; };
 		EE1BFD481CA9ADE90008FA25 /* advDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BFD471CA9ADE90008FA25 /* advDataCell.swift */; };
@@ -37,6 +38,7 @@
 		EE18D3B11CB2BB1A0012745E /* ResultsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsHeaderCell.swift; sourceTree = "<group>"; };
 		EE18D3B31CB2BB350012745E /* ResultsDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsDataCell.swift; sourceTree = "<group>"; };
 		EE18D3B51CB2BB630012745E /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
+		EE1A351C1CB5F4A5006A19C6 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EE1BFD411CA98A0D0008FA25 /* AdvancedFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedFilterViewController.swift; sourceTree = "<group>"; };
 		EE1BFD451CA98CFE0008FA25 /* AdvancedHeaderCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedHeaderCellTableViewCell.swift; sourceTree = "<group>"; };
 		EE1BFD471CA9ADE90008FA25 /* advDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = advDataCell.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				EE245A4B1CA37E3000DF2A76 /* InitialSettingsViewController.swift */,
 				EE1BFD411CA98A0D0008FA25 /* AdvancedFilterViewController.swift */,
 				EE18D3B51CB2BB630012745E /* ResultsTableViewController.swift */,
+				EE1A351C1CB5F4A5006A19C6 /* DetailViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -194,7 +197,6 @@
 				TargetAttributes = {
 					EE83BE1F1C7D3FC20002DF50 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 5T4CVZ4E3H;
 					};
 				};
 			};
@@ -289,6 +291,7 @@
 				EE1BFD461CA98CFE0008FA25 /* AdvancedHeaderCellTableViewCell.swift in Sources */,
 				EE1BFD421CA98A0D0008FA25 /* AdvancedFilterViewController.swift in Sources */,
 				EE245A461CA1FC5300DF2A76 /* PlannerViewController.swift in Sources */,
+				EE1A351D1CB5F4A5006A19C6 /* DetailViewController.swift in Sources */,
 				948D1D4E1CA74F8F0051319D /* HeaderCell.swift in Sources */,
 				EE18D3B41CB2BB350012745E /* ResultsDataCell.swift in Sources */,
 				EE18D3B61CB2BB630012745E /* ResultsTableViewController.swift in Sources */,
@@ -408,14 +411,11 @@
 			baseConfigurationReference = 3E481C29560FBBB3723F1840 /* Pods-RecommendMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RecommendMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TeamRecommend.RecommendMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -424,14 +424,11 @@
 			baseConfigurationReference = A59B6B983B93924A5FB7B7C4 /* Pods-RecommendMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RecommendMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TeamRecommend.RecommendMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -8,24 +8,18 @@
 
 import UIKit
 import GameplayKit
-import CoreLocation
 
-class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
-    let array : [String] = ["a","b","c"]
+class MainMenuViewController: UIViewController {
+
     
     var choice: Int!
     
     // Temp saved NSUserDefaults
     let CategoryDefaults = NSUserDefaults.standardUserDefaults()
     var tempFoodCategories: [[String: String]]!
-    
-    let locationManager = CLLocationManager()
-    var latitude: String!
+
     var longitude: String!
-    
-    
-    
-    
+    var latitude: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,19 +37,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         //let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
        // print(shuffled)
         
-        
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
-        //locationManager.delegate = self
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
-        
-        
-        // Temp food categories
-        tempFoodCategories = tempYelpCategories()
+
         
         // Save defaults
         CategoryDefaults.setObject(tempFoodCategories, forKey: "TempUserSelected")
@@ -68,9 +50,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
                 print("\(key), \(value)")
             }
         }
-        
-        
-        
         
 
         // Do any additional setup after loading the view.
@@ -100,34 +79,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
-    
 
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        var locValue: CLLocationCoordinate2D = (manager.location?.coordinate)!
-       
-        
-    }
-    
-    
-    
-    func tempYelpCategories() -> [[String:String]] {
-        return [["name" : "Afghan", "code": "afghani"],
-            ["name" : "African", "code": "african"],
-            ["name" : "American, New", "code": "newamerican"],
-            ["name" : "American, Traditional", "code": "tradamerican"],
-            ["name" : "Arabian", "code": "arabian"],
-            ["name" : "Argentine", "code": "argentine"],
-            ["name" : "Armenian", "code": "armenian"],
-            ["name" : "Asian Fusion", "code": "asianfusion"],
-            ["name" : "Asturian", "code": "asturian"],
-            ["name" : "Australian", "code": "australian"],
-            ["name" : "Yugoslav", "code": "yugoslav"]]
-    }
-    
-    
-    
-    
 
     
     // MARK: - Navigation

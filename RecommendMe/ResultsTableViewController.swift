@@ -16,10 +16,6 @@ class ResultsTableViewController: UITableViewController {
     
 
     var businesses: [Business]!
-    var businessesSectionTwo: [Business]!
-    var businessesSectionThree: [Business]!
-    var businessesSectionFour: [Business]!
-    var businessesSectionFive: [Business]!
     var finishedShuffledCategories = [String]()
     var readyToShuffleCategories = [String]()
     var randomizer = 1 // 0 for restaurants and 1 for activities
@@ -85,19 +81,8 @@ class ResultsTableViewController: UITableViewController {
         })
         
         
-        Business.searchWithTerm(finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businessesSectionTwo = businesses
-            self.tableView.reloadData()
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
-        
-        
         Business.searchWithTerm(finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businessesSectionThree = businesses
+            self.businesses = businesses
             
             
             for business in businesses {
@@ -105,11 +90,10 @@ class ResultsTableViewController: UITableViewController {
                 print(business.address!)
             }
         })
-        
         
         
         Business.searchWithTerm(finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businessesSectionFour = businesses
+            self.businesses = businesses
             
             
             for business in businesses {
@@ -121,7 +105,7 @@ class ResultsTableViewController: UITableViewController {
         
         
         Business.searchWithTerm(finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businessesSectionFive = businesses
+            self.businesses = businesses
             
             
             for business in businesses {
@@ -131,6 +115,17 @@ class ResultsTableViewController: UITableViewController {
         })
         
         
+        
+        Business.searchWithTerm(finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses
+            self.tableView.reloadData()
+            for business in businesses {
+                print(business.name!)
+                print(business.address!)
+            }
+        })
+        
+        self.tableView.reloadData()
             
         /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
@@ -195,15 +190,15 @@ class ResultsTableViewController: UITableViewController {
         case 0:
             cell.business = businesses[indexPath.row]
         case 1:
-            cell.business = businessesSectionTwo[indexPath.row]
+            cell.business = businesses[indexPath.row]
         case 2:
-            cell.business = businessesSectionThree[indexPath.row]
+            cell.business = businesses[indexPath.row]
         case 3:
-            cell.business = businessesSectionThree[indexPath.row]
+            cell.business = businesses[indexPath.row]
         case 4:
-            cell.business = businessesSectionFour[indexPath.row]
+            cell.business = businesses[indexPath.row]
         default:
-            cell.business = businessesSectionFive[indexPath.row]
+            cell.business = businesses[indexPath.row]
             
         }
         
@@ -252,30 +247,19 @@ class ResultsTableViewController: UITableViewController {
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "Filters" {
-            let navigationController = segue.destinationViewController as! UINavigationController
-            let filtersViewController = navigationController.topViewController as! FiltersViewController
-            filtersViewController.delegate = self
-        }
-        else if segue.identifier == "Details" {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        if segue.identifier == "details" {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPathForCell(cell)
             let business = businesses![indexPath!.row]
             
-            let detailViewController = segue.destinationViewController as! DetailsViewController
+            let detailViewController = segue.destinationViewController as! DetailViewController
             detailViewController.business = business
-            
+           
         }
         
     }
-    
-    
-    
-    */
-    
     
     
     /*
