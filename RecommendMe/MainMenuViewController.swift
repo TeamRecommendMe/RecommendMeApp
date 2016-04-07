@@ -29,7 +29,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("loaded")
+        print("selected Cats: \(CategoryDefaults.objectForKey("selectedCats"))")
         let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
