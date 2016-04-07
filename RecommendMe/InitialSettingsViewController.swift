@@ -111,6 +111,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCellTableViewCell
         
         cell.backgroundColor = UIColor.clearColor()
+        cell.selectionStyle = .None
 
         cell.delegate = self
         switch(indexPath.section)

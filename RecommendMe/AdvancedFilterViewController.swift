@@ -82,7 +82,8 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         let cell = tableView.dequeueReusableCellWithIdentifier("advCell", forIndexPath: indexPath) as! advDataCell
         cell.backgroundColor = UIColor.clearColor()
         cell.advDelegate = self
-        
+        cell.selectionStyle = .None
+
         
         switch(indexPath.section) {
         case 0:
