@@ -10,7 +10,7 @@ import UIKit
 import GameplayKit
 
 class MainMenuViewController: UIViewController {
-    let array : [String] = ["a","b","c"]
+
     
     var choice: Int!
     
@@ -37,8 +37,6 @@ class MainMenuViewController: UIViewController {
        // print(shuffled)
         
 
-        // Temp food categories
-        tempFoodCategories = tempYelpCategories()
         
         // Save defaults
         CategoryDefaults.setObject(tempFoodCategories, forKey: "TempUserSelected")
@@ -81,27 +79,6 @@ class MainMenuViewController: UIViewController {
         }
     }
 
-
-    
-    
-    
-    func tempYelpCategories() -> [[String:String]] {
-        return [["name" : "Afghan", "code": "afghani"],
-            ["name" : "African", "code": "african"],
-            ["name" : "American, New", "code": "newamerican"],
-            ["name" : "American, Traditional", "code": "tradamerican"],
-            ["name" : "Arabian", "code": "arabian"],
-            ["name" : "Argentine", "code": "argentine"],
-            ["name" : "Armenian", "code": "armenian"],
-            ["name" : "Asian Fusion", "code": "asianfusion"],
-            ["name" : "Asturian", "code": "asturian"],
-            ["name" : "Australian", "code": "australian"],
-            ["name" : "Yugoslav", "code": "yugoslav"]]
-    }
-    
-    
-    
-    
 
     
     // MARK: - Navigation
