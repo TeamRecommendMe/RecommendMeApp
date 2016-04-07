@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
         
         lblBusinessName.text = business.name
         lblAddress.text = business.address
-      //  imgProfile.setImageWithURL(business.imageURL!)
+        imgProfile.setImageWithURL(business.imageURL!)
         
         
         print("Detail View Controller Data")

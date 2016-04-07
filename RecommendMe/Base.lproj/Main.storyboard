@@ -132,7 +132,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="advancedHeaderCell" rowHeight="62" id="moX-fA-9a2" customClass="AdvancedHeaderCellTableViewCell" customModule="RecommendMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="62"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="moX-fA-9a2" id="Bum-4y-eGG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
@@ -164,7 +164,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="advCell" rowHeight="47" id="fwb-no-v7R" customClass="advDataCell" customModule="RecommendMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="154" width="375" height="47"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fwb-no-v7R" id="1MX-6z-ZLz">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
