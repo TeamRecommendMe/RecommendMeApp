@@ -16,6 +16,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var lblAddress: UILabel!
     var business: Business!
     
+//    var address: String!
+//    var name: String!
+    
     
     
 
@@ -24,12 +27,12 @@ class DetailViewController: UIViewController {
         
         lblBusinessName.text = business.name
         lblAddress.text = business.address
-        imgProfile.setImageWithURL(business.imageURL!)
+      //  imgProfile.setImageWithURL(business.imageURL!)
         
         
         print("Detail View Controller Data")
-        print("\(business.name)")
-        print("\(business.address)")
+      print("\(business.name)")
+      print("\(business.address)")
         
 
         // Do any additional setup after loading the view.

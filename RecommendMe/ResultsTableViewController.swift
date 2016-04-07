@@ -16,9 +16,18 @@ class ResultsTableViewController: UITableViewController {
     
 
     var businesses: [Business]!
+    var segueBusiness: Business!
+    var segueName: String!
+    var segueAddress: String!
     var finishedShuffledCategories = [String]()
     var readyToShuffleCategories = [String]()
     var randomizer = 1 // 0 for restaurants and 1 for activities
+    
+    var sectionTwoData: [Business]!
+    var sectionThreeData: [Business]!
+    var sectionFourData: [Business]!
+    var sectionFiveData: [Business]!
+    
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
@@ -46,6 +55,7 @@ class ResultsTableViewController: UITableViewController {
                     
                 }
             }
+            
         default:
             let selectedActivityCategories = userDefaults.objectForKey("selectedActivities") as? [[String: String]] ?? [[String: String]]()
             
@@ -82,7 +92,7 @@ class ResultsTableViewController: UITableViewController {
         
         
         Business.searchWithTerm(finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
+            self.sectionTwoData = businesses
             
             
             for business in businesses {
@@ -93,7 +103,7 @@ class ResultsTableViewController: UITableViewController {
         
         
         Business.searchWithTerm(finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
+            self.sectionThreeData = businesses
             
             
             for business in businesses {
@@ -105,7 +115,7 @@ class ResultsTableViewController: UITableViewController {
         
         
         Business.searchWithTerm(finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
+            self.sectionFourData = businesses
             
             
             for business in businesses {
@@ -117,7 +127,7 @@ class ResultsTableViewController: UITableViewController {
         
         
         Business.searchWithTerm(finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
+            self.sectionFiveData = businesses
             self.tableView.reloadData()
             for business in businesses {
                 print(business.name!)
@@ -190,15 +200,13 @@ class ResultsTableViewController: UITableViewController {
         case 0:
             cell.business = businesses[indexPath.row]
         case 1:
-            cell.business = businesses[indexPath.row]
+            cell.business = sectionTwoData[indexPath.row]
         case 2:
-            cell.business = businesses[indexPath.row]
+            cell.business = sectionThreeData[indexPath.row]
         case 3:
-            cell.business = businesses[indexPath.row]
-        case 4:
-            cell.business = businesses[indexPath.row]
+            cell.business = sectionFourData[indexPath.row]
         default:
-            cell.business = businesses[indexPath.row]
+            cell.business = sectionFiveData[indexPath.row]
             
         }
         
