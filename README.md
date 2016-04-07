@@ -15,16 +15,16 @@
 
 The following **required** functionality is completed:
 
-- [ ] Opens Google Maps to give user detailed navigation directions and street views.
+
 - [x] Initial Settings page that at first ever start of the application ask users preferences of activities they like and dislike doing.
-- [ ] Main Menu view controller where the user can select from to which item they want to do a recommend search from.
+- [x] Main Menu view controller where the user can select from to which item they want to do a recommend search from.
 - [x] Main Menu uses UI Gesture Recognizers to swipe to different view controllers.
 - [x] Advanced search to fine-tune both activities and restaurants.
-- [ ] Detail view controller of the selected places.
+- [x] Detail view controller of the selected places.
 - [x] About page to give credit to the people who help create this and the technologies that must be credited to.
 
 The following **optional** features are implemented:
-
+- [ ] Opens Google Maps to give user detailed navigation directions and street views.
 - [ ] Infinity scroll loading of new results.
 - [ ] Custom recommend me thumbs up that presistent with its own external database. So that other Recommend Me users can know this place is highly-praised.
 - [ ] Push notification to let them know that one of their friends have thumbs up a place.
@@ -36,6 +36,9 @@ The following **optional** features are implemented:
 
 ## Walkthrough March 30th:
 ![sprint2](https://cloud.githubusercontent.com/assets/14221032/14167464/6219a422-f6d0-11e5-8cdb-b79ea6b858f0.gif)
+
+## Walkthrough April 6th 100% Required Stories:
+![sprint3a](https://cloud.githubusercontent.com/assets/14221032/14344370/093f5aea-fc5c-11e5-96a3-0d650476ada4.gif)
 
 Note: Advanced Settings doesn't go anywhere at the moment.
 
