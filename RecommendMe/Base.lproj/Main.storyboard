@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVo-Y4-DBj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVo-Y4-DBj">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -218,9 +218,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="GGK-Tx-Saj">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-nb-RNY">
                                 <rect key="frame" x="75" y="54" width="171" height="146"/>
                             </imageView>
@@ -247,20 +244,48 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxa-IA-6Ez">
                                 <rect key="frame" x="254" y="54" width="47" height="47"/>
-                                <state key="normal" title="Button" backgroundImage="activity"/>
+                                <state key="normal" backgroundImage="activity"/>
+                                <connections>
+                                    <action selector="btnGoogleMaps:" destination="MOv-x1-27L" eventType="touchUpInside" id="fFB-kz-ylQ"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BB1-CO-M67">
+                                <rect key="frame" x="120" y="324" width="80" height="21"/>
+                                <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Review not available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zz1-Wy-OX8">
+                                <rect key="frame" x="73" y="368" width="164" height="18"/>
+                                <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="GGK-Tx-Saj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="GGK-Tx-Saj" secondAttribute="height" multiplier="40:71" id="ca5-ab-aGQ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GGK-Tx-Saj" firstAttribute="leading" secondItem="H37-tq-VFJ" secondAttribute="leading" id="ASB-JT-wes"/>
+                            <constraint firstItem="GGK-Tx-Saj" firstAttribute="top" secondItem="H37-tq-VFJ" secondAttribute="top" id="DBn-6z-aud"/>
+                            <constraint firstItem="Ean-ZN-JqG" firstAttribute="top" secondItem="GGK-Tx-Saj" secondAttribute="bottom" id="ajK-03-WM3"/>
+                            <constraint firstAttribute="trailing" secondItem="GGK-Tx-Saj" secondAttribute="trailing" id="zd7-kz-iHc"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="imgProfile" destination="bVh-nb-RNY" id="pJJ-98-te0"/>
+                        <outlet property="lblAddress" destination="1Tw-AG-2Mb" id="4gK-Fk-CAg"/>
                         <outlet property="lblBusinessName" destination="fCf-Aa-mwp" id="GcH-eh-FzT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="882-rs-yc0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3648" y="1153"/>
+            <point key="canvasLocation" x="4226" y="345"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="HUR-IO-CQH">
@@ -607,6 +632,7 @@
                                     <outlet property="businessProfileImage" destination="eZH-8V-jlV" id="IwK-Cr-tK9"/>
                                     <outlet property="lblBusinessAddress" destination="AFy-MI-yNy" id="L7U-eJ-iev"/>
                                     <outlet property="lblBusinessName" destination="SDi-by-A98" id="fmh-Kf-2nW"/>
+                                    <segue destination="MOv-x1-27L" kind="show" identifier="details" id="69r-gO-RLW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -622,7 +648,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2X-IX-7CH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3695" y="429"/>
+            <point key="canvasLocation" x="3699" y="429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="04P-Tw-ScW">

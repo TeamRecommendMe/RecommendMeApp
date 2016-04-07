@@ -13,7 +13,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblBusinessName: UILabel!
-    
+    @IBOutlet weak var lblAddress: UILabel!
+    var business: Business!
     
     
     
@@ -21,13 +22,25 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        lblBusinessName.text = business.name
+        lblAddress.text = business.address
+        imgProfile.setImageWithURL(business.imageURL!)
         
         
-        
+        print("Detail View Controller Data")
+        print("\(business.name)")
+        print("\(business.address)")
         
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func btnGoogleMaps(sender: AnyObject) {
+        
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
