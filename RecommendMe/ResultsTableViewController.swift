@@ -154,7 +154,8 @@ class ResultsTableViewController: UITableViewController {
         resultsSectionCell.backgroundColor = UIColor.grayColor()
         resultsSectionCell.lblHeaderTitle.font = UIFont(name: "Verdana-BoldItalic", size: 17)!
         resultsSectionCell.lblHeaderTitle.textColor = UIColor.whiteColor()
-        
+        resultsSectionCell.selectionStyle = .None
+
         
         switch(section) {
         case 0:
