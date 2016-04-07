@@ -82,6 +82,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         
         cell.advDelegate = self
         
+        
         switch(indexPath.section) {
         case 0:
             cell.lblCategoryItem.text = foodCategories[indexPath.row]["name"]
@@ -156,6 +157,9 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         var testName: String
         var testCode: String
         
+        testCode = ""
+        testName = ""
+        
         for (NSIndexPath, isSelected) in advSwitchStates {
             if isSelected {
                 
@@ -172,7 +176,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
                 
                                 print("Adding values into the array of dictionaries")
                 
-               // selectedCategories.append(["name" : testName, "code": testCode])
+                selectedCategories.append(["name" : testName, "code": testCode])
                 
                 print("There is a total of \(selectedCategories.count) items in selected categories.")
                 

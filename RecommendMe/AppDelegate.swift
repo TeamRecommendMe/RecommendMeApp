@@ -32,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = vc
         }
         
+        // Change the status bar to a lighter color
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
         return true
     }
 
