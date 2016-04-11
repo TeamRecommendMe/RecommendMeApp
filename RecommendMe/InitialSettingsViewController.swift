@@ -134,21 +134,30 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         // Return the number of sections.
         return 2 // <-- HINT - Josh
     }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 65.0
+    }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("Header") as! HeaderCell
-        headerCell.backgroundColor = UIColor.grayColor()
-        // Each section is represented in a zero-based format just like how an array is. This finds which section it is on 
+        headerCell.backgroundColor = UIColor.darkGrayColor()
+        // Each section is represented in a zero-based format just like how an array is. This finds which section it is on
         // Updates the header to show a new title. Can you guess what's wrong here? Hint: You already declared how many sections it has from the func numberOfSectionsInTableView.
         // - Josh
+        headerCell.contentView.layer.masksToBounds = true
+        headerCell.contentView.layer.cornerRadius = 5
+        
         
         switch (section) {
         case 0:
-           headerCell.headerLabel.text = "Food"
-            print("\(headerCell.headerLabel.text)")
+            headerCell.headerLabel.text = "Food"
+            headerCell.headerImage.image = UIImage(named: "activity")
+            
         case 1:
             headerCell.headerLabel.text = "Activities"
+            headerCell.headerImage.image = UIImage(named: "restaurantsButton")
         default:
             headerCell.headerLabel.text = "Error"
+            headerCell.headerImage.image = UIImage(named: "activity")
         }
         
         return headerCell

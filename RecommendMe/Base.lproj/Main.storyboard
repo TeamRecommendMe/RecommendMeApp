@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVo-Y4-DBj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVo-Y4-DBj">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -26,34 +26,43 @@
                                 <rect key="frame" x="12" y="129" width="294" height="390"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" rowHeight="67" id="RQw-Za-K6H" customClass="HeaderCell" customModule="RecommendMe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="294" height="67"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" rowHeight="73" id="RQw-Za-K6H" customClass="HeaderCell" customModule="RecommendMe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="294" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RQw-Za-K6H" id="dRH-tj-D6p">
-                                            <rect key="frame" x="0.0" y="0.0" width="294" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="294" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMq-LE-DSd">
-                                                    <rect key="frame" x="187" y="-6" width="63" height="34"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity" translatesAutoresizingMaskIntoConstraints="NO" id="8a2-Z7-s28">
+                                                    <rect key="frame" x="31" y="8" width="60" height="56"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="Xnb-N9-xfW"/>
+                                                        <constraint firstAttribute="height" constant="56" id="agV-Uw-7tG"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foods" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09l-XS-FoD">
+                                                    <rect key="frame" x="140" y="18" width="80" height="35"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Azu-a3-uLP">
-                                                    <rect key="frame" x="66" y="0.0" width="81" height="28"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cMq-LE-DSd" firstAttribute="top" secondItem="dRH-tj-D6p" secondAttribute="top" constant="6" id="uxv-jh-L1f"/>
-                                                <constraint firstItem="Azu-a3-uLP" firstAttribute="top" secondItem="dRH-tj-D6p" secondAttribute="top" id="y2B-Td-raV"/>
+                                                <constraint firstAttribute="bottom" secondItem="8a2-Z7-s28" secondAttribute="bottom" constant="8" id="7EF-UP-wCs"/>
+                                                <constraint firstItem="09l-XS-FoD" firstAttribute="top" secondItem="dRH-tj-D6p" secondAttribute="top" constant="18" id="Ksc-Vs-9mZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="09l-XS-FoD" secondAttribute="trailing" constant="74" id="YcQ-Gv-1WA"/>
+                                                <constraint firstAttribute="bottom" secondItem="09l-XS-FoD" secondAttribute="bottom" constant="19" id="glh-Oq-N4J"/>
+                                                <constraint firstItem="8a2-Z7-s28" firstAttribute="top" secondItem="dRH-tj-D6p" secondAttribute="top" constant="8" id="tK5-Iw-0p6"/>
+                                                <constraint firstItem="8a2-Z7-s28" firstAttribute="leading" secondItem="dRH-tj-D6p" secondAttribute="leading" constant="31" id="wQP-er-P6R"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="headerImage" destination="Azu-a3-uLP" id="Uaq-UX-5Ll"/>
-                                            <outlet property="headerLabel" destination="cMq-LE-DSd" id="752-ZK-aMP"/>
+                                            <outlet property="headerImage" destination="8a2-Z7-s28" id="bLq-7H-2hL"/>
+                                            <outlet property="headerLabel" destination="09l-XS-FoD" id="Vbr-SD-CiI"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwitchCell" rowHeight="59" id="mLV-cB-SYq" customClass="SwitchCellTableViewCell" customModule="RecommendMe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="95" width="294" height="59"/>
+                                        <rect key="frame" x="0.0" y="101" width="294" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mLV-cB-SYq" id="2In-M0-zmx">
                                             <rect key="frame" x="0.0" y="0.0" width="294" height="58"/>
@@ -87,7 +96,7 @@
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose food types and activities that you wish not to include in basic searches" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRK-Rb-bG2">
                                 <rect key="frame" x="43" y="72" width="235" height="49"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
