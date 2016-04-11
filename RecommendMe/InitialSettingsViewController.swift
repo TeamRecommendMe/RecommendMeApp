@@ -50,7 +50,8 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         allCategories = yelpCategories() + bigActivities()
-        foodCategories = yelpCategories()        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        foodCategories = yelpCategories()
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         self.tableView.backgroundColor = UIColor.clearColor();
         if (userDefaults.boolForKey("userExists") == false)
         {
@@ -58,7 +59,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             selectedActivitiesCats = bigActivities()
             userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
             userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
-
+           // userDefaults.setObject(selectedCats, forKey: "selectedCats")
         }
         else
         {
@@ -197,6 +198,9 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         
         var catName: String
         var codeName: String
+        let alert = UIAlertController(title: "Continue?", message: "Are you sure these are the categories you wish to not include?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { action in         self.performSegueWithIdentifier("moveMain", sender: nil)}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         //selectedCategories.removeAll()
         selectedFoodCats = []
         selectedActivitiesCats = []
@@ -472,19 +476,21 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         //let vc = storyboard.instantiateViewControllerWithIdentifier("NavMainMenu")
         //print(selectedActivitiesCategories)
         //print(selectedFoodCategories)
+        self.presentViewController(alert, animated: true, completion: nil)
+
         self.performSegueWithIdentifier("moveMain", sender: nil)
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
     }
     func skipButton(sender: UIBarButtonItem) {
         print("Skippp")
-        var selectedFoodCategoriesDict = [[String:String]]()
+        /*var selectedFoodCategoriesDict = [[String:String]]()
         var selectedActivitiesCategoriesDict = [[String:String]]()
         selectedFoodCategoriesDict = allFoodCategories()
         selectedActivitiesCategoriesDict = allActivitiesCategories()
         userDefaults.setObject(selectedActivitiesCategoriesDict, forKey: "selectedActivities")
         userDefaults.setObject(selectedFoodCategoriesDict, forKey: "selectedFoods")
         userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
-        userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
+        userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")*/
         self.performSegueWithIdentifier("moveMain", sender: nil)
 
     }
@@ -1027,7 +1033,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewControll	er.
-        // Pass the selected object to the new view controller.
+        // Pass the `object to the new view controller.
     }
     */
     
