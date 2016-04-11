@@ -50,8 +50,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         allCategories = yelpCategories() + bigActivities()
-        foodCategories = yelpCategories()
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        foodCategories = yelpCategories()        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         self.tableView.backgroundColor = UIColor.clearColor();
         if (userDefaults.boolForKey("userExists") == false)
         {
@@ -60,6 +59,12 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
             userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
 
+        }
+        else
+        {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeLeft)
         }
         userDefaults.setBool(true, forKey: "userExists")
         let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
@@ -96,6 +101,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section)
         {
@@ -162,7 +168,22 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         
         return headerCell
     }
-    
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.Left:
+                print("Gesture Right")
+                self.performSegueWithIdentifier("moveMain", sender: self)
+            default:
+                break
+                
+                
+            }
+        }
+    }
+
     func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) {
         let indexPath = tableView.indexPathForCell(switchCell)!
         switchStates[indexPath] = value
