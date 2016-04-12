@@ -14,7 +14,7 @@ class ResultsTableViewController: UITableViewController {
     
     @IBOutlet weak var resultsTableView: UITableView!
     
-
+    
     var businesses: [Business]!
     var segueBusiness: Business!
     var segueName: String!
@@ -31,7 +31,7 @@ class ResultsTableViewController: UITableViewController {
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
-   // selectedActivities
+    // selectedActivities
     
     
     
@@ -69,17 +69,17 @@ class ResultsTableViewController: UITableViewController {
                 }
             }
         }
-       
+        
         
         // Shuffle the categories and begin creating table.
-       finishedShuffledCategories = shuffleCategories(readyToShuffleCategories)
+        finishedShuffledCategories = shuffleCategories(readyToShuffleCategories)
         
         for categories in finishedShuffledCategories {
             print(categories)
         }
         
         
-       
+        
         Business.searchWithTerm(finishedShuffledCategories[0], completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
@@ -136,7 +136,7 @@ class ResultsTableViewController: UITableViewController {
         })
         
         self.tableView.reloadData()
-            
+        
         /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
         self.businesses = businesses
@@ -165,7 +165,7 @@ class ResultsTableViewController: UITableViewController {
         resultsSectionCell.lblHeaderTitle.font = UIFont(name: "Verdana-BoldItalic", size: 17)!
         resultsSectionCell.lblHeaderTitle.textColor = UIColor.whiteColor()
         resultsSectionCell.selectionStyle = .None
-
+        
         
         switch(section) {
         case 0:
@@ -183,15 +183,15 @@ class ResultsTableViewController: UITableViewController {
     }
     
     
-   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if businesses != nil {
             return 4
         }
         else {
-        
+            
             return 0
         }
-    
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -226,7 +226,7 @@ class ResultsTableViewController: UITableViewController {
         var shuffled = []
         var name: String
         var firstFiveCategories = [String]()
-//        var tempCategories: [String]
+        //        var tempCategories: [String]
         
         shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(categories)
         
@@ -257,31 +257,63 @@ class ResultsTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
+        
         if segue.identifier == "details" {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPathForCell(cell)
             let business = businesses![indexPath!.row]
+            let sectionTwo = sectionTwoData[indexPath!.row]
+            let sectionThree = sectionThreeData[indexPath!.row]
+            let sectionFour = sectionFourData[indexPath!.row]
+            let sectionFive = sectionFiveData[indexPath!.row]
+            
             
             let detailViewController = segue.destinationViewController as! DetailViewController
-            detailViewController.business = business
-           
+            if (indexPath?.section == 0) {
+                detailViewController.business = business
+            }
+            else if (indexPath?.section == 1) {
+                detailViewController.business = sectionTwo
+            }
+            else if (indexPath?.section == 2) {
+                detailViewController.business = sectionThree
+            }
+            else if (indexPath?.section == 3) {
+                detailViewController.business = sectionFour
+            }
+            else if (indexPath?.section == 4) {
+                detailViewController.business = sectionFive
+            }
+            
+            
+    
+            
+            
         }
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+    }
     
     /*
     
     
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
-        
-        let categories = filters["categories"] as? [String]
-        
-        
-        Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            self.tableView.reloadData()
-        }    }
-*/
+    
+    let categories = filters["categories"] as? [String]
+    
+    
+    Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
+    self.businesses = businesses
+    self.tableView.reloadData()
+    }    }
+    */
 }

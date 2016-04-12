@@ -24,11 +24,10 @@ class Business: NSObject {
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
         
-        let imageURLString = dictionary["image_url"] as? String
-        if imageURLString != nil {
-            imageURL = NSURL(string: imageURLString!)!
+        if let imageURLString = dictionary["image_url"] as? String {
+            imageURL = NSURL(string: imageURLString)
         } else {
-            imageURL = nil
+            imageURL = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png")
         }
         
         let location = dictionary["location"] as? NSDictionary
