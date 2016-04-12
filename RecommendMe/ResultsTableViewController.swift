@@ -29,9 +29,10 @@ class ResultsTableViewController: UITableViewController {
     var sectionFiveData: [Business]!
     
     
+    
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
-    // selectedActivities
+    
     
     
     
@@ -88,54 +89,67 @@ class ResultsTableViewController: UITableViewController {
                 print(business.name!)
                 print(business.address!)
             }
+            
+            
+            Business.searchWithTerm(self.finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                self.sectionTwoData = businesses
+                
+                
+                for business in businesses {
+                    print(business.name!)
+                    print(business.address!)
+                }
+                
+                Business.searchWithTerm(self.finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                    self.sectionThreeData = businesses
+                    
+                    
+                    for business in businesses {
+                        print(business.name!)
+                        print(business.address!)
+                    }
+                    
+                    
+                    
+                    Business.searchWithTerm(self.finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                        self.sectionFourData = businesses
+                        
+                        
+                        for business in businesses {
+                            print(business.name!)
+                            print(business.address!)
+                        }
+                        
+                        Business.searchWithTerm(self.finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                            self.sectionFiveData = businesses
+                            self.tableView.reloadData()
+                            for business in businesses {
+                                print(business.name!)
+                                print(business.address!)
+                            }
+                        })
+                        
+                    })
+                })
+                
+            })
+            
         })
         
         
-        Business.searchWithTerm(finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.sectionTwoData = businesses
-            
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
-        
-        
-        Business.searchWithTerm(finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.sectionThreeData = businesses
-            
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
         
         
         
-        Business.searchWithTerm(finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.sectionFourData = businesses
-            
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
         
         
         
-        Business.searchWithTerm(finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.sectionFiveData = businesses
-            self.tableView.reloadData()
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
         
-        self.tableView.reloadData()
+        
+        
+        
+       
+        
+        //self.tableView.reloadData()
         
         /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
