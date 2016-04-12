@@ -39,6 +39,8 @@ class ResultsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         //tableView.estimatedRowHeight = 220
         tableView.rowHeight = 240
         
@@ -198,18 +200,64 @@ class ResultsTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if businesses != nil {
-            return 4
+        
+            switch(section){
+            case 0:
+                if (businesses.count < 4) {
+                    return businesses.count
+                }
+                else {
+                    return 4
+                }
+            case 1:
+                if(sectionTwoData.count < 4) {
+                    return sectionTwoData.count
+                }
+                else {
+                    return 4
+                }
+            case 2:
+                if (sectionThreeData.count < 4) {
+                    return sectionThreeData.count
+                }
+                else {
+                    return 4
+                }
+            case 3:
+                if (sectionFourData.count < 4) {
+                    return sectionFourData.count
+                }
+                else {
+                    return 4
+                }
+            default:
+                
+                if (sectionFiveData.count < 4) {
+                    return sectionFiveData.count
+                }
+                else {
+                    return 4
+                }
+            }
+        
         }
+        
         else {
-            
             return 0
         }
+        
+        
+        
         
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("resultsDataCell", forIndexPath: indexPath) as! ResultsDataCell
+        
+        
+        
         
         switch(indexPath.section) {
         case 0:
@@ -228,6 +276,15 @@ class ResultsTableViewController: UITableViewController {
         
         return cell
     }
+    
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = .clearColor()
+        
+        
+        
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -309,6 +366,15 @@ class ResultsTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let backgroundImage = UIImage(named: "background.png")
+        
+        let imageView = UIImageView(image: backgroundImage)
+        
+        imageView.contentMode = .ScaleAspectFill
+        
+        self.tableView.backgroundView = imageView
+        
         tableView.reloadData()
     }
     
