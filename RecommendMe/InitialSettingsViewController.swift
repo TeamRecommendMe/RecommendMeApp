@@ -59,7 +59,13 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             selectedActivitiesCats = bigActivities()
             userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
             userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
-
+           // userDefaults.setObject(selectedCats, forKey: "selectedCats")
+        }
+        else
+        {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeLeft)
         }
         userDefaults.setBool(true, forKey: "userExists")
         let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
@@ -96,6 +102,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section)
         {
@@ -134,26 +141,50 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         // Return the number of sections.
         return 2 // <-- HINT - Josh
     }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 65.0
+    }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("Header") as! HeaderCell
-        headerCell.backgroundColor = UIColor.grayColor()
-        // Each section is represented in a zero-based format just like how an array is. This finds which section it is on 
+        headerCell.backgroundColor = UIColor.darkGrayColor()
+        // Each section is represented in a zero-based format just like how an array is. This finds which section it is on
         // Updates the header to show a new title. Can you guess what's wrong here? Hint: You already declared how many sections it has from the func numberOfSectionsInTableView.
         // - Josh
+        headerCell.contentView.layer.masksToBounds = true
+        headerCell.contentView.layer.cornerRadius = 5
+        
         
         switch (section) {
         case 0:
-           headerCell.headerLabel.text = "Food"
-            print("\(headerCell.headerLabel.text)")
+            headerCell.headerLabel.text = "Food"
+            headerCell.headerImage.image = UIImage(named: "activity")
+            
         case 1:
             headerCell.headerLabel.text = "Activities"
+            headerCell.headerImage.image = UIImage(named: "restaurantsButton")
         default:
             headerCell.headerLabel.text = "Error"
+            headerCell.headerImage.image = UIImage(named: "activity")
         }
         
         return headerCell
     }
-    
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.Left:
+                print("Gesture Right")
+                self.performSegueWithIdentifier("moveMain", sender: self)
+            default:
+                break
+                
+                
+            }
+        }
+    }
+
     func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) {
         let indexPath = tableView.indexPathForCell(switchCell)!
         switchStates[indexPath] = value
@@ -167,6 +198,9 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         
         var catName: String
         var codeName: String
+        let alert = UIAlertController(title: "Continue?", message: "Are you sure these are the categories you wish to not include?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { action in         self.performSegueWithIdentifier("moveMain", sender: nil)}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         //selectedCategories.removeAll()
         selectedFoodCats = []
         selectedActivitiesCats = []
@@ -442,19 +476,21 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         //let vc = storyboard.instantiateViewControllerWithIdentifier("NavMainMenu")
         //print(selectedActivitiesCategories)
         //print(selectedFoodCategories)
+        self.presentViewController(alert, animated: true, completion: nil)
+
         self.performSegueWithIdentifier("moveMain", sender: nil)
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
     }
     func skipButton(sender: UIBarButtonItem) {
         print("Skippp")
-        var selectedFoodCategoriesDict = [[String:String]]()
+        /*var selectedFoodCategoriesDict = [[String:String]]()
         var selectedActivitiesCategoriesDict = [[String:String]]()
         selectedFoodCategoriesDict = allFoodCategories()
         selectedActivitiesCategoriesDict = allActivitiesCategories()
         userDefaults.setObject(selectedActivitiesCategoriesDict, forKey: "selectedActivities")
         userDefaults.setObject(selectedFoodCategoriesDict, forKey: "selectedFoods")
         userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
-        userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
+        userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")*/
         self.performSegueWithIdentifier("moveMain", sender: nil)
 
     }
@@ -997,7 +1033,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewControll	er.
-        // Pass the selected object to the new view controller.
+        // Pass the `object to the new view controller.
     }
     */
     
