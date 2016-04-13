@@ -8,8 +8,9 @@
 
 import UIKit
 import GameplayKit
-
-class MainMenuViewController: UIViewController {
+import CoreLocation
+  
+class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
     
     var choice: Int!
@@ -17,14 +18,13 @@ class MainMenuViewController: UIViewController {
     // Temp saved NSUserDefaults
     let CategoryDefaults = NSUserDefaults.standardUserDefaults()
     var tempFoodCategories: [[String: String]]!
-
     var longitude: String!
-    var latitude: String!
+    //var latitude: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("loaded")
-        print("selected Cats: \(CategoryDefaults.objectForKey("selectedFoodCats"))")
+       // print("loaded")
+       // print("selected Cats: \(CategoryDefaults.objectForKey("selectedFoodCats"))")
         let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
@@ -34,6 +34,8 @@ class MainMenuViewController: UIViewController {
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         
+
+
         //let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
        // print(shuffled)
         
@@ -45,11 +47,11 @@ class MainMenuViewController: UIViewController {
         // Reading from NSUserDefaults example
         
         let testDictionary = CategoryDefaults.objectForKey("selectedActivities") as? [[String: String]] ?? [[String: String]]()
-        for item in testDictionary {
+        /*for item in testDictionary {
             for (key, value) in item{
                 print("\(key), \(value)")
             }
-        }
+        }*/
         
 
         // Do any additional setup after loading the view.
@@ -60,6 +62,15 @@ class MainMenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        var locationManager:CLLocationManager
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
@@ -101,10 +112,13 @@ class MainMenuViewController: UIViewController {
             choice = 1
             recommendActVC.randomizer = choice
         }
-        
-        
-        
     }
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations)
+        
+        //print(latitude)
+    }
+    
     
 
 }

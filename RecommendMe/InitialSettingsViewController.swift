@@ -23,7 +23,6 @@
 
 import UIKit
 
-
 @ objc protocol InitialSettingsViewControllerDelegate {
     optional func initialSettingsViewController (initialSettingsViewController: InitialSettingsViewController, didUpdateFilters filters: [String:AnyObject])
 }
