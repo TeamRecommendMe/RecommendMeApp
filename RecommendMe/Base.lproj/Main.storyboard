@@ -55,6 +55,11 @@
                                                 <constraint firstItem="8a2-Z7-s28" firstAttribute="top" secondItem="dRH-tj-D6p" secondAttribute="top" constant="8" id="tK5-Iw-0p6"/>
                                                 <constraint firstItem="8a2-Z7-s28" firstAttribute="leading" secondItem="dRH-tj-D6p" secondAttribute="leading" constant="31" id="wQP-er-P6R"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="headerImage" destination="8a2-Z7-s28" id="bLq-7H-2hL"/>
