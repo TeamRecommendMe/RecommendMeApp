@@ -8,7 +8,7 @@
 
 import UIKit
 import GameplayKit
-
+import MBProgressHUD
 
 class ResultsTableViewController: UITableViewController {
     
@@ -41,6 +41,13 @@ class ResultsTableViewController: UITableViewController {
         
         tableView.rowHeight = 240
         
+      //  let loadingBar = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+      //  loadingBar.mode = MBProgressHUDMode.DeterminateHorizontalBar
+      //  loadingBar.labelFont = UIFont(name: "Verdana-BoldItalic", size: 15)
+      //  loadingBar.labelText = "Loading"
+        
+    
+        
         switch(randomizer) {
         case 0:
             let selectedFoodCategories = userDefaults.objectForKey("selectedFoods") as? [[String: String]] ?? [[String: String]]()
@@ -70,6 +77,8 @@ class ResultsTableViewController: UITableViewController {
             }
         }
         
+        //loadingBar.progress = 0.15
+        
         
         // Shuffle the categories and begin creating table.
         finishedShuffledCategories = shuffleCategories(readyToShuffleCategories)
@@ -78,7 +87,7 @@ class ResultsTableViewController: UITableViewController {
             print(categories)
         }
         
-        
+       // loadingBar.progress = 0.25
         
         Business.searchWithTerm(finishedShuffledCategories[0], completion: { (businesses: [Business]!, error: NSError!) -> Void in
             
@@ -94,9 +103,8 @@ class ResultsTableViewController: UITableViewController {
                     
                     
             }
-                else {
-                    
-            }
+            
+           // loadingBar.progress = 0.4
             
             Business.searchWithTerm(self.finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
                 
@@ -123,6 +131,7 @@ class ResultsTableViewController: UITableViewController {
                         }
                     
                     }
+                //    loadingBar.progress = 0.6
                     
                     Business.searchWithTerm(self.finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
                         
@@ -149,6 +158,9 @@ class ResultsTableViewController: UITableViewController {
                                 }
                                 
                             }
+                            
+                      //      loadingBar.progress = 1.0
+                            
                         })
                         
                     })
@@ -159,7 +171,7 @@ class ResultsTableViewController: UITableViewController {
         })
         
         
-        
+       // loadingBar.hide(true,afterDelay: 4)
         /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
         self.businesses = businesses
