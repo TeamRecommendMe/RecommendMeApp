@@ -66,6 +66,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         }
+        userDefaults.setBool(false, forKey: "changedPreferences")
         userDefaults.setBool(true, forKey: "userExists")
         let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
         let skipButton = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: "skipButton:")
@@ -197,7 +198,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         
         var catName: String
         var codeName: String
-        let alert = UIAlertController(title: "Continue?", message: "Are you sure these are the categories you wish to not include?", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Continue?", message: "Make sure these are the categories you want to exclude from searches before continuing", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { action in         self.performSegueWithIdentifier("moveMain", sender: nil)}))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         //selectedCategories.removeAll()
@@ -475,7 +476,11 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         //let vc = storyboard.instantiateViewControllerWithIdentifier("NavMainMenu")
         //print(selectedActivitiesCategories)
         //print(selectedFoodCategories)
-        self.presentViewController(alert, animated: true, completion: nil)
+        if (userDefaults.boolForKey("changedPreferences") == true) {
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+
+        
 
         self.performSegueWithIdentifier("moveMain", sender: nil)
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
