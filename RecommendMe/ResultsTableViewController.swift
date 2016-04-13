@@ -14,7 +14,7 @@ class ResultsTableViewController: UITableViewController {
     
     @IBOutlet weak var resultsTableView: UITableView!
     
-
+    
     var businesses: [Business]!
     var segueBusiness: Business!
     var segueName: String!
@@ -29,14 +29,17 @@ class ResultsTableViewController: UITableViewController {
     var sectionFiveData: [Business]!
     
     
+    
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
-   // selectedActivities
+    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         //tableView.estimatedRowHeight = 220
         tableView.rowHeight = 240
@@ -69,17 +72,17 @@ class ResultsTableViewController: UITableViewController {
                 }
             }
         }
-       
+        
         
         // Shuffle the categories and begin creating table.
-       finishedShuffledCategories = shuffleCategories(readyToShuffleCategories)
+        finishedShuffledCategories = shuffleCategories(readyToShuffleCategories)
         
         for categories in finishedShuffledCategories {
             print(categories)
         }
         
         
-       
+        
         Business.searchWithTerm(finishedShuffledCategories[0], completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
@@ -88,55 +91,68 @@ class ResultsTableViewController: UITableViewController {
                 print(business.name!)
                 print(business.address!)
             }
+            
+            
+            Business.searchWithTerm(self.finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                self.sectionTwoData = businesses
+                
+                
+                for business in businesses {
+                    print(business.name!)
+                    print(business.address!)
+                }
+                
+                Business.searchWithTerm(self.finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                    self.sectionThreeData = businesses
+                    
+                    
+                    for business in businesses {
+                        print(business.name!)
+                        print(business.address!)
+                    }
+                    
+                    
+                    
+                    Business.searchWithTerm(self.finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                        self.sectionFourData = businesses
+                        
+                        
+                        for business in businesses {
+                            print(business.name!)
+                            print(business.address!)
+                        }
+                        
+                        Business.searchWithTerm(self.finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                            self.sectionFiveData = businesses
+                            self.tableView.reloadData()
+                            for business in businesses {
+                                print(business.name!)
+                                print(business.address!)
+                            }
+                        })
+                        
+                    })
+                })
+                
+            })
+            
         })
         
         
-        Business.searchWithTerm(finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.sectionTwoData = businesses
-            
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
-        
-        
-        Business.searchWithTerm(finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.sectionThreeData = businesses
-            
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
         
         
         
-        Business.searchWithTerm(finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.sectionFourData = businesses
-            
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
         
         
         
-        Business.searchWithTerm(finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.sectionFiveData = businesses
-            self.tableView.reloadData()
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
         
-        self.tableView.reloadData()
-            
+        
+        
+        
+       
+        
+        //self.tableView.reloadData()
+        
         /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
         self.businesses = businesses
@@ -165,7 +181,7 @@ class ResultsTableViewController: UITableViewController {
         resultsSectionCell.lblHeaderTitle.font = UIFont(name: "Verdana-BoldItalic", size: 17)!
         resultsSectionCell.lblHeaderTitle.textColor = UIColor.whiteColor()
         resultsSectionCell.selectionStyle = .None
-
+        
         
         switch(section) {
         case 0:
@@ -183,19 +199,65 @@ class ResultsTableViewController: UITableViewController {
     }
     
     
-   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if businesses != nil {
-            return 4
-        }
-        else {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if businesses != nil {
+        
+            switch(section){
+            case 0:
+                if (businesses.count < 4) {
+                    return businesses.count
+                }
+                else {
+                    return 4
+                }
+            case 1:
+                if(sectionTwoData.count < 4) {
+                    return sectionTwoData.count
+                }
+                else {
+                    return 4
+                }
+            case 2:
+                if (sectionThreeData.count < 4) {
+                    return sectionThreeData.count
+                }
+                else {
+                    return 4
+                }
+            case 3:
+                if (sectionFourData.count < 4) {
+                    return sectionFourData.count
+                }
+                else {
+                    return 4
+                }
+            default:
+                
+                if (sectionFiveData.count < 4) {
+                    return sectionFiveData.count
+                }
+                else {
+                    return 4
+                }
+            }
+        
+        }
+        
+        else {
             return 0
         }
-    
+        
+        
+        
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("resultsDataCell", forIndexPath: indexPath) as! ResultsDataCell
+        
+        
+        
         
         switch(indexPath.section) {
         case 0:
@@ -215,6 +277,15 @@ class ResultsTableViewController: UITableViewController {
         return cell
     }
     
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = .clearColor()
+        
+        
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -226,7 +297,7 @@ class ResultsTableViewController: UITableViewController {
         var shuffled = []
         var name: String
         var firstFiveCategories = [String]()
-//        var tempCategories: [String]
+        //        var tempCategories: [String]
         
         shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(categories)
         
@@ -257,31 +328,72 @@ class ResultsTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
+        
         if segue.identifier == "details" {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPathForCell(cell)
             let business = businesses![indexPath!.row]
+            let sectionTwo = sectionTwoData[indexPath!.row]
+            let sectionThree = sectionThreeData[indexPath!.row]
+            let sectionFour = sectionFourData[indexPath!.row]
+            let sectionFive = sectionFiveData[indexPath!.row]
+            
             
             let detailViewController = segue.destinationViewController as! DetailViewController
-            detailViewController.business = business
-           
+            if (indexPath?.section == 0) {
+                detailViewController.business = business
+            }
+            else if (indexPath?.section == 1) {
+                detailViewController.business = sectionTwo
+            }
+            else if (indexPath?.section == 2) {
+                detailViewController.business = sectionThree
+            }
+            else if (indexPath?.section == 3) {
+                detailViewController.business = sectionFour
+            }
+            else if (indexPath?.section == 4) {
+                detailViewController.business = sectionFive
+            }
+            
+            
+    
+            
+            
         }
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let backgroundImage = UIImage(named: "background.png")
+        
+        let imageView = UIImageView(image: backgroundImage)
+        
+        imageView.contentMode = .ScaleAspectFill
+        
+        self.tableView.backgroundView = imageView
+        
+        tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+    }
     
     /*
     
     
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
-        
-        let categories = filters["categories"] as? [String]
-        
-        
-        Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            self.tableView.reloadData()
-        }    }
-*/
+    
+    let categories = filters["categories"] as? [String]
+    
+    
+    Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
+    self.businesses = businesses
+    self.tableView.reloadData()
+    }    }
+    */
 }

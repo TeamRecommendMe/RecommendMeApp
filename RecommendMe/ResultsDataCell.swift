@@ -11,6 +11,8 @@ import UIKit
 class ResultsDataCell: UITableViewCell {
     
     
+    
+    
     @IBOutlet weak var businessProfileImage: UIImageView!
     
     @IBOutlet weak var lblBusinessName: UILabel!
@@ -22,9 +24,19 @@ class ResultsDataCell: UITableViewCell {
     
     var business: Business! {
         didSet {
+            
+            let noImage = "noImage.png"
+            let image = UIImage(named: noImage)
+            
             lblBusinessName.text = business.name
             lblBusinessAddress.text = business.address
-            businessProfileImage.setImageWithURL(business.imageURL!)
+            if (business.imageURL != nil) {
+                businessProfileImage.setImageWithURL((business.imageURL!))
+            }
+            else {
+                businessProfileImage = UIImageView(image: image)
+            }
+            
         }
     }
     
