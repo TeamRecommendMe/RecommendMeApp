@@ -290,43 +290,28 @@ class ResultsTableViewController: UITableViewController {
             if (!businesses.isEmpty) {
                 cell.business = businesses[indexPath.row]
             }
-            else {
-                cell.business.address = ""
-                cell.business.name = "No locations"
-            }
+            
         case 1:
             if(!sectionTwoData.isEmpty){
                 cell.business = sectionTwoData[indexPath.row]
             }
-            else {
-                cell.business.address = ""
-                cell.business.name = "No locations"
-            }
+            
         case 2:
             if(!sectionThreeData.isEmpty) {
                 cell.business = sectionThreeData[indexPath.row]
             }
-            else {
-                cell.business.address = ""
-                cell.business.name = "No locations"
-            }
+            
             
         case 3:
             if(!sectionFourData.isEmpty) {
                 cell.business = sectionFourData[indexPath.row]
             }
-            else {
-                cell.business.address = ""
-                cell.business.name = "No locations"
-            }
+            
         default:
             if(!sectionFiveData.isEmpty) {
                 cell.business = sectionFiveData[indexPath.row]
             }
-            else {
-                cell.business.address = ""
-                cell.business.name = "No locations"
-            }
+            
         }
         
         
