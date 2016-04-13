@@ -8,14 +8,14 @@
 
 import UIKit
 import GameplayKit
-
+import MBProgressHUD
 
 class ResultsTableViewController: UITableViewController {
     
     @IBOutlet weak var resultsTableView: UITableView!
     
     
-    var businesses: [Business]!
+    var businesses: [Business] = []
     var segueBusiness: Business!
     var segueName: String!
     var segueAddress: String!
@@ -23,10 +23,10 @@ class ResultsTableViewController: UITableViewController {
     var readyToShuffleCategories = [String]()
     var randomizer = 1 // 0 for restaurants and 1 for activities
     
-    var sectionTwoData: [Business]!
-    var sectionThreeData: [Business]!
-    var sectionFourData: [Business]!
-    var sectionFiveData: [Business]!
+    var sectionTwoData: [Business] = []
+    var sectionThreeData: [Business] = []
+    var sectionFourData: [Business] = []
+    var sectionFiveData: [Business] = []
     
     
     
@@ -39,10 +39,14 @@ class ResultsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        //tableView.estimatedRowHeight = 220
         tableView.rowHeight = 240
+        
+      //  let loadingBar = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+      //  loadingBar.mode = MBProgressHUDMode.DeterminateHorizontalBar
+      //  loadingBar.labelFont = UIFont(name: "Verdana-BoldItalic", size: 15)
+      //  loadingBar.labelText = "Loading"
+        
+    
         
         switch(randomizer) {
         case 0:
@@ -73,6 +77,8 @@ class ResultsTableViewController: UITableViewController {
             }
         }
         
+        //loadingBar.progress = 0.15
+        
         
         // Shuffle the categories and begin creating table.
         finishedShuffledCategories = shuffleCategories(readyToShuffleCategories)
@@ -81,54 +87,80 @@ class ResultsTableViewController: UITableViewController {
             print(categories)
         }
         
-        
+       // loadingBar.progress = 0.25
         
         Business.searchWithTerm(finishedShuffledCategories[0], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
+            
+                if (businesses?.isEmpty != nil) {
+            
+                self.businesses = businesses
             
             
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-            
-            
-            Business.searchWithTerm(self.finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-                self.sectionTwoData = businesses
-                
-                
                 for business in businesses {
                     print(business.name!)
                     print(business.address!)
                 }
+                    
+                    
+            }
+            
+           // loadingBar.progress = 0.4
+            
+            Business.searchWithTerm(self.finishedShuffledCategories[1], completion: { (businesses: [Business]!, error: NSError!) -> Void in
                 
-                Business.searchWithTerm(self.finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-                    self.sectionThreeData = businesses
-                    
-                    
+                if(businesses?.isEmpty != nil){
+                    self.sectionTwoData = businesses
+                
+                
                     for business in businesses {
                         print(business.name!)
                         print(business.address!)
                     }
+                }
+                
+                Business.searchWithTerm(self.finishedShuffledCategories[2], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                    
+                    if(businesses?.isEmpty != nil){
+                    
+                        self.sectionThreeData = businesses
                     
                     
-                    
-                    Business.searchWithTerm(self.finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-                        self.sectionFourData = businesses
-                        
-                        
                         for business in businesses {
                             print(business.name!)
                             print(business.address!)
                         }
+                    
+                    }
+                //    loadingBar.progress = 0.6
+                    
+                    Business.searchWithTerm(self.finishedShuffledCategories[3], completion: { (businesses: [Business]!, error: NSError!) -> Void in
                         
-                        Business.searchWithTerm(self.finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
-                            self.sectionFiveData = businesses
-                            self.tableView.reloadData()
+                        if(businesses?.isEmpty != nil) {
+                        
+                            self.sectionFourData = businesses
+                        
+                        
                             for business in businesses {
                                 print(business.name!)
                                 print(business.address!)
                             }
+                        }
+                        
+                        Business.searchWithTerm(self.finishedShuffledCategories[4], completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                            
+                            if(businesses?.isEmpty != nil) {
+                            
+                                self.sectionFiveData = businesses
+                                self.tableView.reloadData()
+                                for business in businesses {
+                                    print(business.name!)
+                                    print(business.address!)
+                                }
+                                
+                            }
+                            
+                      //      loadingBar.progress = 1.0
+                            
                         })
                         
                     })
@@ -139,20 +171,7 @@ class ResultsTableViewController: UITableViewController {
         })
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
-        
-        //self.tableView.reloadData()
-        
+       // loadingBar.hide(true,afterDelay: 4)
         /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
         self.businesses = businesses
@@ -201,42 +220,61 @@ class ResultsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if businesses != nil {
+        if (!businesses.isEmpty) {
         
             switch(section){
             case 0:
-                if (businesses.count < 4) {
+                if (businesses.count < 4 && !businesses.isEmpty) {
                     return businesses.count
+                }
+                else if (businesses.isEmpty) {
+                    return 0
                 }
                 else {
                     return 4
                 }
             case 1:
-                if(sectionTwoData.count < 4) {
+                if(sectionTwoData.count < 4 && !sectionTwoData.isEmpty) {
                     return sectionTwoData.count
                 }
+                else if(sectionTwoData.isEmpty)
+                {
+                    return 0
+                }
+                    
                 else {
                     return 4
                 }
             case 2:
-                if (sectionThreeData.count < 4) {
+                if (sectionThreeData.count < 4 && !sectionThreeData.isEmpty) {
                     return sectionThreeData.count
+                }
+                else if(sectionThreeData.isEmpty) {
+                    return 0
                 }
                 else {
                     return 4
                 }
             case 3:
-                if (sectionFourData.count < 4) {
+                if (sectionFourData.count < 4 && !sectionFourData.isEmpty) {
                     return sectionFourData.count
                 }
+                else if(sectionFourData.isEmpty) {
+                    return 0
+                }
+                    
                 else {
                     return 4
                 }
             default:
                 
-                if (sectionFiveData.count < 4) {
+                if (sectionFiveData.count < 4 && !sectionFiveData.isEmpty) {
                     return sectionFiveData.count
                 }
+                else if(sectionFiveData.isEmpty){
+                    return 0
+                }
+                    
                 else {
                     return 4
                 }
@@ -261,15 +299,30 @@ class ResultsTableViewController: UITableViewController {
         
         switch(indexPath.section) {
         case 0:
-            cell.business = businesses[indexPath.row]
+            if (!businesses.isEmpty) {
+                cell.business = businesses[indexPath.row]
+            }
+            
         case 1:
-            cell.business = sectionTwoData[indexPath.row]
+            if(!sectionTwoData.isEmpty){
+                cell.business = sectionTwoData[indexPath.row]
+            }
+            
         case 2:
-            cell.business = sectionThreeData[indexPath.row]
+            if(!sectionThreeData.isEmpty) {
+                cell.business = sectionThreeData[indexPath.row]
+            }
+            
+            
         case 3:
-            cell.business = sectionFourData[indexPath.row]
+            if(!sectionFourData.isEmpty) {
+                cell.business = sectionFourData[indexPath.row]
+            }
+            
         default:
-            cell.business = sectionFiveData[indexPath.row]
+            if(!sectionFiveData.isEmpty) {
+                cell.business = sectionFiveData[indexPath.row]
+            }
             
         }
         
@@ -324,41 +377,21 @@ class ResultsTableViewController: UITableViewController {
     
     
     
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "details" {
-            let cell = sender as! UITableViewCell
-            let indexPath = tableView.indexPathForCell(cell)
-            let business = businesses![indexPath!.row]
-            let sectionTwo = sectionTwoData[indexPath!.row]
-            let sectionThree = sectionThreeData[indexPath!.row]
-            let sectionFour = sectionFourData[indexPath!.row]
-            let sectionFive = sectionFiveData[indexPath!.row]
             
+            let sectionArray = [businesses,sectionTwoData, sectionThreeData, sectionFourData, sectionFiveData]
             
             let detailViewController = segue.destinationViewController as! DetailViewController
-            if (indexPath?.section == 0) {
-                detailViewController.business = business
-            }
-            else if (indexPath?.section == 1) {
-                detailViewController.business = sectionTwo
-            }
-            else if (indexPath?.section == 2) {
-                detailViewController.business = sectionThree
-            }
-            else if (indexPath?.section == 3) {
-                detailViewController.business = sectionFour
-            }
-            else if (indexPath?.section == 4) {
-                detailViewController.business = sectionFive
-            }
             
-            
-    
-            
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                detailViewController.business = sectionArray[indexPath.section][indexPath.row]
+            }
             
         }
         
@@ -383,17 +416,4 @@ class ResultsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    /*
-    
-    
-    func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
-    
-    let categories = filters["categories"] as? [String]
-    
-    
-    Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
-    self.businesses = businesses
-    self.tableView.reloadData()
-    }    }
-    */
 }
