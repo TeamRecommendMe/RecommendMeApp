@@ -330,35 +330,21 @@ class ResultsTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "details" {
-            let cell = sender as! UITableViewCell
-            let indexPath = tableView.indexPathForCell(cell)
-            let business = businesses![indexPath!.row]
-            let sectionTwo = businesses![indexPath!.row] //sectionTwoData[indexPath!.row]
-            let sectionThree = businesses![indexPath!.row] //sectionThreeData[indexPath!.row]
-            let sectionFour = businesses![indexPath!.row] //sectionFourData[indexPath!.row]
-            let sectionFive = businesses![indexPath!.row] //sectionFiveData[indexPath!.row]
+            //let cell = sender as! UITableViewCell
+            //let indexPath = tableView.indexPathForCell(cell)
+            //let business = businesses![indexPath!.row]
+            //let sectionTwo = businesses![indexPath!.row] //sectionTwoData[indexPath!.row]
+            //let sectionThree = businesses![indexPath!.row] //sectionThreeData[indexPath!.row]
+            //let sectionFour = businesses![indexPath!.row] //sectionFourData[indexPath!.row]
+            //let sectionFive = businesses![indexPath!.row] //sectionFiveData[indexPath!.row]
             
+            let sectionArray = [businesses,sectionTwoData, sectionThreeData, sectionFourData, sectionFiveData]
             
             let detailViewController = segue.destinationViewController as! DetailViewController
-            if (indexPath?.section == 0) {
-                detailViewController.business = business
-            }
-            else if (indexPath?.section == 1) {
-                detailViewController.business = sectionTwo
-            }
-            else if (indexPath?.section == 2) {
-                detailViewController.business = sectionThree
-            }
-            else if (indexPath?.section == 3) {
-                detailViewController.business = sectionFour
-            }
-            else if (indexPath?.section == 4) {
-                detailViewController.business = sectionFive
-            }
             
-            
-    
-            
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                detailViewController.business = sectionArray[indexPath.section][indexPath.row]
+            }
             
         }
         
