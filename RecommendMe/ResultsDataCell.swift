@@ -30,6 +30,7 @@ class ResultsDataCell: UITableViewCell {
             
             lblBusinessName.text = business.name
             lblBusinessAddress.text = business.address
+            
             if (business.imageURL != nil) {
                 businessProfileImage.setImageWithURL((business.imageURL!))
             }

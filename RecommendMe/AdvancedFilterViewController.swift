@@ -22,6 +22,8 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
     var activitiesCategories: [[String: String]]!
     var advSwitchStates = [NSIndexPath: Bool]()
     
+    let advDefaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
@@ -180,18 +182,6 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
                 
                 selectedCategories.append(["name" : testName, "code": testCode])
                 
-                print("There is a total of \(selectedCategories.count) items in selected categories.")
-                
-                print("Printing items appended in selected Categories")
-                
-                // Not the best way to display the array of dictionaries but it works.
-                
-                for item in selectedCategories {
-                    
-                    for(key, value) in item {
-                        print("\(key): \(value)")
-                    }
-                }
                 
             }
             else{
@@ -200,6 +190,9 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         }
         
         print("Search button is pressed func is complete!")
+        
+        advDefaults.setObject(selectedCategories, forKey: "advanceDefaults")
+        
         
         
     }
