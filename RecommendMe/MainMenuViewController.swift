@@ -14,13 +14,15 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
     
     var choice: Int!
-    
+    var locationManager:CLLocationManager?
+
     // Temp saved NSUserDefaults
     let CategoryDefaults = NSUserDefaults.standardUserDefaults()
     var tempFoodCategories: [[String: String]]!
     var longitude: String!
     //var latitude: String!
-    
+    //static locationManager : CLLocationManager
+
     override func viewDidLoad() {
         super.viewDidLoad()
        // print("loaded")
@@ -63,13 +65,12 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        var locationManager:CLLocationManager
         
         locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        locationManager!.delegate = self
+        locationManager!.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager!.requestWhenInUseAuthorization()
+        locationManager!.startUpdatingLocation()
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {

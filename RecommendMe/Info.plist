@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Because I want to know where you are at all times</string>
+	<string>Used to find the nearest resturants and activities</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>BECAUSE I NEED TO KNOW</string>
+	<string>We use this to determine the nearest resturants/activities</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>
