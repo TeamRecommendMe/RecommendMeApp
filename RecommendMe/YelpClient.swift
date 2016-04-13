@@ -20,6 +20,8 @@ let yelpTokenSecret = "2kW5csc-E1ynlRG1E_JrZabLFe4"
 var latitude: String!
 var longitude: String!
 
+let coordDefaults = NSUserDefaults.standardUserDefaults()
+
 
 enum YelpSortMode: Int {
     case BestMatched = 0, Distance, HighestRated
@@ -70,12 +72,32 @@ class YelpClient: BDBOAuth1SessionManager {
     func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
+        if coordDefaults.boolForKey("latitude") {
+            latitude = coordDefaults.objectForKey("latitude") as? String
+        }
         
+        else {
+            latitude = "38.785771"
+        }
+       
+        if coordDefaults.boolForKey("longitude") {
+            longitude = coordDefaults.objectForKey("longitude") as? String
+        }
+        else {
+            longitude = "-122.406165"
+        }
+        
+        
+        
+        print("YELPCLIENT LATITUDE")
+        print("\(latitude)")
+        print("YELPCLIENT LONGITUDE")
+        print("\(longitude)")
         
         
         
         // Default the location to San Francisco
-        var parameters: [String : AnyObject] = ["term": term, "ll": "38.785771,-122.406165"]
+        var parameters: [String : AnyObject] = ["term": term, "ll": "\(latitude),\(longitude)"]
         
         if sort != nil {
             parameters["sort"] = sort!.rawValue

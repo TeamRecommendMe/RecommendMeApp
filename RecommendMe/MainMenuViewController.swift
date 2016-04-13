@@ -115,6 +115,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
             recommendActVC.randomizer = choice
         }
     }
+    
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //print(locations)
         let latitude = locationManager!.location!.coordinate.latitude
