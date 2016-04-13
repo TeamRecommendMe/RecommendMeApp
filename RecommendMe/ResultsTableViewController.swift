@@ -333,10 +333,10 @@ class ResultsTableViewController: UITableViewController {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPathForCell(cell)
             let business = businesses![indexPath!.row]
-            let sectionTwo = sectionTwoData[indexPath!.row]
-            let sectionThree = sectionThreeData[indexPath!.row]
-            let sectionFour = sectionFourData[indexPath!.row]
-            let sectionFive = sectionFiveData[indexPath!.row]
+            let sectionTwo = businesses![indexPath!.row] //sectionTwoData[indexPath!.row]
+            let sectionThree = businesses![indexPath!.row] //sectionThreeData[indexPath!.row]
+            let sectionFour = businesses![indexPath!.row] //sectionFourData[indexPath!.row]
+            let sectionFive = businesses![indexPath!.row] //sectionFiveData[indexPath!.row]
             
             
             let detailViewController = segue.destinationViewController as! DetailViewController
