@@ -35,7 +35,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
-        
+        print(CategoryDefaults.objectForKey("latitude"))
+        print(CategoryDefaults.objectForKey("longitude"))
 
 
         //let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
@@ -115,8 +116,13 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
-        
+        //print(locations)
+        let latitude = locationManager!.location!.coordinate.latitude
+        let longitude = locationManager!.location!.coordinate.longitude
+        //print(latitude)
+        //print(longitude)
+        CategoryDefaults.setObject(latitude, forKey: "latitude")
+        CategoryDefaults.setObject(longitude, forKey: "longitude")
         //print(latitude)
     }
     
