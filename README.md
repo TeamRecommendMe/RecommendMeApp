@@ -40,6 +40,11 @@ The following **optional** features are implemented:
 ## Walkthrough April 6th 100% Required Stories:
 ![sprint3a](https://cloud.githubusercontent.com/assets/14221032/14344370/093f5aea-fc5c-11e5-96a3-0d650476ada4.gif)
 
+
+## Walkthrough April 13th Optional + Polish
+![sprint4](https://cloud.githubusercontent.com/assets/14221032/14516894/9a0c2c5a-01bc-11e6-8aa4-1214c46f5698.gif)
+
+
 Note: Advanced Settings doesn't go anywhere at the moment.
 
     Copyright [2016] [Team Recommend Me]
