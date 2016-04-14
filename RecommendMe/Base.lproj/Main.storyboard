@@ -295,7 +295,7 @@
                                 <state key="normal" backgroundImage="activity"/>
                                 <connections>
                                     <action selector="btnGoogleMaps:" destination="MOv-x1-27L" eventType="touchUpInside" id="fFB-kz-ylQ"/>
-                                    <segue destination="RBk-uJ-De8" kind="show" id="vXs-9u-HdP"/>
+                                    <segue destination="RBk-uJ-De8" kind="show" identifier="mapViewSegue" id="vXs-9u-HdP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BB1-CO-M67">

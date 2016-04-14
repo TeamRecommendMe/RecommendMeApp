@@ -16,7 +16,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var locationManager : CLLocationManager!
     var newRoute: MKRoute?
     let userDefaults = NSUserDefaults.standardUserDefaults()
-
+    var latitude : Double!
+    var longitutde : Double!
+    var resName : String!
     /*public struct CLLocationCoordinate2D {
         public var latitude: CLLocationDegrees
         public var longitude: CLLocationDegrees
@@ -37,8 +39,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         point1.title = "Current Location"
         mapView.addAnnotation(point1)
         
-        point2.coordinate = CLLocationCoordinate2DMake(33, -111/*insert coords of resturant*/)
-        point2.title = "Insert Resturant Name Here"
+        point2.coordinate = CLLocationCoordinate2DMake(latitude, longitutde/*insert coords of resturant*/)
+        point2.title = resName
         mapView.addAnnotation(point2)
         
         //addAnnotationAtCoordinate(coords)
@@ -69,14 +71,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             mapView.setRegion(region, animated: false)
         }
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "mapViewSegue" {
+            let mapViewController = segue.destinationViewController as! MapViewController
+        }
+    }*/
+    
 
 }

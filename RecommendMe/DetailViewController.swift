@@ -58,7 +58,14 @@ class DetailViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+    }*/
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "mapViewSegue" {
+            let mapViewController = segue.destinationViewController as! MapViewController
+            mapViewController.latitude = business.latitude
+            mapViewController.longitutde = business.longitude
+            mapViewController.resName = business.name
+        }
     }
-    */
-
 }

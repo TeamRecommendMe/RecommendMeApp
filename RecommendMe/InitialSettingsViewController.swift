@@ -476,12 +476,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         //let vc = storyboard.instantiateViewControllerWithIdentifier("NavMainMenu")
         //print(selectedActivitiesCategories)
         //print(selectedFoodCategories)
-        if (userDefaults.boolForKey("changedPreferences") == true) {
-            self.presentViewController(alert, animated: true, completion: nil)
-        }
-
-        
-
+        self.presentViewController(alert, animated: true, completion: nil)
         self.performSegueWithIdentifier("moveMain", sender: nil)
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
     }
