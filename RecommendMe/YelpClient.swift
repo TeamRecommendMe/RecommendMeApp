@@ -19,7 +19,6 @@ let yelpTokenSecret = "2kW5csc-E1ynlRG1E_JrZabLFe4"
 
 var latitude: String!
 var longitude: String!
-
 let coordDefaults = NSUserDefaults.standardUserDefaults()
 
 
@@ -72,7 +71,7 @@ class YelpClient: BDBOAuth1SessionManager {
     func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
-        if coordDefaults.boolForKey("latitude") {
+        if coordDefaults.objectForKey("latitude") != nil {
             latitude = coordDefaults.objectForKey("latitude") as? String
         }
         
@@ -80,12 +79,14 @@ class YelpClient: BDBOAuth1SessionManager {
             latitude = "38.785771"
         }
        
-        if coordDefaults.boolForKey("longitude") {
+        if  coordDefaults.objectForKey("longitude") != nil {
             longitude = coordDefaults.objectForKey("longitude") as? String
         }
+        
         else {
             longitude = "-122.406165"
         }
+        
         
         
         

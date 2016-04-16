@@ -13,6 +13,7 @@ class Business: NSObject {
     var name: String?
     var address: String?
     let imageURL: NSURL?
+    var replacedImageURL: String?
     let categories: String?
     let distance: String?
     let ratingImageURL: NSURL?
@@ -27,7 +28,15 @@ class Business: NSObject {
         
         
         if let imageURLString = dictionary["image_url"] as? String {
-            imageURL = NSURL(string: imageURLString)
+            
+            replacedImageURL = imageURLString.stringByReplacingOccurrencesOfString("ms.jpg", withString: "l.jpg")
+            
+            
+            imageURL = NSURL(string: replacedImageURL!)
+            
+            print(imageURL)
+            
+            
         } else {
             imageURL = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png")
         }
