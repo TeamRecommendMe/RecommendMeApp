@@ -12,6 +12,10 @@ class Business: NSObject {
     
     var name: String?
     var address: String?
+    var phone: String?
+    var snippet: String?
+    var bizURL: String?
+    var imageSnippet: NSURL?
     let imageURL: NSURL?
     var replacedImageURL: String?
     let categories: String?
@@ -25,6 +29,12 @@ class Business: NSObject {
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
         
+        
+        if let tempPhoneNumber = dictionary["display_phone"] as? String {
+            let formatNumber = tempPhoneNumber.stringByReplacingOccurrencesOfString("+1-", withString: "")
+            
+            phone = formatNumber
+        }
         
         
         if let imageURLString = dictionary["image_url"] as? String {
@@ -40,6 +50,20 @@ class Business: NSObject {
         } else {
             imageURL = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png")
         }
+        
+        if let imageBizSnippetURL = dictionary["image_url"] as? String {
+            
+            
+            imageSnippet = NSURL(string: imageBizSnippetURL)
+            
+            print(imageSnippet)
+            
+            
+        } else {
+            imageSnippet = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png")
+        }
+        
+        
         
         let location = dictionary["location"] as? NSDictionary
         var address = ""
@@ -65,6 +89,14 @@ class Business: NSObject {
                 if let longitude = coordinate["longitude"] as? Double {
                     self.longitude = longitude
                 }
+            }
+            
+            if let snippetText = dictionary["snippet_text"] as? String {
+               self.snippet = snippetText
+            }
+            
+            if let bizURLCheck = dictionary["url"] as? String {
+                self.bizURL = bizURLCheck
             }
             
         }

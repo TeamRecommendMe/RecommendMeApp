@@ -39,14 +39,13 @@ class ResultsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 240
+        tableView.rowHeight = 250
         
         let loadingBar = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         loadingBar.mode = MBProgressHUDMode.DeterminateHorizontalBar
         loadingBar.labelFont = UIFont(name: "Verdana-BoldItalic", size: 15)
         loadingBar.labelText = "Loading"
         
-    
         
         switch(randomizer) {
         case 0:
