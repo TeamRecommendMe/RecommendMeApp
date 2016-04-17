@@ -617,6 +617,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" id="Cjg-j6-7ed">
+                            <rect key="frame" x="0.0" y="324" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultsHeader" rowHeight="45" id="zbV-yq-gFx" customClass="ResultsHeaderCell" customModule="RecommendMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="45"/>
@@ -637,48 +641,60 @@
                                     <outlet property="lblHeaderTitle" destination="07c-Nb-Nd8" id="IK8-Wb-BBk"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultsDataCell" rowHeight="220" id="SXd-KB-vRb" customClass="ResultsDataCell" customModule="RecommendMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="73" width="414" height="220"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultsDataCell" rowHeight="251" id="SXd-KB-vRb" customClass="ResultsDataCell" customModule="RecommendMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="73" width="414" height="251"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SXd-KB-vRb" id="LPo-3h-VW2">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="219"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timo Wine Bar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDi-by-A98">
-                                            <rect key="frame" x="141" y="149" width="132" height="20"/>
-                                            <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="16"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eZH-8V-jlV">
-                                            <rect key="frame" x="87" y="13" width="240" height="128"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="128" id="alC-af-X5h"/>
-                                                <constraint firstAttribute="width" constant="240" id="euw-AH-bCe"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8801 N Central Ave" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFy-MI-yNy">
-                                            <rect key="frame" x="120" y="183" width="174" height="20"/>
+                                            <rect key="frame" x="87" y="183" width="132" height="20"/>
                                             <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8801 N Central Ave" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFy-MI-yNy">
+                                            <rect key="frame" x="87" y="211" width="174" height="20"/>
+                                            <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150 Miles" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0K-HT-Nap">
+                                            <rect key="frame" x="335" y="14" width="70" height="16"/>
+                                            <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="13"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eZH-8V-jlV">
+                                            <rect key="frame" x="87" y="14" width="240" height="160"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="eZH-8V-jlV" secondAttribute="height" multiplier="3:2" id="Fbp-RY-svP"/>
+                                                <constraint firstAttribute="width" constant="240" id="LAc-jb-MPG"/>
+                                                <constraint firstAttribute="height" constant="160" id="gdT-F6-c8o"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="eZH-8V-jlV" firstAttribute="top" secondItem="LPo-3h-VW2" secondAttribute="topMargin" constant="5" id="3GK-qP-gLJ"/>
-                                        <constraint firstItem="eZH-8V-jlV" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leadingMargin" constant="79" id="Z11-0y-Cw0"/>
-                                        <constraint firstItem="AFy-MI-yNy" firstAttribute="top" secondItem="SDi-by-A98" secondAttribute="bottom" constant="14" id="apN-8w-2m1"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AFy-MI-yNy" secondAttribute="trailing" constant="109" id="dqr-sf-oB0"/>
-                                        <constraint firstItem="AFy-MI-yNy" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leading" constant="120" id="h1X-pg-E5R"/>
-                                        <constraint firstItem="SDi-by-A98" firstAttribute="top" secondItem="eZH-8V-jlV" secondAttribute="bottom" constant="8" id="hwB-KN-m8I"/>
-                                        <constraint firstItem="SDi-by-A98" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leading" constant="141" id="lIT-g2-2mO"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SDi-by-A98" secondAttribute="trailing" constant="127" id="tft-LR-57k"/>
+                                        <constraint firstItem="eZH-8V-jlV" firstAttribute="top" secondItem="LPo-3h-VW2" secondAttribute="topMargin" constant="6" id="2YY-yA-7t2"/>
+                                        <constraint firstItem="eZH-8V-jlV" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leadingMargin" constant="79" id="HYo-uB-NLw"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="AFy-MI-yNy" secondAttribute="trailing" constant="20" id="Hzv-56-tOt"/>
+                                        <constraint firstItem="AFy-MI-yNy" firstAttribute="top" secondItem="SDi-by-A98" secondAttribute="bottom" constant="8" id="S5u-zF-HcI"/>
+                                        <constraint firstItem="SDi-by-A98" firstAttribute="top" secondItem="eZH-8V-jlV" secondAttribute="bottom" constant="9" id="Xbf-H2-NTG"/>
+                                        <constraint firstItem="q0K-HT-Nap" firstAttribute="top" secondItem="LPo-3h-VW2" secondAttribute="topMargin" constant="6" id="aBo-d9-rCZ"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="SDi-by-A98" secondAttribute="trailing" constant="20" id="bhZ-fB-ecb"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="q0K-HT-Nap" secondAttribute="trailing" constant="1" id="dXI-Vp-NDp"/>
+                                        <constraint firstItem="SDi-by-A98" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leadingMargin" constant="79" id="eEh-rk-ElA"/>
+                                        <constraint firstItem="q0K-HT-Nap" firstAttribute="leading" secondItem="eZH-8V-jlV" secondAttribute="trailing" constant="8" id="hX5-2u-dNV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="eZH-8V-jlV" secondAttribute="trailing" constant="79" id="rRM-Ao-TeW"/>
+                                        <constraint firstItem="AFy-MI-yNy" firstAttribute="leading" secondItem="LPo-3h-VW2" secondAttribute="leadingMargin" constant="79" id="uUV-lZ-TMa"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="businessProfileImage" destination="eZH-8V-jlV" id="IwK-Cr-tK9"/>
                                     <outlet property="lblBusinessAddress" destination="AFy-MI-yNy" id="L7U-eJ-iev"/>
                                     <outlet property="lblBusinessName" destination="SDi-by-A98" id="fmh-Kf-2nW"/>
+                                    <outlet property="lblDistance" destination="q0K-HT-Nap" id="KvV-S6-ahQ"/>
                                     <segue destination="MOv-x1-27L" kind="show" identifier="details" id="69r-gO-RLW"/>
                                 </connections>
                             </tableViewCell>

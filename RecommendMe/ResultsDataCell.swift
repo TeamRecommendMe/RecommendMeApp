@@ -21,6 +21,7 @@ class ResultsDataCell: UITableViewCell {
     
     @IBOutlet weak var lblBusinessCityStateZip: UILabel!
     
+    @IBOutlet weak var lblDistance: UILabel!
     
     var business: Business! {
         didSet {
@@ -30,6 +31,7 @@ class ResultsDataCell: UITableViewCell {
             
             lblBusinessName.text = business.name
             lblBusinessAddress.text = business.address
+            lblDistance.text = business.distance
             
             if (business.imageURL != nil) {
                 businessProfileImage.setImageWithURL((business.imageURL!))
