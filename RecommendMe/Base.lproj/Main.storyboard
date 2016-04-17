@@ -238,7 +238,7 @@
                                     <constraint firstAttribute="width" secondItem="GGK-Tx-Saj" secondAttribute="height" multiplier="40:71" id="ca5-ab-aGQ"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfL-Ao-Hak">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfL-Ao-Hak">
                                 <rect key="frame" x="82" y="211" width="22" height="19"/>
                                 <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -334,11 +334,13 @@
                             <constraint firstItem="0i5-vg-v5R" firstAttribute="leading" secondItem="H37-tq-VFJ" secondAttribute="leadingMargin" constant="25" id="UTi-sq-YFM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ylj-dG-qXm" secondAttribute="trailing" constant="104" id="Uav-R8-Wju"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="fCf-Aa-mwp" secondAttribute="trailing" constant="20" id="Ug9-d1-nwj"/>
+                            <constraint firstItem="HfL-Ao-Hak" firstAttribute="top" secondItem="bVh-nb-RNY" secondAttribute="bottom" constant="23" id="Ugg-B7-vxj"/>
                             <constraint firstItem="1Tw-AG-2Mb" firstAttribute="top" secondItem="fCf-Aa-mwp" secondAttribute="bottom" constant="8" id="YFD-Cf-qip"/>
                             <constraint firstItem="fCf-Aa-mwp" firstAttribute="top" secondItem="Pj7-AM-Lek" secondAttribute="bottom" constant="15" id="Z4W-gX-rQe"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="0i5-vg-v5R" secondAttribute="trailing" constant="20" id="bG3-lp-QtH"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="1Tw-AG-2Mb" secondAttribute="trailing" constant="20" id="gag-ab-8mU"/>
                             <constraint firstItem="GGK-Tx-Saj" firstAttribute="top" secondItem="H37-tq-VFJ" secondAttribute="top" id="gfY-WB-ySl"/>
+                            <constraint firstItem="HfL-Ao-Hak" firstAttribute="leading" secondItem="Pj7-AM-Lek" secondAttribute="trailing" constant="15" id="k37-GD-TJf"/>
                             <constraint firstAttribute="trailing" secondItem="GGK-Tx-Saj" secondAttribute="trailing" id="kE7-eP-VxB"/>
                             <constraint firstItem="Ylj-dG-qXm" firstAttribute="leading" secondItem="H37-tq-VFJ" secondAttribute="leadingMargin" constant="21" id="ry9-1u-9AJ"/>
                             <constraint firstItem="bVh-nb-RNY" firstAttribute="top" secondItem="6hE-Pv-GKg" secondAttribute="bottom" constant="8" id="sRR-F6-yzJ"/>
@@ -353,6 +355,7 @@
                         <outlet property="lblAddress" destination="1Tw-AG-2Mb" id="4gK-Fk-CAg"/>
                         <outlet property="lblBusinessName" destination="fCf-Aa-mwp" id="GcH-eh-FzT"/>
                         <outlet property="lblPhoneNumber" destination="0i5-vg-v5R" id="8vf-SD-YsQ"/>
+                        <outlet property="lblRating" destination="HfL-Ao-Hak" id="Lcr-ra-QdI"/>
                         <outlet property="lblSnippet" destination="lgc-hi-cvF" id="aEo-v8-dRb"/>
                     </connections>
                 </viewController>

@@ -16,9 +16,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblSnippet: UILabel!
     @IBOutlet weak var lblPhoneNumber: UILabel!
+    @IBOutlet weak var lblRating: UILabel!
     
     var business: Business!
     var mobileURL: String!
+    var ratingNum: Double!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +30,11 @@ class DetailViewController: UIViewController {
         imgProfile.setImageWithURL(business.imageURL!)
         lblSnippet.text = business.snippet
         lblPhoneNumber.text = business.phone
-        
+        ratingNum = business.rating
+        lblRating.text = "\(ratingNum) out of 5"
         mobileURL = business.bizURL
+        
+        
         
         print("Detail View Controller Data")
       print("\(business.name)")

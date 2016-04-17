@@ -12,6 +12,7 @@ class Business: NSObject {
     
     var name: String?
     var address: String?
+    var rating: Double?
     var phone: String?
     var snippet: String?
     var bizURL: String?
@@ -28,6 +29,7 @@ class Business: NSObject {
     
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
+        rating = dictionary["rating"] as? Double
         
         
         if let tempPhoneNumber = dictionary["display_phone"] as? String {
@@ -80,6 +82,7 @@ class Business: NSObject {
                 }
                 address += neighborhoods![0] as! String
             }
+            
             
             if let coordinate = location!["coordinate"] as? NSDictionary {
             
