@@ -71,19 +71,17 @@ class YelpClient: BDBOAuth1SessionManager {
     func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
-        if coordDefaults.objectForKey("latitude") != nil {
-            latitude = coordDefaults.objectForKey("latitude") as? String
-        }
+      
+        latitude = coordDefaults.objectForKey("latitude") as? String
         
-        else {
+        if latitude == nil {
             latitude = "38.785771"
         }
        
-        if  coordDefaults.objectForKey("longitude") != nil {
-            longitude = coordDefaults.objectForKey("longitude") as? String
-        }
+        longitude = coordDefaults.objectForKey("longitude") as? String
         
-        else {
+        
+        if longitude == nil {
             longitude = "-122.406165"
         }
         
