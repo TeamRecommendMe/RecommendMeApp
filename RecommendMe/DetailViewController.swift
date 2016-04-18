@@ -21,9 +21,12 @@ class DetailViewController: UIViewController {
     var business: Business!
     var mobileURL: String!
     var ratingNum: Double!
+    var mapURL: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var address = ""
         
         lblBusinessName.text = business.name
         lblAddress.text = business.address
@@ -31,8 +34,14 @@ class DetailViewController: UIViewController {
         lblSnippet.text = business.snippet
         lblPhoneNumber.text = business.phone
         ratingNum = business.rating
+        address = lblAddress.text!
+        
         lblRating.text = "\(ratingNum) out of 5"
         mobileURL = business.bizURL
+        
+        let replacedAddress = address.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        
+        mapURL = "http://maps.apple.com/?daddr=\(replacedAddress)&dirflg=d&t=h"
         
         
         
@@ -40,6 +49,10 @@ class DetailViewController: UIViewController {
       print("\(business.name)")
       print("\(business.address)")
         
+        print(business.latitude)
+        print(business.longitude)
+        
+        print(mapURL)
 
         // Do any additional setup after loading the view.
     }
@@ -65,6 +78,26 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func navTest(sender: AnyObject) {
+        print("navTest button pressed")
+        if let test = NSURL(string: mapURL) {
+            UIApplication.sharedApplication().openURL(test)
+        }
+    }
+    
+    
+    @IBAction func callTest(sender: AnyObject) {
+        
+        let callNum = "1-\(business.phone!)"
+        print(callNum)
+        
+        
+        if let callPhoneNum = NSURL(string: "tel://\(callNum)") {
+            UIApplication.sharedApplication().openURL(callPhoneNum)
+        }
+        
+    }
 
     /*
     // MARK: - Navigation

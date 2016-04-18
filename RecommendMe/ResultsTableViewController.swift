@@ -62,7 +62,7 @@ class ResultsTableViewController: UITableViewController {
                 }
             }
             
-        default:
+        case 1:
             let selectedActivityCategories = userDefaults.objectForKey("selectedActivities") as? [[String: String]] ?? [[String: String]]()
             
             for item in selectedActivityCategories {
@@ -74,6 +74,17 @@ class ResultsTableViewController: UITableViewController {
                     }
                 }
             }
+        default:
+            let selectedAdvanceCategories = userDefaults.objectForKey("advanceDefaults") as? [[String: String]] ?? [[String: String]]()
+            
+            for item in selectedAdvanceCategories {
+                for (key, value) in item {
+                    if(key != "code") {
+                        readyToShuffleCategories.append(value)
+                    }
+                }
+            }
+            
         }
         
         loadingBar.progress = 0.15
