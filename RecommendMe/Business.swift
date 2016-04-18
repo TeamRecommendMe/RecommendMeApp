@@ -12,7 +12,13 @@ class Business: NSObject {
     
     var name: String?
     var address: String?
+    var rating: Double?
+    var phone: String?
+    var snippet: String?
+    var bizURL: String?
+    var imageSnippet: NSURL?
     let imageURL: NSURL?
+    var replacedImageURL: String?
     let categories: String?
     let distance: String?
     let ratingImageURL: NSURL?
@@ -23,14 +29,43 @@ class Business: NSObject {
     
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
+        rating = dictionary["rating"] as? Double
         
+        
+        if let tempPhoneNumber = dictionary["display_phone"] as? String {
+            let formatNumber = tempPhoneNumber.stringByReplacingOccurrencesOfString("+1-", withString: "")
+            
+            phone = formatNumber
+        }
         
         
         if let imageURLString = dictionary["image_url"] as? String {
-            imageURL = NSURL(string: imageURLString)
+            
+            replacedImageURL = imageURLString.stringByReplacingOccurrencesOfString("ms.jpg", withString: "l.jpg")
+            
+            
+            imageURL = NSURL(string: replacedImageURL!)
+            
+            print(imageURL)
+            
+            
         } else {
             imageURL = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png")
         }
+        
+        if let imageBizSnippetURL = dictionary["image_url"] as? String {
+            
+            
+            imageSnippet = NSURL(string: imageBizSnippetURL)
+            
+            print(imageSnippet)
+            
+            
+        } else {
+            imageSnippet = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png")
+        }
+        
+        
         
         let location = dictionary["location"] as? NSDictionary
         var address = ""
@@ -48,6 +83,7 @@ class Business: NSObject {
                 address += neighborhoods![0] as! String
             }
             
+            
             if let coordinate = location!["coordinate"] as? NSDictionary {
             
                 if let latitude = coordinate["latitude"] as? Double {
@@ -56,6 +92,14 @@ class Business: NSObject {
                 if let longitude = coordinate["longitude"] as? Double {
                     self.longitude = longitude
                 }
+            }
+            
+            if let snippetText = dictionary["snippet_text"] as? String {
+               self.snippet = snippetText
+            }
+            
+            if let bizURLCheck = dictionary["url"] as? String {
+                self.bizURL = bizURLCheck
             }
             
         }

@@ -45,11 +45,11 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
         
         // Save defaults
-        CategoryDefaults.setObject(tempFoodCategories, forKey: "TempUserSelected")
+ //       CategoryDefaults.setObject(tempFoodCategories, forKey: "TempUserSelected")
         
         // Reading from NSUserDefaults example
         
-        let testDictionary = CategoryDefaults.objectForKey("selectedActivities") as? [[String: String]] ?? [[String: String]]()
+     //   let testDictionary = CategoryDefaults.objectForKey("selectedActivities") as? [[String: String]] ?? [[String: String]]()
         /*for item in testDictionary {
             for (key, value) in item{
                 print("\(key), \(value)")

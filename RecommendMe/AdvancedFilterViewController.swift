@@ -193,6 +193,7 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
         
         advDefaults.setObject(selectedCategories, forKey: "advanceDefaults")
         
+        performSegueWithIdentifier("advanceToResults", sender: self)
         
         
     }
@@ -447,6 +448,12 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "advanceToResults") {
+            let resultVC = segue.destinationViewController as! ResultsTableViewController
+            resultVC.randomizer = 2
+        }
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
