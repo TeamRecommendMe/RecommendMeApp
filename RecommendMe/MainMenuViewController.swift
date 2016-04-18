@@ -126,6 +126,8 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         CategoryDefaults.setObject(latitude, forKey: "latitude")
         CategoryDefaults.setObject(longitude, forKey: "longitude")
         //print(latitude)
+        
+        
     }
     
     
