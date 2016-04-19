@@ -20,6 +20,13 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     let CategoryDefaults = NSUserDefaults.standardUserDefaults()
     var tempFoodCategories: [[String: String]]!
     var longitude: String!
+    
+    @IBOutlet weak var switchFiveMiles: UISwitch!
+    @IBOutlet weak var switchTenMiles: UISwitch!
+    @IBOutlet weak var switchFifteenMiles: UISwitch!
+    
+    
+    
     //var latitude: String!
     //static locationManager : CLLocationManager
 

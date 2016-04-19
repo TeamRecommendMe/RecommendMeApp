@@ -51,9 +51,6 @@ class DetailViewController: UIViewController {
         else {
             longitude = business.longitude
             latitude = business.latitude
-            var bizName = business.name!
-            let replacedBizName = bizName.stringByReplacingOccurrencesOfString(" ", withString: "+")
-            
             mapURL = "http://maps.apple.com/?q=\(latitude),\(longitude)&z=10&t=s"
             
         }

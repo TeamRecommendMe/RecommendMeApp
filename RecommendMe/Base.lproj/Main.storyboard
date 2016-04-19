@@ -650,13 +650,16 @@
                     <navigationItem key="navigationItem" title="Main Menu" id="Cno-Pr-d6n"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="switchFifteenMiles" destination="7zt-vd-O2j" id="gD9-kw-Cww"/>
+                        <outlet property="switchFiveMiles" destination="zRW-hw-acU" id="T8G-74-bad"/>
+                        <outlet property="switchTenMiles" destination="c5n-tX-rZJ" id="Ebo-iy-0LN"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="initialSettings" animates="NO" id="5GP-C8-53a"/>
                         <segue destination="Sbm-R2-Ox4" kind="show" identifier="advancedSettings" id="9De-e5-CHx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lif-Db-9Rg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3037" y="404"/>
+            <point key="canvasLocation" x="3045" y="406"/>
         </scene>
         <!--Results Table View Controller-->
         <scene sceneID="laK-Uz-6du">
@@ -827,6 +830,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="C3l-hC-OJ0"/>
         <segue reference="5GP-C8-53a"/>
-        <segue reference="jdJ-cW-KcC"/>
+        <segue reference="qcb-TF-Ehf"/>
     </inferredMetricsTieBreakers>
 </document>
