@@ -519,12 +519,21 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zRW-hw-acU">
                                 <rect key="frame" x="251" y="243" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchFiveMilesChange:" destination="SEi-Gl-iNw" eventType="valueChanged" id="cmd-1x-uXN"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5n-tX-rZJ">
                                 <rect key="frame" x="251" y="289" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchTenMilesChange:" destination="SEi-Gl-iNw" eventType="valueChanged" id="7DC-Gg-rYy"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7zt-vd-O2j">
                                 <rect key="frame" x="251" y="334" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchTwentyMilesChange:" destination="SEi-Gl-iNw" eventType="valueChanged" id="Pn7-ey-kZK"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Within 5 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gwc-X7-TcP">
                                 <rect key="frame" x="88" y="249" width="122" height="19"/>
@@ -538,7 +547,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Within 15+ miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bv-vN-7N1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Within 25 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bv-vN-7N1">
                                 <rect key="frame" x="88" y="340" width="145" height="19"/>
                                 <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -650,9 +659,9 @@
                     <navigationItem key="navigationItem" title="Main Menu" id="Cno-Pr-d6n"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="switchFifteenMiles" destination="7zt-vd-O2j" id="gD9-kw-Cww"/>
                         <outlet property="switchFiveMiles" destination="zRW-hw-acU" id="T8G-74-bad"/>
                         <outlet property="switchTenMiles" destination="c5n-tX-rZJ" id="Ebo-iy-0LN"/>
+                        <outlet property="switchTwentyFiveMiles" destination="7zt-vd-O2j" id="Sy7-6c-6ee"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="initialSettings" animates="NO" id="5GP-C8-53a"/>
                         <segue destination="Sbm-R2-Ox4" kind="show" identifier="advancedSettings" id="9De-e5-CHx"/>
                     </connections>

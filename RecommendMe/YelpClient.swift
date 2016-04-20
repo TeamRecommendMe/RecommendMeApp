@@ -23,7 +23,7 @@ let coordDefaults = NSUserDefaults.standardUserDefaults()
 
 
 enum YelpSortMode: Int {
-    case BestMatched = 0, Distance, HighestRated
+    case BestMatched = 0, Distance = 1, HighestRated
 }
 
 class YelpClient: BDBOAuth1SessionManager {

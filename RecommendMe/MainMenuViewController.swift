@@ -23,7 +23,7 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var switchFiveMiles: UISwitch!
     @IBOutlet weak var switchTenMiles: UISwitch!
-    @IBOutlet weak var switchFifteenMiles: UISwitch!
+    @IBOutlet weak var switchTwentyFiveMiles: UISwitch!
     
     
     
@@ -44,7 +44,14 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         self.view.addGestureRecognizer(swipeLeft)
         print(CategoryDefaults.objectForKey("latitude"))
         print(CategoryDefaults.objectForKey("longitude"))
+        
+        switchTwentyFiveMiles.setOn(true, animated: true)
+        switchTenMiles.setOn(false, animated: true)
+        switchFiveMiles.setOn(false, animated: true)
+        
 
+        
+        CategoryDefaults.setObject(40234, forKey: "radius")
 
         //let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
        // print(shuffled)
@@ -66,6 +73,44 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
         // Do any additional setup after loading the view.
     }
+    
+
+    @IBAction func switchFiveMilesChange(sender: AnyObject) {
+        
+        if switchFiveMiles.on {
+            switchTenMiles.on = false
+            switchTwentyFiveMiles.on = false
+            CategoryDefaults.setObject(8047, forKey: "radius")
+            CategoryDefaults.synchronize()
+        }
+    }
+    
+    
+    
+    @IBAction func switchTenMilesChange(sender: AnyObject) {
+        
+        if switchTenMiles.on {
+            switchFiveMiles.on = false
+            switchTwentyFiveMiles.on = false
+            CategoryDefaults.setObject(16093, forKey: "radius")
+            CategoryDefaults.synchronize()
+        }
+    }
+
+
+    @IBAction func switchTwentyMilesChange(sender: AnyObject) {
+        
+        
+        if switchTwentyFiveMiles.on {
+            switchFiveMiles.on = false
+            switchTenMiles.on = false
+            CategoryDefaults.setObject(40234, forKey: "radius")
+            CategoryDefaults.synchronize()
+        }
+    }
+    
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

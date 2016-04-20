@@ -21,8 +21,8 @@ class ResultsTableViewController: UITableViewController {
     var segueAddress: String!
     var finishedShuffledCategories = [String]()
     var readyToShuffleCategories = [String]()
-    var randomizer = 1 // 0 for restaurants and 1 for activities
-    
+    var randomizer = 1 // 0 for restaurants, 1 for activities, or 2 for advance filter
+    var radius: Int = 0
     var sectionTwoData: [Business] = []
     var sectionThreeData: [Business] = []
     var sectionFourData: [Business] = []
@@ -89,6 +89,8 @@ class ResultsTableViewController: UITableViewController {
         
         loadingBar.progress = 0.15
         
+        radius = userDefaults.objectForKey("radius") as! Int
+        
         
         // Shuffle the categories and begin creating table.
         finishedShuffledCategories = shuffleCategories(readyToShuffleCategories)
@@ -99,9 +101,9 @@ class ResultsTableViewController: UITableViewController {
         
         loadingBar.progress = 0.25
         
-      //  lass func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, radius_filter: Int?,
+      
         
-        Business.searchWithTerm(finishedShuffledCategories[0], sort: YelpSortMode.BestMatched, categories: nil, deals: nil, radius_filter: 24140, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(finishedShuffledCategories[0], sort: nil, categories: nil, deals: nil, radius_filter: radius, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             
                 if (businesses?.isEmpty != nil) {
             
@@ -118,7 +120,7 @@ class ResultsTableViewController: UITableViewController {
             
             loadingBar.progress = 0.4
             
-            Business.searchWithTerm(self.finishedShuffledCategories[1], sort: YelpSortMode.BestMatched, categories: nil, deals: nil, radius_filter: 24140, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            Business.searchWithTerm(self.finishedShuffledCategories[1], sort: nil, categories: nil, deals: nil, radius_filter: self.radius, completion: { (businesses: [Business]!, error: NSError!) -> Void in
                 
                 if(businesses?.isEmpty != nil){
                     self.sectionTwoData = businesses
@@ -130,7 +132,7 @@ class ResultsTableViewController: UITableViewController {
                     }
                 }
                 
-                Business.searchWithTerm(self.finishedShuffledCategories[2], sort: YelpSortMode.BestMatched, categories: nil, deals: nil, radius_filter: 24140, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                Business.searchWithTerm(self.finishedShuffledCategories[2], sort: nil, categories: nil, deals: nil, radius_filter: self.radius, completion: { (businesses: [Business]!, error: NSError!) -> Void in
                     
                     if(businesses?.isEmpty != nil){
                     
@@ -145,7 +147,7 @@ class ResultsTableViewController: UITableViewController {
                     }
                     loadingBar.progress = 0.6
                     
-                    Business.searchWithTerm(self.finishedShuffledCategories[3], sort: YelpSortMode.BestMatched, categories: nil, deals: nil, radius_filter: 24140, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                    Business.searchWithTerm(self.finishedShuffledCategories[3], sort: nil, categories: nil, deals: nil, radius_filter: self.radius, completion: { (businesses: [Business]!, error: NSError!) -> Void in
                         
                         if(businesses?.isEmpty != nil) {
                         
@@ -158,7 +160,7 @@ class ResultsTableViewController: UITableViewController {
                             }
                         }
                         
-                        Business.searchWithTerm(self.finishedShuffledCategories[4], sort: YelpSortMode.BestMatched, categories: nil, deals: nil, radius_filter: 24140, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                        Business.searchWithTerm(self.finishedShuffledCategories[4], sort: nil, categories: nil, deals: nil, radius_filter: self.radius, completion: { (businesses: [Business]!, error: NSError!) -> Void in
                             
                             if(businesses?.isEmpty != nil) {
                             
