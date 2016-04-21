@@ -28,20 +28,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var coords = CLLocationCoordinate2D(latitude: 33.3978272555707, longitude: -111.94202161512978)
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 200
         locationManager.requestWhenInUseAuthorization()
-        var point1 = MKPointAnnotation()
         var point2 = MKPointAnnotation()
-        point1.coordinate = CLLocationCoordinate2DMake(userDefaults.doubleForKey("latitude"), userDefaults.doubleForKey("longitude"))
-        point1.title = "Current Location"
-        mapView.addAnnotation(point1)
-        
         point2.coordinate = CLLocationCoordinate2DMake(latitude, longitutde/*insert coords of resturant*/)
         point2.title = resName
         mapView.addAnnotation(point2)
+        mapView.setCenterCoordinate(point2.coordinate, animated: false)
+        let span = MKCoordinateSpanMake(0.1, 0.1)
+        let region = MKCoordinateRegionMake(point2.coordinate, span)
+        mapView.setRegion(region, animated: false)
         
         //addAnnotationAtCoordinate(coords)
     }
@@ -58,19 +59,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.addAnnotation(annotation)
     }
     
+    /*let regionRadius: CLLocationDistance = 1000
+    func centerMapOnLocation(location: CLLocationCoordinate2D) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location, regionRadius*2.0, regionRadius*2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }*/
+    
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.AuthorizedWhenInUse {
             locationManager.startUpdatingLocation()
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+   /* func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             let span = MKCoordinateSpanMake(0.1, 0.1)
             let region = MKCoordinateRegionMake(location.coordinate, span)
             mapView.setRegion(region, animated: false)
         }
-    }
+    }*/
     
     // MARK: - Navigation
 
