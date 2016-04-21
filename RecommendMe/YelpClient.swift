@@ -23,7 +23,7 @@ let coordDefaults = NSUserDefaults.standardUserDefaults()
 
 
 enum YelpSortMode: Int {
-    case BestMatched = 0, Distance, HighestRated
+    case BestMatched = 0, Distance = 1, HighestRated
 }
 
 class YelpClient: BDBOAuth1SessionManager {
@@ -65,10 +65,10 @@ class YelpClient: BDBOAuth1SessionManager {
     }
     
     func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
-        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, completion: completion)
+        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, radius_filter: nil, completion: completion)
     }
     
-    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
+    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, radius_filter: Int?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
       
@@ -84,9 +84,6 @@ class YelpClient: BDBOAuth1SessionManager {
         if longitude == nil {
             longitude = "-122.406165"
         }
-        
-        
-        
         
         print("YELPCLIENT LATITUDE")
         print("\(latitude)")
@@ -108,6 +105,9 @@ class YelpClient: BDBOAuth1SessionManager {
         
         if deals != nil {
             parameters["deals_filter"] = deals!
+        }
+        if radius_filter != nil {
+            parameters["radius_filter"] = radius_filter!
         }
         
         print(parameters)

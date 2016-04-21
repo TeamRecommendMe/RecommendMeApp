@@ -22,6 +22,10 @@ class DetailViewController: UIViewController {
     var mobileURL: String!
     var ratingNum: Double!
     var mapURL: String!
+    var cityStateZipCode: String!
+    var coordinates: String!
+    var longitude: Double!
+    var latitude: Double!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,18 +34,34 @@ class DetailViewController: UIViewController {
         
         lblBusinessName.text = business.name
         lblAddress.text = business.address
+        
         imgProfile.setImageWithURL(business.imageURL!)
         lblSnippet.text = business.snippet
         lblPhoneNumber.text = business.phone
         ratingNum = business.rating
-        address = lblAddress.text!
+        cityStateZipCode = business.cityStateZip
+        
+        if cityStateZipCode != nil {
+            print(cityStateZipCode)
+            address = "\(lblAddress.text!), \(cityStateZipCode)"
+            
+            let replacedAddress = address.stringByReplacingOccurrencesOfString(" ", withString: "+")
+            mapURL = "http://maps.apple.com/?daddr=\(replacedAddress)&dirflg=d&t=h"
+        }
+        else {
+            longitude = business.longitude
+            latitude = business.latitude
+            mapURL = "http://maps.apple.com/?q=\(latitude),\(longitude)&z=10&t=s"
+            
+        }
+        print(address)
         
         lblRating.text = "\(ratingNum) out of 5"
         mobileURL = business.bizURL
         
-        let replacedAddress = address.stringByReplacingOccurrencesOfString(" ", withString: "+")
         
-        mapURL = "http://maps.apple.com/?daddr=\(replacedAddress)&dirflg=d&t=h"
+        
+        
         
         
         

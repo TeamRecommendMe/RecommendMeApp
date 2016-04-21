@@ -12,6 +12,7 @@ class Business: NSObject {
     
     var name: String?
     var address: String?
+    var cityStateZip: String?
     var rating: Double?
     var phone: String?
     var snippet: String?
@@ -70,9 +71,13 @@ class Business: NSObject {
         let location = dictionary["location"] as? NSDictionary
         var address = ""
         if location != nil {
-            let addressArray = location!["address"] as? NSArray
+            let addressArray = location!["display_address"] as? NSArray
             if addressArray != nil && addressArray!.count > 0 {
                 address = addressArray![0] as! String
+                if 2 < addressArray!.count {
+                    cityStateZip = addressArray![1] as? String
+                    print(cityStateZip)
+                }
             }
             
             let neighborhoods = location!["neighborhoods"] as? NSArray
@@ -153,8 +158,8 @@ class Business: NSObject {
         YelpClient.sharedInstance.searchWithTerm(term, completion: completion)
     }
     
-    class func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
-        YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, completion: completion)
+    class func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, radius_filter: Int?, completion: ([Business]!, NSError!) -> Void) -> Void {
+        YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, radius_filter: radius_filter, completion: completion)
     }
     
     class func searchWithTermOffset(term: String, offset: Int? = 20, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
