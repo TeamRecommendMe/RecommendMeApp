@@ -142,6 +142,7 @@ class DetailViewController: UIViewController {
             mapViewController.latitude = business.latitude
             mapViewController.longitutde = business.longitude
             mapViewController.resName = business.name
+            mapViewController.cityStateZip = business.cityStateZip
         }
     }
 }
