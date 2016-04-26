@@ -112,11 +112,11 @@ class DetailViewController: UIViewController {
         let callNum = "1-\(business.phone!)"
         print(callNum)
         
-        let phoneAlertTitle = "Alert"
-        let message = "You will be call this business phone number. Your carrier charges may apply, do you want to proceed anyway?"
+        let phoneAlertTitle = "Call this buisness?"
+        let message = "If you would like to call this buisness hit \"Yes\" if not, hit \"Cancel\". "
         
         let phoneAlert = UIAlertController(title: phoneAlertTitle, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        phoneAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { action in
+        phoneAlert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
         
             if let callPhoneNum = NSURL(string: "tel://\(callNum)") {
                 UIApplication.sharedApplication().openURL(callPhoneNum)
@@ -124,7 +124,8 @@ class DetailViewController: UIViewController {
         }))
         
         phoneAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-        
+        presentViewController(phoneAlert, animated: true, completion: nil)
+
     }
 
     /*
