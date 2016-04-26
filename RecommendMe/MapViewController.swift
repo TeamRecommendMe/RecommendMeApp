@@ -47,7 +47,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let span = MKCoordinateSpanMake(0.1, 0.1)
         let region = MKCoordinateRegionMake(point2.coordinate, span)
         mapView.setRegion(region, animated: false)
-        if self.cityStateZip != nil {
+        if self.cityStateZip != nil && address != nil {
             print(self.cityStateZip)
             let replacedAddress = self.address.stringByReplacingOccurrencesOfString(" ", withString: "+")
             self.mapURL = "http://maps.apple.com/?daddr=\(replacedAddress)&dirflg=d&t=h"
@@ -56,6 +56,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.mapURL = "http://maps.apple.com/?q=\(self.latitude),\(longitude)&z=10&t=s"
             
         }
+        
         
         //addAnnotationAtCoordinate(coords)
     }
