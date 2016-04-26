@@ -888,8 +888,8 @@
         <image name="yelp_review_btn_red" width="138" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="qcb-TF-Ehf"/>
         <segue reference="C3l-hC-OJ0"/>
         <segue reference="5GP-C8-53a"/>
-        <segue reference="qcb-TF-Ehf"/>
     </inferredMetricsTieBreakers>
 </document>
