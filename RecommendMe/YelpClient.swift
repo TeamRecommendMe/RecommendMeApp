@@ -75,14 +75,16 @@ class YelpClient: BDBOAuth1SessionManager {
         latitude = coordDefaults.objectForKey("latitude") as? String
         
         if latitude == nil {
-            latitude = "38.785771"
+            //latitude = "38.785771"
+            latitude = "33.4240552"
         }
        
         longitude = coordDefaults.objectForKey("longitude") as? String
         
         
         if longitude == nil {
-            longitude = "-122.406165"
+            //longitude = "-122.406165"
+            longitude = "-111.9408284"
         }
         
         print("YELPCLIENT LATITUDE")

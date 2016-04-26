@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,17 +19,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommend Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1i-4a-VjC">
-                                <rect key="frame" x="132" y="125" width="151" height="21"/>
-                                <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="fjf-fs-90u">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RMeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="y4c-BL-p7d">
+                                <rect key="frame" x="87" y="163" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="y4c-BL-p7d" secondAttribute="height" multiplier="1:1" id="bi3-pl-6TT"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yelp_powered_btn_red" translatesAutoresizingMaskIntoConstraints="NO" id="Gih-wB-79h">
+                                <rect key="frame" x="143" y="535" width="129" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Gih-wB-79h" secondAttribute="height" multiplier="43:10" id="YAk-Oc-Nu4"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="V1i-4a-VjC" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="105" id="5yV-J7-GUa"/>
-                            <constraint firstItem="V1i-4a-VjC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="u1g-MV-XNq"/>
+                            <constraint firstAttribute="trailing" secondItem="fjf-fs-90u" secondAttribute="trailing" id="3bU-8F-7bs"/>
+                            <constraint firstItem="Gih-wB-79h" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="123" id="5KO-Zl-nIG"/>
+                            <constraint firstItem="fjf-fs-90u" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="TQG-8N-9WL"/>
+                            <constraint firstItem="y4c-BL-p7d" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="67" id="VBz-5h-2d2"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Gih-wB-79h" secondAttribute="bottom" constant="171" id="Z5k-hC-jZX"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="fjf-fs-90u" secondAttribute="bottom" id="awh-Yn-Xjx"/>
+                            <constraint firstItem="Gih-wB-79h" firstAttribute="top" secondItem="y4c-BL-p7d" secondAttribute="bottom" constant="132" id="ccM-TK-PcN"/>
+                            <constraint firstItem="fjf-fs-90u" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ion-GD-Ohw"/>
+                            <constraint firstItem="y4c-BL-p7d" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="143" id="nfC-Fh-4pz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Gih-wB-79h" secondAttribute="trailing" constant="122" id="qK9-iF-auM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="y4c-BL-p7d" secondAttribute="trailing" constant="67" id="rwM-Ve-Eof"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -37,4 +57,9 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="RMeLogo" width="1024" height="1024"/>
+        <image name="background" width="750" height="1334"/>
+        <image name="yelp_powered_btn_red" width="129" height="30"/>
+    </resources>
 </document>

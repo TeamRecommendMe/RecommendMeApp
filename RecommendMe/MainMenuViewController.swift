@@ -32,6 +32,11 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Delay to show Splash screen for Demo purposes.
+        NSThread.sleepForTimeInterval(3)
+        
+        
        // print("loaded")
        // print("selected Cats: \(CategoryDefaults.objectForKey("selectedFoodCats"))")
         let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
@@ -53,25 +58,6 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
         CategoryDefaults.setObject(40234, forKey: "radius")
 
-        //let shuffled = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(array)
-       // print(shuffled)
-        
-
-        
-        // Save defaults
- //       CategoryDefaults.setObject(tempFoodCategories, forKey: "TempUserSelected")
-        
-        // Reading from NSUserDefaults example
-        
-     //   let testDictionary = CategoryDefaults.objectForKey("selectedActivities") as? [[String: String]] ?? [[String: String]]()
-        /*for item in testDictionary {
-            for (key, value) in item{
-                print("\(key), \(value)")
-            }
-        }*/
-        
-
-        // Do any additional setup after loading the view.
     }
     
 
