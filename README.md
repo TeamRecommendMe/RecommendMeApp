@@ -51,6 +51,10 @@ Added **optional** features that were implemented beyond ones listed above:
 
 ![demoDay](https://github.com/TeamRecommendMe/RecommendMeApp/blob/master/final_sprint.gif)
 
+## Demo Pitch Video here:
+https://youtu.be/JG-nJvozJP4
+
+
 Note: Advanced Settings doesn't go anywhere at the moment.
 
     Copyright [2016] [Team Recommend Me]
