@@ -53,7 +53,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.mapURL = "http://maps.apple.com/?daddr=\(replacedAddress)&dirflg=d&t=h"
         }
         else {
-            self.mapURL = "http://maps.apple.com/?q=\(self.latitude),\(longitude)&z=10&t=s"
+            print("test latitude")
+            print("\(self.latitude)")
+            print("\(self.longitutde)")
+            
+            let strLatitude = "\(self.latitude)"
+            let strLongitude = "\(self.longitutde)"
+            
+            self.mapURL = "http://maps.apple.com/?q=\(strLatitude),\(strLongitude)&z=10&t=s"
             
         }
         
@@ -92,9 +99,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil))
         //event handler with closure
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+            
+            dispatch_after(2, dispatch_get_main_queue(),{
             if let test = NSURL(string: self.mapURL) {
                 UIApplication.sharedApplication().openURL(test)
-            }
+                }})
+            
         }))
         presentViewController(alert, animated: true, completion: nil)
     

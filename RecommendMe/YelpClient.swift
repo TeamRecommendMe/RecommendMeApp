@@ -74,7 +74,7 @@ class YelpClient: BDBOAuth1SessionManager {
       
         latitude = coordDefaults.doubleForKey("latitude")
         
-        if latitude == nil {
+        if latitude == nil || latitude == 0.0 {
             //latitude = "38.785771"
             latitude = 33.4240552
         }
@@ -82,7 +82,7 @@ class YelpClient: BDBOAuth1SessionManager {
         longitude = coordDefaults.doubleForKey("longitude")
         
         
-        if longitude == nil {
+        if longitude == nil || longitude == 0.0 {
             //longitude = "-122.406165"
             longitude = -111.9408284
         }

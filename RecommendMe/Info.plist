@@ -5,7 +5,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used to find the nearest resturants and activities</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We use this to determine the nearest resturants/activities</string>
+	<string>We use this to determine the nearest restaurants/activities</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>
