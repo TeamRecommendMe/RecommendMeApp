@@ -6,9 +6,6 @@
 - [ ] YELP search API will be used for searching local businesses near the user 
 - model class Yelp Client
   Stores properties - Business name, address, distance
-- [ ] Eventful.com API to search for nearby events and movies.
-- model class Event
-- stores properties Event name, description, address, timings
 - Google Maps API - Recommend Me app will send a url of the coordinates from obtained by Yelp to create a Google maps URL. The app will check if Google Maps is in fact installed by checking if a google maps url can be pushed.
 
 ## User Stories
@@ -28,7 +25,13 @@ The following **optional** features are implemented:
 - [ ] Infinity scroll loading of new results.
 - [ ] Custom recommend me thumbs up that presistent with its own external database. So that other Recommend Me users can know this place is highly-praised.
 - [ ] Push notification to let them know that one of their friends have thumbs up a place.
-- [ ] Animation and transitions to the different areas of the application.
+- [x] Animation and transitions to the different areas of the application.
+
+Added **optional** features that were implemented beyond ones listed above:
+- [x] Opens up a map view of the business in a view controller with a button that can take you to Apple Maps for navigation.
+- [x] Can go directly to a phone app to dial the business.
+- [x] Grabs GPS coordinates from user's current location and attempts to display places closer to them based on the sliders selected on the main menu view controller.
+
 
 ## Walkthrough March 23rd:
 ![group1](https://cloud.githubusercontent.com/assets/14221032/14008540/09d5bc74-f13f-11e5-955d-ef786fbb691c.gif)
@@ -44,6 +47,9 @@ The following **optional** features are implemented:
 ## Walkthrough April 13th Optional + Polish
 ![sprint4](https://cloud.githubusercontent.com/assets/14221032/14516894/9a0c2c5a-01bc-11e6-8aa4-1214c46f5698.gif)
 
+## Walkthrough Demo Day Ready!
+
+![demoDay](http://i.imgur.com/Gu2g2oe.gif)
 
 Note: Advanced Settings doesn't go anywhere at the moment.
 
