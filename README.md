@@ -49,7 +49,7 @@ Added **optional** features that were implemented beyond ones listed above:
 
 ## Walkthrough Demo Day Ready!
 
-![demoDay](https://i.imgur.com/Gu2g2oe.gif)
+![demoDay](https://www.imgur.com/Gu2g2oe.gif)
 
 Note: Advanced Settings doesn't go anywhere at the moment.
 
