@@ -49,7 +49,7 @@ Added **optional** features that were implemented beyond ones listed above:
 
 ## Walkthrough Demo Day Ready!
 
-<img src='http://i.imgur.com/Gu2g2oe.gif' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/Gu2g2oe.gif' width='' alt='Video Walkthrough' />
 
 Note: Advanced Settings doesn't go anywhere at the moment.
 
