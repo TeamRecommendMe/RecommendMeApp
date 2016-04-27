@@ -55,8 +55,6 @@ Added **optional** features that were implemented beyond ones listed above:
 https://youtu.be/JG-nJvozJP4
 
 
-Note: Advanced Settings doesn't go anywhere at the moment.
-
     Copyright [2016] [Team Recommend Me]
 
     Licensed under the Apache License, Version 2.0 (the "License");
