@@ -17,8 +17,8 @@ let yelpConsumerSecret = "oKKtsHDbyvjvEg2xQQwNkMz0vTY"
 let yelpToken = "JzxmlIQgzSkjem4IAkXoL3Ic4JKZcYg2"
 let yelpTokenSecret = "2kW5csc-E1ynlRG1E_JrZabLFe4"
 
-var latitude: String!
-var longitude: String!
+var latitude: Double!
+var longitude: Double!
 let coordDefaults = NSUserDefaults.standardUserDefaults()
 
 
@@ -72,19 +72,19 @@ class YelpClient: BDBOAuth1SessionManager {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
       
-        latitude = coordDefaults.objectForKey("latitude") as? String
+        latitude = coordDefaults.doubleForKey("latitude")
         
         if latitude == nil {
             //latitude = "38.785771"
-            latitude = "33.4240552"
+            latitude = 33.4240552
         }
        
-        longitude = coordDefaults.objectForKey("longitude") as? String
+        longitude = coordDefaults.doubleForKey("longitude")
         
         
         if longitude == nil {
             //longitude = "-122.406165"
-            longitude = "-111.9408284"
+            longitude = -111.9408284
         }
         
         print("YELPCLIENT LATITUDE")
