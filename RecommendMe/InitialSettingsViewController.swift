@@ -157,11 +157,11 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         switch (section) {
         case 0:
             headerCell.headerLabel.text = "Food"
-            headerCell.headerImage.image = UIImage(named: "activity")
+            headerCell.headerImage.image = UIImage(named: "restaurantsButton")
             
         case 1:
             headerCell.headerLabel.text = "Activities"
-            headerCell.headerImage.image = UIImage(named: "restaurantsButton")
+            headerCell.headerImage.image = UIImage(named: "activity")
         default:
             headerCell.headerLabel.text = "Error"
             headerCell.headerImage.image = UIImage(named: "activity")
@@ -261,12 +261,12 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                         selectedFoodCats.append(["name" : "Chinese", "code": "f"])
 
                     break
-                    case "Deserts":
-                        var desertsDict = desertList()
-                        for i in 0 ..< desertList().count {
-                             selectedFoodCategories.append(desertsDict[i])
+                    case "Desserts":
+                        var dessertsDict = dessertList()
+                        for i in 0 ..< dessertList().count {
+                             selectedFoodCategories.append(dessertsDict[i])
                         }
-                        selectedFoodCats.append(["name" : "Deserts", "code": "g"])
+                        selectedFoodCats.append(["name" : "Desserts", "code": "g"])
 
                     break
                     case "European":
@@ -514,7 +514,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
             ["name" : "Asian", "code": "d"],
             ["name" : "Breakfast", "code": "e"],
             ["name" : "Chinese", "code": "f"],
-            ["name" : "Deserts", "code": "g"],
+            ["name" : "Desserts", "code": "g"],
             ["name" : "European", "code": "h"],
             ["name" : "Fast Food", "code": "i"],
             ["name" : "French", "code": "j"],
@@ -588,7 +588,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                 ["name" : "Hong Kong Style Cafe", "code": "hkcafe"],
                 ["name" : "Mongolian", "code": "mongolian"]]//Chinese
     }
-    func desertList() -> [[String:String]] {
+    func dessertList() -> [[String:String]] {
         return [["name" : "Fondue", "code": "fondue"], //Deserts
             ["name" : "Milk Bars", "code": "milkbars"]]
     }
