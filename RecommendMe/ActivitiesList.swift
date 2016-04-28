@@ -11,21 +11,6 @@ import UIKit
 class ActivitiesList: NSObject {
     override init() {}
     
-    func bigActivities() -> [[String:String]]
-    {
-        return [["name" : "Attractions", "code": "0"],
-                ["name" : "Beauty and Spas", "code": "1"],
-                ["name" : "Entertainment", "code": "2"],
-                ["name" : "Great Outdoors/Extreme", "code": "3"],
-                ["name" : "Landmarks/Historical Buildings", "code": "4"],
-                ["name" : "Nightlife", "code": "5"],
-                ["name" : "Parks", "code": "6"],
-                ["name" : "Pets", "code": "7"],
-                ["name" : "Professional Sporting Events", "code": "8"],
-                ["name" : "Sports", "code": "9"],
-                ["name" : "Water Activities", "code": "10"]]
-    }
-    
     class func attractionsList() -> [[String:String]]
     {
         return [["name" : "Amusement Parks", "code": "amusementparks"],
@@ -150,17 +135,17 @@ class ActivitiesList: NSObject {
     }
     class func bigActivities() -> [[String:String]]
     {
-        return [["name" : "Attractions", "code": "yolo"],
-                ["name" : "Beauty and Spas", "code": "yolo1"],
-                ["name" : "Entertainment", "code": "yolo2"],
-                ["name" : "Great Outdoors/Extreme", "code": "yolo3"],
-                ["name" : "Landmarks/Historical Buildings", "code": "yolo4"],
-                ["name" : "Nightlife", "code": "yolo5"],
-                ["name" : "Parks", "code": "yolo6"],
-                ["name" : "Pets", "code": "yolo7"],
-                ["name" : "Professional Sporting Events", "code": "yolo8"],
-                ["name" : "Sports", "code": "yolo9"],
-                ["name" : "Water Activities", "code": "yolo10"]]
+        return [["name" : "Attractions", "code": "0"],
+                ["name" : "Beauty and Spas", "code": "1"],
+                ["name" : "Entertainment", "code": "2"],
+                ["name" : "Great Outdoors/Extreme", "code": "3"],
+                ["name" : "Landmarks/Historical Buildings", "code": "4"],
+                ["name" : "Nightlife", "code": "5"],
+                ["name" : "Parks", "code": "6"],
+                ["name" : "Pets", "code": "7"],
+                ["name" : "Professional Sporting Events", "code": "8"],
+                ["name" : "Sports", "code": "9"],
+                ["name" : "Water Activities", "code": "10"]]
     }
     
     class func allActivitiesCategories() -> [[String:String]] {

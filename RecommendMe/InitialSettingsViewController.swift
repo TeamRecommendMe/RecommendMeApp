@@ -35,42 +35,41 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     var foodCategories: [[String:String]]!
     var activitiesCategories:[[String:String]]!
     var  bigActivitiesCategories :[[String:String]]!
-    var allCategories: [[String:String]]!
     var switchStates = [NSIndexPath: Bool]()
     let userDefaults = NSUserDefaults.standardUserDefaults()
     var selectedFoodCats: [[String:String]]!
     var selectedActivitiesCats: [[String:String]]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        allCategories = RestruantsList.customCategories() + ActivitiesList.bigActivities()
-        foodCategories = RestruantsList.customCategories()
-        self.tableView.backgroundColor = UIColor.clearColor();
-        if (userDefaults.boolForKey("userExists") == false)
+        foodCategories = RestruantsList.customCategories() //Creates an array of all the customCategories in ResturantsList
+        bigActivitiesCategories = ActivitiesList.bigActivities()//Creates an array of all the bigActivities in ActivitiesList
+        self.tableView.backgroundColor = UIColor.clearColor(); //sets the background of the tableView to be clear
+        if (userDefaults.boolForKey("userExists") == false) //Checks if the user has opened the app begore
         {
+            //On the next 4 lines since the user is new it adds all the categories from the start. And saves these into NSUserDefaults
             selectedFoodCats = RestruantsList.customCategories()
             selectedActivitiesCats = ActivitiesList.bigActivities()
             userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
             userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
         }
-        else
+        else //Since the user isn't new we allow them to swipe back to the MainMenuViewController
         {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         }
-        userDefaults.setBool(false, forKey: "changedPreferences")
-        userDefaults.setBool(true, forKey: "userExists")
+        //userDefaults.setBool(false, forKey: "changedPreferences")
+        userDefaults.setBool(true, forKey: "userExists") //Tells NSUserDefaults that the user exists
         let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
         let skipButton = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: "skipButton:")
-       // activitiesCategories = yelpActivitiesCategories()
-        bigActivitiesCategories = ActivitiesList.bigActivities()
        
         for selected in userDefaults.arrayForKey("selectedFoodCats")! {
-            if let index = foodCategories.indexOf({$0 == selected as! NSObject}) {
+            if let index = foodCategories.indexOf({$0 == selected as! NSObject}) { // goes through the array selectedFoodCats and sets the switchState for the corresponding value to true if it is inside the array of foods
                 switchStates[NSIndexPath(forItem: index, inSection: 0)] = true
             }
         }
-        for selected in userDefaults.arrayForKey("selectedActivitiesCats")! {
+        for selected in userDefaults.arrayForKey("selectedActivitiesCats")! { // goes through the array selectedActivitiesCats and sets the switchState for the corresponding value to true if it is inside the array of activities
             if let index = bigActivitiesCategories.indexOf({$0 == selected as! NSObject}) {
                 switchStates[NSIndexPath(forItem: index, inSection: 1)] = true
             }
@@ -89,9 +88,9 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         switch(section)
         {
         case 0:
-            return foodCategories.count
+            return foodCategories.count //Returns number of sections in each header based on number of food categories
         case 1:
-            return bigActivitiesCategories.count
+            return bigActivitiesCategories.count //Returns number of sections in each header based on number of activity categories
         default:
             return 0
         }
@@ -99,17 +98,17 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCellTableViewCell
         
-        cell.backgroundColor = UIColor.clearColor()
-        cell.selectionStyle = .None
+        cell.backgroundColor = UIColor.clearColor() //sets background to clear
+        cell.selectionStyle = .None //sets selection style to none
 
         cell.delegate = self
         switch(indexPath.section)
         {
         case 0:
-        cell.switchLabel?.text = allCategories[indexPath.row]["name"]
+        cell.switchLabel?.text = foodCategories[indexPath.row]["name"] //sets name of each cell inside food header
         cell.onSwitch.on = switchStates [indexPath] ?? false
         case 1:
-        cell.switchLabel.text = bigActivitiesCategories[indexPath.row]["name"]
+        cell.switchLabel.text = bigActivitiesCategories[indexPath.row]["name"] //sets name of each cell inside activities header
         cell.onSwitch.on = switchStates [indexPath] ?? false
         default:
             cell.switchLabel.text = foodCategories[indexPath.row]["error"]
@@ -117,26 +116,23 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         return cell
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 2 //Returns number of sections there will be.
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 65.0
+        return 65.0 //returns height of the header section
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("Header") as! HeaderCell
-        headerCell.backgroundColor = UIColor.darkGrayColor()
-        headerCell.contentView.layer.masksToBounds = true
-        headerCell.contentView.layer.cornerRadius = 5
-        
+        headerCell.backgroundColor = UIColor.darkGrayColor()//Sets background color of the header section
         
         switch (section) {
         case 0:
-            headerCell.headerLabel.text = "Food"
-            headerCell.headerImage.image = UIImage(named: "restaurantsButton")
+            headerCell.headerLabel.text = "Food" //Sets title of header to "Food"
+            headerCell.headerImage.image = UIImage(named: "restaurantsButton") //Sets image in the food header
             
         case 1:
-            headerCell.headerLabel.text = "Activities"
-            headerCell.headerImage.image = UIImage(named: "activity")
+            headerCell.headerLabel.text = "Activities" //sets title of header to "Activities"
+            headerCell.headerImage.image = UIImage(named: "activity") //Sets image in activities header
         default:
             headerCell.headerLabel.text = "Error"
             headerCell.headerImage.image = UIImage(named: "activity")
@@ -144,9 +140,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         
         return headerCell
     }
-    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
-        
-        
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) { //Function/Gesture that allows swiping left to go to MainMenuViewController
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.Left:
@@ -159,7 +153,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         }
     }
 
-    func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) {
+    func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) { //allows detection of a change of value in the switchcell
         let indexPath = tableView.indexPathForCell(switchCell)!
         switchStates[indexPath] = value
     }
@@ -167,14 +161,19 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         let filters = [String:AnyObject]()
         var selectedFoodCategories = [[String:String]]()
         var selectedActivitiesCategories = [[String:String]]()
-        
         var catName: String
         var codeName: String
+        
+        //Next 3 Lines set up the alert that will pop up once "Done" is pressed
         let alert = UIAlertController(title: "Continue?", message: "Make sure these are the categories you want to exclude from searches before continuing", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { action in         self.performSegueWithIdentifier("moveMain", sender: nil)}))
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { action in         self.performSegueWithIdentifier("moveMain", sender: nil)})) //Will move to MainMenuViewController once "Continue" is tapped
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         selectedFoodCats = []
         selectedActivitiesCats = []
+        
+        /*This for loop checks the NSIndexPath of the each cell and checks if the switch state isSelected (true) and if
+        the switch state is true it adds the corresponding lists into an array to be used for searching for resturants and activities later and adds it to NSUserDefaults.
+        it also adds another string of the bigActivities and customCategories into an array based on what was selected to save the users selected values when they come back to this screen*/
         for (NSIndexPath, isSelected) in switchStates {
             if isSelected {
                 if NSIndexPath.section == 0
@@ -188,6 +187,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                             selectedFoodCategories.append(africanDict[i])
                         }
                         selectedFoodCats.append(["name" : "African", "code": "a"])
+                        
                     break
                     case "American":
                         var americanDict = RestruantsList.americanList()
@@ -434,26 +434,12 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         self.performSegueWithIdentifier("moveMain", sender: nil)
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
     }
-    func skipButton(sender: UIBarButtonItem) {
+    func skipButton(sender: UIBarButtonItem) { //Moves the user to the MainMenuViewController without changing any settings
+
         self.performSegueWithIdentifier("moveMain", sender: nil)
 
     }
     
-            /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewControll	er.
-        // Pass the `object to the new view controller.
-    }
-    */
-    
-
     
 }
-/*
-class BasicValue {
-                var name: String
-                var code: String
-}*/
+
