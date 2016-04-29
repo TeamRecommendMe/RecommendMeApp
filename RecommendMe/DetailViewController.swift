@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     var mobileURL: String!
     var ratingNum: Double!
     var mapURL: String!
-    var cityStateZipCode: String!
+    var fullAddress: String!
     var coordinates: String!
     var longitude: Double!
     var latitude: Double!
@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var address = ""
+        
         
         lblBusinessName.text = business.name
         lblAddress.text = business.address
@@ -39,14 +39,17 @@ class DetailViewController: UIViewController {
         lblSnippet.text = business.snippet
         lblPhoneNumber.text = business.phone
         ratingNum = business.rating
-        cityStateZipCode = business.cityStateZip
+        //cityStateZipCode = business.cityStateZip
+        fullAddress = business.fullAddress
         
-        if cityStateZipCode != nil {
-            print(cityStateZipCode)
-            address = "\(lblAddress.text!), \(cityStateZipCode)"
+        if fullAddress != nil {
+           
             
-            let replacedAddress = address.stringByReplacingOccurrencesOfString(" ", withString: "+")
+          let bizFullAddress = fullAddress!
+    
+            let replacedAddress = bizFullAddress.stringByReplacingOccurrencesOfString(" ", withString: "+")
             mapURL = "http://maps.apple.com/?daddr=\(replacedAddress)&dirflg=d&t=h"
+            print(mapURL)
         }
         else {
             longitude = business.longitude
@@ -54,7 +57,7 @@ class DetailViewController: UIViewController {
             mapURL = "http://maps.apple.com/?q=\(latitude),\(longitude)&z=10&t=s"
             
         }
-        print(address)
+        
         
         lblRating.text = "\(ratingNum) out of 5"
         mobileURL = business.bizURL
@@ -143,9 +146,9 @@ class DetailViewController: UIViewController {
             mapViewController.latitude = business.latitude
             mapViewController.longitutde = business.longitude
             mapViewController.resName = business.name
-            if business.cityStateZip != nil {
-                mapViewController.cityStateZip = business.cityStateZip
-            }
+            //if business.cityStateZip != nil {
+               // mapViewController.cityStateZip = business.cityStateZip
+            //}
         }
     }
 }

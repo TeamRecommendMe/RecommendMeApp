@@ -12,7 +12,11 @@ class Business: NSObject {
     
     var name: String?
     var address: String?
+    var fullAddress: String?
     var cityStateZip: String?
+    var city: String?
+    var state: String?
+    var postalCode: String?
     var rating: Double?
     var phone: String?
     var snippet: String?
@@ -72,12 +76,9 @@ class Business: NSObject {
         var address = ""
         if location != nil {
             let addressArray = location!["display_address"] as? NSArray
+            
             if addressArray != nil && addressArray!.count > 0 {
                 address = addressArray![0] as! String
-                if 2 < addressArray!.count {
-                    cityStateZip = addressArray![1] as? String
-                    print(cityStateZip)
-                }
             }
             
             let neighborhoods = location!["neighborhoods"] as? NSArray
@@ -107,11 +108,25 @@ class Business: NSObject {
                 self.bizURL = bizURLCheck
             }
             
+            if let bizCity = location!["city"] as? String {
+                self.city = bizCity
+                
+            }
+            if let bizState = location!["state_code"] as? String {
+                self.state = bizState
+            }
+            
+            if let bizPostalCode = location!["postal_code"] as? String {
+                self.postalCode = bizPostalCode
+            }
+            
         }
         
       
         
         self.address = address
+        
+        self.fullAddress = "\(address) \(city!) \(state!) \(postalCode!)"
         
         let categoriesArray = dictionary["categories"] as? [[String]]
         if categoriesArray != nil {
