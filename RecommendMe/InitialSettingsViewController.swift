@@ -35,64 +35,45 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     var foodCategories: [[String:String]]!
     var activitiesCategories:[[String:String]]!
     var  bigActivitiesCategories :[[String:String]]!
-    var allCategories: [[String:String]]!
     var switchStates = [NSIndexPath: Bool]()
     let userDefaults = NSUserDefaults.standardUserDefaults()
     var selectedFoodCats: [[String:String]]!
     var selectedActivitiesCats: [[String:String]]!
 
-   // let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    
-    
-    //userDefaults.setBool(false, forKey: "userExists")
-   // let masterSubClassDictionary = [“Water": waterArray , “Attractions": attractionsArray]
     override func viewDidLoad() {
         super.viewDidLoad()
-        allCategories = yelpCategories() + bigActivities()
-        foodCategories = yelpCategories()
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        self.tableView.backgroundColor = UIColor.clearColor();
-        if (userDefaults.boolForKey("userExists") == false)
+        foodCategories = RestruantsList.customCategories() //Creates an array of all the customCategories in ResturantsList
+        bigActivitiesCategories = ActivitiesList.bigActivities()//Creates an array of all the bigActivities in ActivitiesList
+        self.tableView.backgroundColor = UIColor.clearColor(); //sets the background of the tableView to be clear
+        if (userDefaults.boolForKey("userExists") == false) //Checks if the user has opened the app begore
         {
-            selectedFoodCats = yelpCategories()
-            selectedActivitiesCats = bigActivities()
+            //On the next 4 lines since the user is new it adds all the categories from the start. And saves these into NSUserDefaults
+            selectedFoodCats = RestruantsList.customCategories()
+            selectedActivitiesCats = ActivitiesList.bigActivities()
             userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
             userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
-           // userDefaults.setObject(selectedCats, forKey: "selectedCats")
         }
-        else
+        else //Since the user isn't new we allow them to swipe back to the MainMenuViewController
         {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         }
-        userDefaults.setBool(false, forKey: "changedPreferences")
-        userDefaults.setBool(true, forKey: "userExists")
+        //userDefaults.setBool(false, forKey: "changedPreferences")
+        userDefaults.setBool(true, forKey: "userExists") //Tells NSUserDefaults that the user exists
         let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
         let skipButton = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: "skipButton:")
-       // activitiesCategories = yelpActivitiesCategories()
-        bigActivitiesCategories = bigActivities()
        
         for selected in userDefaults.arrayForKey("selectedFoodCats")! {
-            if let index = foodCategories.indexOf({$0 == selected as! NSObject}) {
+            if let index = foodCategories.indexOf({$0 == selected as! NSObject}) { // goes through the array selectedFoodCats and sets the switchState for the corresponding value to true if it is inside the array of foods
                 switchStates[NSIndexPath(forItem: index, inSection: 0)] = true
             }
         }
-        for selected in userDefaults.arrayForKey("selectedActivitiesCats")! {
+        for selected in userDefaults.arrayForKey("selectedActivitiesCats")! { // goes through the array selectedActivitiesCats and sets the switchState for the corresponding value to true if it is inside the array of activities
             if let index = bigActivitiesCategories.indexOf({$0 == selected as! NSObject}) {
                 switchStates[NSIndexPath(forItem: index, inSection: 1)] = true
             }
         }
-
-       /* for (categoryIndex, _) in foodCategories.enumerate() {
-                print("\(categoryIndex)")
-            switchStates[NSIndexPath(forItem: categoryIndex, inSection: 0)] = true
-        }
-        for (categoryIndex, _) in bigActivitiesCategories.enumerate() {
-                print("\(categoryIndex)")
-            switchStates[NSIndexPath(forItem: categoryIndex, inSection: 1)] = true
-        }*/
-        //print(allCategories)
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -107,9 +88,9 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         switch(section)
         {
         case 0:
-            return foodCategories.count
+            return foodCategories.count //Returns number of sections in each header based on number of food categories
         case 1:
-            return bigActivitiesCategories.count
+            return bigActivitiesCategories.count //Returns number of sections in each header based on number of activity categories
         default:
             return 0
         }
@@ -117,51 +98,41 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCellTableViewCell
         
-        cell.backgroundColor = UIColor.clearColor()
-        cell.selectionStyle = .None
+        cell.backgroundColor = UIColor.clearColor() //sets background to clear
+        cell.selectionStyle = .None //sets selection style to none
 
         cell.delegate = self
         switch(indexPath.section)
         {
         case 0:
-        cell.switchLabel?.text = allCategories[indexPath.row]["name"]
+        cell.switchLabel?.text = foodCategories[indexPath.row]["name"] //sets name of each cell inside food header
         cell.onSwitch.on = switchStates [indexPath] ?? false
         case 1:
-        cell.switchLabel.text = bigActivitiesCategories[indexPath.row]["name"]
-        //cell.delegate = self
+        cell.switchLabel.text = bigActivitiesCategories[indexPath.row]["name"] //sets name of each cell inside activities header
         cell.onSwitch.on = switchStates [indexPath] ?? false
         default:
             cell.switchLabel.text = foodCategories[indexPath.row]["error"]
         }
-
         return cell
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // 1
-        // Return the number of sections.
-        return 2 // <-- HINT - Josh
+        return 2 //Returns number of sections there will be.
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 65.0
+        return 65.0 //returns height of the header section
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("Header") as! HeaderCell
-        headerCell.backgroundColor = UIColor.darkGrayColor()
-        // Each section is represented in a zero-based format just like how an array is. This finds which section it is on
-        // Updates the header to show a new title. Can you guess what's wrong here? Hint: You already declared how many sections it has from the func numberOfSectionsInTableView.
-        // - Josh
-        headerCell.contentView.layer.masksToBounds = true
-        headerCell.contentView.layer.cornerRadius = 5
-        
+        headerCell.backgroundColor = UIColor.darkGrayColor()//Sets background color of the header section
         
         switch (section) {
         case 0:
-            headerCell.headerLabel.text = "Food"
-            headerCell.headerImage.image = UIImage(named: "restaurantsButton")
+            headerCell.headerLabel.text = "Food" //Sets title of header to "Food"
+            headerCell.headerImage.image = UIImage(named: "restaurantsButton") //Sets image in the food header
             
         case 1:
-            headerCell.headerLabel.text = "Activities"
-            headerCell.headerImage.image = UIImage(named: "activity")
+            headerCell.headerLabel.text = "Activities" //sets title of header to "Activities"
+            headerCell.headerImage.image = UIImage(named: "activity") //Sets image in activities header
         default:
             headerCell.headerLabel.text = "Error"
             headerCell.headerImage.image = UIImage(named: "activity")
@@ -169,13 +140,10 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         
         return headerCell
     }
-    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
-        
-        
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) { //Function/Gesture that allows swiping left to go to MainMenuViewController
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.Left:
-                print("Gesture Right")
                 self.performSegueWithIdentifier("moveMain", sender: self)
             default:
                 break
@@ -185,25 +153,27 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         }
     }
 
-    func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) {
+    func switchCell(switchCell: SwitchCellTableViewCell, didChangeValue value: Bool) { //allows detection of a change of value in the switchcell
         let indexPath = tableView.indexPathForCell(switchCell)!
         switchStates[indexPath] = value
-        print("filters view controller got the switch event")
     }
     func doneButton(sender: UIBarButtonItem) {
-        print("im pressed")
         let filters = [String:AnyObject]()
         var selectedFoodCategories = [[String:String]]()
         var selectedActivitiesCategories = [[String:String]]()
-        
         var catName: String
         var codeName: String
+        
+        //Next 3 Lines set up the alert that will pop up once "Done" is pressed
         let alert = UIAlertController(title: "Continue?", message: "Make sure these are the categories you want to exclude from searches before continuing", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { action in         self.performSegueWithIdentifier("moveMain", sender: nil)}))
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: { action in         self.performSegueWithIdentifier("moveMain", sender: nil)})) //Will move to MainMenuViewController once "Continue" is tapped
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        //selectedCategories.removeAll()
         selectedFoodCats = []
         selectedActivitiesCats = []
+        
+        /*This for loop checks the NSIndexPath of the each cell and checks if the switch state isSelected (true) and if
+        the switch state is true it adds the corresponding lists into an array to be used for searching for resturants and activities later and adds it to NSUserDefaults.
+        it also adds another string of the bigActivities and customCategories into an array based on what was selected to save the users selected values when they come back to this screen*/
         for (NSIndexPath, isSelected) in switchStates {
             if isSelected {
                 if NSIndexPath.section == 0
@@ -212,17 +182,16 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                     codeName = foodCategories[NSIndexPath.row]["code"]!
                     switch(catName){
                     case "African":
-                        var africanDict = africanList()
-                        for i in 0 ..< africanList().count {
+                        var africanDict = RestruantsList.africanList()
+                        for i in 0 ..< RestruantsList.africanList().count {
                             selectedFoodCategories.append(africanDict[i])
                         }
                         selectedFoodCats.append(["name" : "African", "code": "a"])
-                        //print(selectedFoodCategories)
                         
                     break
                     case "American":
-                        var americanDict = americanList()
-                        for i in 0 ..< americanList().count {
+                        var americanDict = RestruantsList.americanList()
+                        for i in 0 ..< RestruantsList.americanList().count {
                              selectedFoodCategories.append(americanDict[i])
                             
                         }
@@ -230,136 +199,136 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
 
                     break
                     case "Austrialian":
-                        var australianDict = australianList()
-                        for i in 0 ..< australianList().count {
+                        var australianDict = RestruantsList.australianList()
+                        for i in 0 ..< RestruantsList.australianList().count {
                              selectedFoodCategories.append(australianDict[i])
                         }
                         selectedFoodCats.append(["name" : "Austrialian", "code": "c"])
 
                     break
                     case "Asian":
-                        var asianDict = asianList()
-                        for i in 0 ..< asianList().count {
+                        var asianDict = RestruantsList.asianList()
+                        for i in 0 ..< RestruantsList.asianList().count {
                              selectedFoodCategories.append(asianDict[i])
                         }
                         selectedFoodCats.append(["name" : "Asian", "code": "d"])
 
                     break
                     case "Breakfast":
-                        var breakfastDict = breakfastList()
-                        for i in 0 ..< breakfastList().count {
+                        var breakfastDict = RestruantsList.breakfastList()
+                        for i in 0 ..< RestruantsList.breakfastList().count {
                              selectedFoodCategories.append(breakfastDict[i])
                         }
                         selectedFoodCats.append(["name" : "Breakfast", "code": "e"])
 
                     break
                     case "Chinese":
-                        var chineseDict = chineseList()
-                        for i in 0 ..< chineseList().count {
+                        var chineseDict = RestruantsList.chineseList()
+                        for i in 0 ..< RestruantsList.chineseList().count {
                              selectedFoodCategories.append(chineseDict[i])
                         }
                         selectedFoodCats.append(["name" : "Chinese", "code": "f"])
 
                     break
                     case "Desserts":
-                        var dessertsDict = dessertList()
-                        for i in 0 ..< dessertList().count {
+                        var dessertsDict = RestruantsList.dessertList()
+                        for i in 0 ..< RestruantsList.dessertList().count {
                              selectedFoodCategories.append(dessertsDict[i])
                         }
                         selectedFoodCats.append(["name" : "Desserts", "code": "g"])
 
                     break
                     case "European":
-                        var europeanDict = europeanList()
-                        for i in 0 ..< europeanList().count {
+                        var europeanDict = RestruantsList.europeanList()
+                        for i in 0 ..< RestruantsList.europeanList().count {
                              selectedFoodCategories.append(europeanDict[i])
                         }
                         selectedFoodCats.append(["name" : "European", "code": "h"])
 
                     break
                     case "Fast Food":
-                        var fastfoodDict = fastfoodList()
-                        for i in 0 ..< fastfoodList().count {
+                        var fastfoodDict = RestruantsList.fastfoodList()
+                        for i in 0 ..< RestruantsList.fastfoodList().count {
                              selectedFoodCategories.append(fastfoodDict[i])
                         }
                         selectedFoodCats.append(["name" : "Fast Food", "code": "i"])
 
                     break
                     case "French":
-                        var frenchDict = frenchList()
-                        for i in 0 ..< frenchList().count {
+                        var frenchDict = RestruantsList.frenchList()
+                        for i in 0 ..< RestruantsList.frenchList().count {
                              selectedFoodCategories.append(frenchDict[i])
                         }
                         selectedFoodCats.append(["name" : "French", "code": "j"])
 
                     break
                     case "Healthy":
-                        var healthyDict = healthyList()
-                        for i in 0 ..< healthyList().count {
+                        var healthyDict = RestruantsList.healthyList()
+                        for i in 0 ..< RestruantsList.healthyList().count {
                             selectedFoodCategories.append(healthyDict[i])
                         }
                         selectedFoodCats.append(["name" : "Healthy", "code": "k"])
 
                     break
                     case "Italian":
-                        var italianDict = italianList()
-                        for i in 0 ..< italianList().count {
+                        var italianDict = RestruantsList.italianList()
+                        for i in 0 ..< RestruantsList.italianList().count {
                             selectedFoodCategories.append(italianDict[i])
                         }
                         selectedFoodCats.append(["name" : "Italian", "code": "l"])
 
                     break
                     case "Indian":
-                        var indianDict = indianList()
-                        for i in 0 ..< indianList().count {
+                        var indianDict = RestruantsList.indianList()
+                        for i in 0 ..< RestruantsList.indianList().count {
                             selectedFoodCategories.append(indianDict[i])
                         }
                         selectedFoodCats.append(["name" : "Indian", "code": "m"])
 
                     break
                     case "Japanese":
-                        var japaneseDict = japaneseList()
-                        for i in 0 ..< japaneseList().count {
+                        var japaneseDict = RestruantsList.japaneseList()
+                        for i in 0 ..< RestruantsList.japaneseList().count {
                             selectedFoodCategories.append(japaneseDict[i])
                         }
                         selectedFoodCats.append(["name" : "Japanese", "code": "n"])
 
                     break
                     case "Latin American":
-                        var latinDict = latinAmericanList()
-                        for i in 0 ..< latinAmericanList().count {
+                        var latinDict = RestruantsList.latinAmericanList()
+                        for i in 0 ..< RestruantsList.latinAmericanList().count {
                             selectedFoodCategories.append(latinDict[i])
                         }
                         selectedFoodCats.append(["name" : "Latin American", "code": "o"])
 
                     break
                     case "Middle Eastern":
-                        var middleDict = middleEasternList()
-                        for i in 0 ..< middleEasternList().count {
+                        var middleDict = RestruantsList.middleEasternList()
+                        for i in 0 ..< RestruantsList.middleEasternList().count {
                             selectedFoodCategories.append(middleDict[i])
                         }
                         selectedFoodCats.append(["name" : "Middle Eastern", "code": "p"])
 
                     break
                     case "Medditeranian":
-                        var meddDict = medditeranianList()
-                        for i in 0 ..< medditeranianList().count {
+                        var meddDict = RestruantsList.medditeranianList()
+                        for i in 0 ..< RestruantsList.medditeranianList().count {
                             selectedFoodCategories.append(meddDict[i])
                         }
                         selectedFoodCats.append(["name" : "Medditeranian", "code": "q"])
 
                     break
                     case "Thai":
-                        var thaiDict = thaiList()
-                        for i in 0 ..< thaiList().count {
+                        var thaiDict = RestruantsList.thaiList()
+                        for i in 0 ..< RestruantsList.thaiList().count {
                             selectedFoodCategories.append(thaiDict[i])
                         }
                         selectedFoodCats.append(["name" : "Thai", "code": "r"])
 
                     break
                     case "Other":
-                        var otherDict = otherList()
-                        for i in 0 ..< otherList().count {
+                        var otherDict = RestruantsList.otherList()
+                        for i in 0 ..< RestruantsList.otherList().count {
                             selectedFoodCategories.append(otherDict[i])
                         }
                         selectedFoodCats.append(["name" : "Other", "code": "s"])
@@ -368,712 +337,109 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                     default:
                     break
                     }
-                    //print("\(catName)")
-                   // print("\(codeName)")
                 }
                 else if NSIndexPath.section == 1
                 {
                     catName = bigActivitiesCategories[NSIndexPath.row]["name"]!
                     codeName = bigActivitiesCategories[NSIndexPath.row]["code"]!
-                   // print(catName)
-                   // print(codeName)
                     switch (catName){
                         case "Attractions":
-                            var attractionsDict = attractionsList()
-                            for i in 0 ..< attractionsList().count {
+                            var attractionsDict = ActivitiesList.attractionsList()
+                            for i in 0 ..< ActivitiesList.attractionsList().count {
                                 selectedActivitiesCategories.append(attractionsDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Attractions", "code": "yolo"])
+                            selectedActivitiesCats.append(["name" : "Attractions", "code": "0"])
                                 break
                     case "Beauty and Spas":
-                            var beautyDict = beautyList()
-                            for i in 0 ..< beautyList().count {
+                            var beautyDict = ActivitiesList.beautyList()
+                            for i in 0 ..< ActivitiesList.beautyList().count {
                                 selectedActivitiesCategories.append(beautyDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Beauty and Spas", "code": "yolo1"])
+                            selectedActivitiesCats.append(["name" : "Beauty and Spas", "code": "1"])
                             break
                         case "Entertainment":
-                            var entertainmentDict = entertainmentList()
-                            for i in 0 ..< beautyList().count {
+                            var entertainmentDict = ActivitiesList.entertainmentList()
+                            for i in 0 ..< ActivitiesList.entertainmentList().count {
                                 selectedActivitiesCategories.append(entertainmentDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Entertainment", "code": "yolo2"])
+                            selectedActivitiesCats.append(["name" : "Entertainment", "code": "2"])
                         break
                         case "Great Outdoors/Extreme":
-                            var extremeDict = extremeList()
-                            for i in 0 ..< extremeList().count {
+                            var extremeDict = ActivitiesList.extremeList()
+                            for i in 0 ..< ActivitiesList.extremeList().count {
                                 selectedActivitiesCategories.append(extremeDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Great Outdoors/Extreme", "code": "yolo3"])
+                            selectedActivitiesCats.append(["name" : "Great Outdoors/Extreme", "code": "3"])
                         break
                         case "Landmarks/Historical Buildings":
-                            var landmarksDict = landmarksList()
-                            for i in 0 ..< landmarksList().count {
+                            var landmarksDict = ActivitiesList.landmarksList()
+                            for i in 0 ..< ActivitiesList.landmarksList().count {
                                 selectedActivitiesCategories.append(landmarksDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Landmarks/Historical Buildings", "code": "yolo4"])
+                            selectedActivitiesCats.append(["name" : "Landmarks/Historical Buildings", "code": "4"])
                         break
                         case "Nightlife":
-                            var nightlifeDict = nightlifeList()
-                            for i in 0 ..< nightlifeList().count {
+                            var nightlifeDict = ActivitiesList.nightlifeList()
+                            for i in 0 ..< ActivitiesList.nightlifeList().count {
                                 selectedActivitiesCategories.append(nightlifeDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Nightlife", "code": "yolo5"])
+                            selectedActivitiesCats.append(["name" : "Nightlife", "code": "5"])
                         break
                         case "Parks":
-                            var parksDict = parksList()
-                            for i in 0 ..< parksList().count {
+                            var parksDict = ActivitiesList.parksList()
+                            for i in 0 ..< ActivitiesList.parksList().count {
                                 selectedActivitiesCategories.append(parksDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Parks", "code": "yolo6"])
+                            selectedActivitiesCats.append(["name" : "Parks", "code": "6"])
                         break
                         case "Pets":
-                            var petsDict = petsList()
-                            for i in 0 ..< petsList().count {
+                            var petsDict = ActivitiesList.petsList()
+                            for i in 0 ..< ActivitiesList.petsList().count {
                                 selectedActivitiesCategories.append(petsDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Pets", "code": "yolo7"])
+                            selectedActivitiesCats.append(["name" : "Pets", "code": "7"])
                         break
                         case "Professional Sporting Events":
-                            var profSportsDict = profSportsList()
-                            for i in 0 ..< profSportsList().count {
+                            var profSportsDict = ActivitiesList.profSportsList()
+                            for i in 0 ..< ActivitiesList.profSportsList().count {
                                 selectedActivitiesCategories.append(profSportsDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Professional Sporting Events", "code": "yolo8"])
+                            selectedActivitiesCats.append(["name" : "Professional Sporting Events", "code": "8"])
                         break
                         case "Sports":
-                            var sportsDict = sportsList()
-                            for i in 0 ..< sportsList().count {
+                            var sportsDict = ActivitiesList.sportsList()
+                            for i in 0 ..< ActivitiesList.sportsList().count {
                                 selectedActivitiesCategories.append(sportsDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Sports", "code": "yolo9"])
+                            selectedActivitiesCats.append(["name" : "Sports", "code": "9"])
                         break
                         case "Water Activities":
-                            var waterDict = waterList()
-                            for i in 0 ..< waterList().count {
+                            var waterDict = ActivitiesList.waterList()
+                            for i in 0 ..< ActivitiesList.waterList().count {
                                 selectedActivitiesCategories.append(waterDict[i])
                             }
-                            selectedActivitiesCats.append(["name" : "Water Activities", "code": "yolo10"])
+                            selectedActivitiesCats.append(["name" : "Water Activities", "code": "10"])
                         break
                         default:
                         break
                     }
-                   // selectedActivitiesCategories.append(["name": catName, "code": codeName])
-
-                   // print(catName)
-                    //print(codeName)
                 }
             }
-            print("These are the foods selected")
-            print(selectedFoodCategories)
             userDefaults.setObject(selectedActivitiesCategories, forKey: "selectedActivities")
             userDefaults.setObject(selectedFoodCategories, forKey: "selectedFoods")
             userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
             userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")
-            print("Printing what is saved to userDefaults")
-            print(userDefaults.arrayForKey("selectedFoods"))
         }
-        //let vc = storyboard.instantiateViewControllerWithIdentifier("NavMainMenu")
-        //print(selectedActivitiesCategories)
-        //print(selectedFoodCategories)
         self.presentViewController(alert, animated: true, completion: nil)
         self.performSegueWithIdentifier("moveMain", sender: nil)
         delegate?.initialSettingsViewController?(self, didUpdateFilters: filters)
     }
-    func skipButton(sender: UIBarButtonItem) {
-        print("Skippp")
-        /*var selectedFoodCategoriesDict = [[String:String]]()
-        var selectedActivitiesCategoriesDict = [[String:String]]()
-        selectedFoodCategoriesDict = allFoodCategories()
-        selectedActivitiesCategoriesDict = allActivitiesCategories()
-        userDefaults.setObject(selectedActivitiesCategoriesDict, forKey: "selectedActivities")
-        userDefaults.setObject(selectedFoodCategoriesDict, forKey: "selectedFoods")
-        userDefaults.setObject(selectedFoodCats, forKey: "selectedFoodCats")
-        userDefaults.setObject(selectedActivitiesCats, forKey: "selectedActivitiesCats")*/
+    func skipButton(sender: UIBarButtonItem) { //Moves the user to the MainMenuViewController without changing any settings
+
         self.performSegueWithIdentifier("moveMain", sender: nil)
 
     }
-    func yelpCategories() -> [[String:String]] {
-        return [
-            /*["name" : "Argentine", "code": "argentine"],
-            ["name" : "Armenian", "code": "armenian"],
-            ["name" : "Baguettes", "code": "baguettes"],
-            ["name" : "Bangladeshi", "code": "bangladeshi"],
-            ["name" : "Basque", "code": "basque"],
-            ["name" : "Bavarian", "code": "bavarian"],
-           
-
-        
-            ["name" : "Singaporean", "code": "singaporean"],
-            ["name" : "Slovakian", "code": "slovakian"],
-            ["name" : "Swedish", "code": "swedish"],*/
-        
-            ["name" : "African", "code": "a"],
-            ["name" : "American", "code": "b"],
-            ["name" : "Austrialian", "code": "c"],
-            ["name" : "Asian", "code": "d"],
-            ["name" : "Breakfast", "code": "e"],
-            ["name" : "Chinese", "code": "f"],
-            ["name" : "Desserts", "code": "g"],
-            ["name" : "European", "code": "h"],
-            ["name" : "Fast Food", "code": "i"],
-            ["name" : "French", "code": "j"],
-            ["name" : "Healthy", "code": "k"],
-            ["name" : "Italian", "code": "l"],
-            ["name" : "Indian", "code": "m"],
-            ["name" : "Japanese", "code": "n"],
-            ["name" : "Latin American", "code": "o"],
-            ["name" : "Middle Eastern", "code": "p"],
-            ["name" : "Medditeranian", "code": "q"],
-            ["name" : "Thai", "code": "r"],
-            ["name" : "Other", "code": "s"]]
-    }
-    func africanList() -> [[String:String]]{
-        return [["name" : "African", "code": "african"],
-                ["name" : "Ethiopian", "code": "ethiopian"]]
-    }
-    func americanList() -> [[String:String]]
-    {
-        return [["name" : "American, New", "code": "newamerican"],
-            ["name" : "American, Traditional", "code": "tradamerican"],
-            ["name" : "Burgers", "code": "burgers"],
-            ["name" : "Barbeque", "code": "bbq"],
-            ["name" : "Cheesesteaks", "code": "cheesesteaks"],
-            ["name" : "Chicken Wings", "code": "chicken_wings"],
-            ["name" : "Diners", "code": "diners"],
-            ["name" : "Dumplings", "code": "dumplings"],
-            ["name" : "Hot Dogs", "code": "hotdog"],
-            ["name" : "Soul Food", "code": "soulfood"],
-            ["name" : "Southern", "code": "southern"],
-            ["name" : "Steakhouses", "code": "steak"],
-            ["name" : "Tex-Mex", "code": "tex-mex"],
-            ["name" : "Pizza", "code": "pizza"]]
-    }
-    func australianList() -> [[String:String]] {
-        return [
-         ["name" : "Australian", "code": "australian"],
-         ["name" : "Fish & Chips", "code": "fishnchips"],//Austrialian
-         ["name" : "Modern Australian", "code": "modern_australian"]]
-    }
-    func asianList() -> [[String:String]] {
-        return [["name" : "Asian Fusion", "code": "asianfusion"],
-            ["name" : "Burmese", "code": "burmese"], //Asian
-            ["name" : "Cambodian", "code": "cambodian"],//Asian
-            ["name" : "Himalayan/Nepalese", "code": "himalayan"],//Asian
-            ["name" : "Korean", "code": "korean"],//Asian
-            ["name" : "Malaysian", "code": "malaysian"],//Asian
-            ["name" : "Oriental", "code": "oriental"], //Asian
-            ["name" : "Vietnamese", "code": "vietnamese"]]
-    }
-    func breakfastList() -> [[String:String]] {
-        return [["name" : "Breakfast & Brunch", "code": "breakfast_brunch"],//Breakfast
-            ["name" : "Cafes", "code": "cafes"], //Breakfast
-            ["name" : "Creperies", "code": "creperies"],//Breakfast
-            ["name" : "Parent Cafes", "code": "eltern_cafes"]]
-    }
-    func latinAmericanList() -> [[String:String]] {
-        return [["name" : "Brazilian", "code": "brazilian"],//Latin American
-            ["name" : "Catalan", "code": "catalan"], //Latin American
-            ["name" : "Chilean", "code": "chilean"], //Latin America
-            ["name" : "Cuban", "code": "cuban"],//Latin American
-            ["name" : "Galician", "code": "galician"],//Latin American
-            ["name" : "Latin American", "code": "latin"],//Latin American
-            ["name" : "Mexican", "code": "mexican"], //Latin America
-            ["name" : "Peruvian", "code": "peruvian"],//Latin America
-            ["name" : "Portuguese", "code": "portuguese"], //Latin American
-            ["name" : "Spanish", "code": "spanish"]]
-    }
-    func chineseList() -> [[String:String]] {
-        return [["name" : "Chinese", "code": "chinese"], //Chinese/Asian
-                ["name" : "Hong Kong Style Cafe", "code": "hkcafe"],
-                ["name" : "Mongolian", "code": "mongolian"]]//Chinese
-    }
-    func dessertList() -> [[String:String]] {
-        return [["name" : "Fondue", "code": "fondue"], //Deserts
-            ["name" : "Milk Bars", "code": "milkbars"]]
-    }
-    func europeanList() -> [[String:String]]{
-       return [["name" : "Austrian", "code": "austrian"],
-        ["name" : "Asturian", "code": "asturian"],
-        ["name" : "Beisl", "code": "beisl"],
-        ["name" : "Belgian", "code": "belgian"],//Europe
-        ["name" : "British", "code": "british"], //Europe
-        ["name" : "Bulgarian", "code": "bulgarian"], //Europe
-        ["name" : "Chech", "code": "chech"], //European
-        ["name" : "Czech", "code": "czech"], //Europe
-        ["name" : "Czech/Slovakian", "code": "czechslovakian"],//Europe
-        ["name" : "Danish", "code": "danish"], //Europe
-        ["name" : "Eastern European", "code": "eastern_european"], //European
-        ["name" : "German", "code": "german"],//European
-        ["name" : "Greek", "code": "greek"], //European
-        ["name" : "Heuriger", "code": "heuriger"],//European
-        ["name" : "Hungarian", "code": "hungarian"], //European
-        ["name" : "Iberian", "code": "iberian"],//Europe
-        ["name" : "Irish", "code": "irish"],//Europe
-        ["name" : "Modern European", "code": "modern_european"], //European
-        ["name" : "Polish", "code": "polish"], //Europe
-        ["name" : "Scandinavian", "code": "scandinavian"],//European
-        ["name" : "Scottish", "code": "scottish"],//European
-        ["name" : "Swiss Food", "code": "swissfood"],//European
-        ["name" : "Turkish", "code": "turkish"],//European
-        ["name" : "Yugoslav", "code": "yugoslav"]]//European
-
-        
-    }
-    func fastfoodList() -> [[String:String]] {
-        return [["name" : "Fast Food", "code": "hotdogs"]]//fastfood
-    }
-    func frenchList() -> [[String:String]]{
-        return [["name" : "Brasseries", "code": "brasseries"],
-                ["name" : "French", "code": "french"], //French/European
-                ["name" : "French Southwest", "code": "sud_ouest"]]
-    }
-    func healthyList() -> [[String:String]] {
-        return [["name" : "Gluten-Free", "code": "gluten_free"],//Healthy?
-            ["name" : "Salad", "code": "salad"],// Healthy
-            ["name" : "Vegan", "code": "vegan"], //Healthy
-            ["name" : "Vegetarian", "code": "vegetarian"]]
-    }
-    func italianList() -> [[String:String]]{
-        return [["name" : "Italian", "code": "italian"], //Italian/Europe
-            ["name" : "Norcinerie", "code": "norcinerie"],
-            ["name" : "Corsican", "code": "corsican"]]
-    }
-    func indianList() -> [[String:String]]{
-        return [["name" : "Indian", "code": "indpak"],//Indian
-            ["name" : "Indonesian", "code": "indonesian"]]
-    }
-
-
-    func japaneseList() -> [[String:String]] {
-        return [["name" : "Japanese", "code": "japanese"],//Japaneese
-            ["name" : "Sushi Bars", "code": "sushi"]]
-    }
-    func middleEasternList() -> [[String:String]] {
-        return [["name" : "Afghan", "code": "afghani"],//Middle Eastern]
-            ["name" : "Arabian", "code": "arabian"],//Middle Eastern
-            ["name" : "Halal", "code": "halal"], //Middle East/Muslim????
-            ["name" : "Israeli", "code": "israeli"], //Middle eastern
-            ["name" : "Kebab", "code": "kebab"],//Middle East
-            ["name" : "Middle Eastern", "code": "mideastern"], //Middle Eastern
-            ["name" : "Moroccan", "code": "moroccan"],//Middle eastern
-            ["name" : "Pakistani", "code": "pakistani"], //Middle East
-            ["name" : "Persian/Iranian", "code": "persian"]] //Middle eastern
-
-
-        
-    }
-    func medditeranianList() -> [[String:String]] {
-        return [["name" : "Mediterranean", "code": "mediterranean"],//Medditeranian 
-            ["name" : "Romanian", "code": "romanian"]]
-    }
-    func thaiList() -> [[String:String]]{
-        return [["name" : "Thai", "code": "thai"]]// Thai
-        }
-
-    func otherList() -> [[String:String]] {
-        return [["name" : "Bistros", "code": "bistros"],//Other
-            ["name" : "Buffets", "code": "buffets"], //Other
-            ["name" : "Cajun/Creole", "code": "cajun"],//French? Or Other.
-            ["name" : "Canadian", "code": "New)"], //North American
-            ["name" : "Caribbean", "code": "caribbean"],//Other
-            ["name" : "Filipino", "code": "filipino"],//Other
-            ["name" : "Georgian", "code": "georgian"],//Other
-            ["name" : "Hawaiian", "code": "hawaiian"], //American/Other
-            ["name" : "Kosher", "code": "kosher"],//Jewish
-            ["name" : "Kurdish", "code": "kurdish"],//Other
-            ["name" : "Night Food", "code": "nightfood"],//Other
-            ["name" : "Open Sandwiches", "code": "opensandwiches"], //Other
-            ["name" : "Poutineries", "code": "poutineries"], //Canadian
-            ["name" : "Rotisserie Chicken", "code": "rotisserie_chicken"],// other
-            ["name" : "Sandwiches", "code": "sandwiches"],//other
-            ["name" : "Seafood", "code": "seafood"]]
-    }
-    func attractionsList() -> [[String:String]]
-    {
-        return [["name" : "Amusement Parks", "code": "amusementparks"],
-            ["name" : "Aquariums", "code": "aquariums"],
-            ["name" : "Arcades", "code": "arcades"],
-            ["name" : "Art Galleries", "code": "galleries"],
-            ["name" : "Casinos", "code": "casinos"],
-            ["name" : "Go Karts", "code": "gokarts"],
-            ["name" : "Horse Racing", "code": "horseracing"],
-            ["name" : "Laser Tag", "code": "lasertag"],
-            ["name" : "Mini Golf", "code": "mini_golf"],
-            ["name" : "Museums", "code": "museums"],
-            ["name" : "Paintball", "code": "paintball"],
-            ["name" : "Skating Rinks", "code": "skatingrinks"],
-            ["name" : "Trampoline Parks", "code": "trampoline"],
-            ["name" : "Zoos", "code": "zoos"]]
-    }
-    func beautyList()->[[String:String]]
-    {
-        //Beauty and Spas
-        return [["name" : "Day Spas", "code": "spas"],
-        ["name" : "Massage", "code": "massage"],
-        ["name" : "Piercing", "code": "piercing"],
-        ["name" : "Tanning", "code": "tanning"],
-        ["name" : "Tattoo", "code": "tattoo"]]
-
-    }
-    func entertainmentList()->[[String:String]]
-    {
-        //Entertainment
-       return [["name" : "Festivals", "code": "festivals"],
-        ["name" : "Movies", "code": "movietheatres"],
-        ["name" : "Music Venues", "code": "musicvenues"],
-        ["name" : "Opera & Ballet", "code": "opera"],
-        ["name" : "Theater", "code": "theater"],
-        ["name" : "Race Tracks", "code": "racetracks"],
-        ["name" : "Social Clubs", "code": "social_clubs"],
-        ["name" : "Wineries", "code": "wineries"]]
-
-    }
-    func extremeList()->[[String:String]]
-    {
-        //Extreme/Great Outdoors
-        return [["name" : "Climbing", "code": "climbing"],
-        ["name" : "Hang Gliding", "code": "hanggliding"],
-        ["name" : "Hiking", "code": "hiking"],
-        ["name" : "Hot Air Balloons", "code": "hot_air_balloons"],
-        ["name" : "Mountain Biking", "code": "mountainbiking"],
-        ["name" : "Rafting/Kayaking", "code": "rafting"],
-        ["name" : "Skydiving", "code": "skydiving"]]
-    }
-    func landmarksList()->[[String:String]]
-    {
-        return [["name" : "Landmarks", "code": "landmarks"]]
-    }
-    func nightlifeList()->[[String:String]]
-    {
-        return  [["name" : "Champagne Bars", "code": "champagne_bars"],
-        ["name" : "Cocktail Bars", "code": "cocktailbars"],
-        ["name" : "Comedy Clubs", "code": "comedyclubs"],
-        ["name" : "Country Dance Halls", "code": "countrydancehalls"],
-        ["name" : "Dance Clubs", "code": "danceclubs"],
-        ["name" : "Dive Bars", "code": "divebars"],
-        ["name" : "Gay Bars", "code": "gaybars"],
-        ["name" : "Hookah Bars", "code": "hookah_bars"],
-        ["name" : "Jazz & Blues", "code": "jazzandblues"],
-        ["name" : "Karaoke", "code": "karaoke"],
-        ["name" : "Lounges", "code": "lounges"],
-        ["name" : "Piano Bars", "code": "pianobars"],
-        ["name" : "Pool Halls", "code": "poolhalls"],
-        ["name" : "Pubs", "code": "pubs"],
-        ["name" : "Sports Bars", "code": "sportsbars"],
-        ["name" : "Wine Bars", "code": "wine_bars"]]
-    }
-    func parksList()->[[String:String]]
-    {
-        return [["name" : "Playgrounds", "code": "playgrounds"],
-        ["name" : "Skate Parks", "code": "skate_parks"]]
-    }
-    func petsList()->[[String:String]]
-    {
-        return [["name" : "Animal Parks", "code": "dog_parks"],
-        ["name" : "Animal Shelters", "code": "animalshelters"]]
-    }
-    func profSportsList()->[[String:String]]
-    {
-        return [["name" : "Amateur Sports Teams", "code": "amateursportsteams"],
-            ["name" : "Professional Sports Teams", "code": "sportsteams"],
-            ["name" : "Stadiums & Arenas", "code": "stadiumsarenas"]]
-    }
-    func sportsList()->[[String:String]]
-    {
-        return [["name" : "Archery", "code": "archery"],
-        ["name" : "Badminton", "code": "badminton"],
-        ["name" : "Basketball Courts", "code": "basketballcourts"],
-        ["name" : "Batting Cages", "code": "battingcages"],
-        ["name" : "Bike Rentals", "code": "bikerentals"],
-        ["name" : "Boating", "code": "boating"],
-        ["name" : "Bowling", "code": "bowling"],
-        ["name" : "Disc Golf", "code": "discgolf"],
-        ["name" : "Golf", "code": "golf"],
-        ["name" : "Gun/Rifle", "code": "gun_ranges"],
-        ["name" : "Gymnastics", "code": "gymnastics"],
-        ["name" : "Horseback Riding", "code": "horsebackriding"],
-        ["name" : "Rock Climbing", "code": "rock_climbing"],
-        ["name" : "Soccer", "code": "football"],
-        ["name" : "Squash", "code": "squash"],
-        ["name" : "Tennis", "code": "tennis"],
-        ["name" : "Yoga", "code": "yoga"]]
-    }
-    func waterList()->[[String:String]]
-    {
-        return [["name" : "Beaches", "code": "beaches"],
-        ["name" : "Fishing", "code": "fishing"],
-        ["name" : "Kiteboarding", "code": "kiteboarding"],
-        ["name" : "Lakes", "code": "lakes"],
-        ["name" : "Paddleboarding", "code": "paddleboarding"],
-        ["name" : "Scuba Diving", "code": "scuba"],
-        ["name" : "Surfing", "code": "surfing"],
-        ["name" : "Swimming Pools", "code": "swimmingpools"],
-        ["name" : "Tubing", "code": "tubing"]]
-    }
-    func bigActivities() -> [[String:String]]
-    {
-                return [["name" : "Attractions", "code": "yolo"],
-                ["name" : "Beauty and Spas", "code": "yolo1"],
-                ["name" : "Entertainment", "code": "yolo2"],
-                ["name" : "Great Outdoors/Extreme", "code": "yolo3"],
-                ["name" : "Landmarks/Historical Buildings", "code": "yolo4"],
-                ["name" : "Nightlife", "code": "yolo5"],
-                ["name" : "Parks", "code": "yolo6"],
-                ["name" : "Pets", "code": "yolo7"],
-                ["name" : "Professional Sporting Events", "code": "yolo8"],
-                ["name" : "Sports", "code": "yolo9"],
-                ["name" : "Water Activities", "code": "yolo10"]]
-    }
     
-    func allFoodCategories() -> [[String:String]] {
-        return [["name" : "African", "code": "african"],
-                ["name" : "Ethiopian", "code": "ethiopian"],
-                ["name" : "American, New", "code": "newamerican"],
-                ["name" : "American, Traditional", "code": "tradamerican"],
-                ["name" : "Burgers", "code": "burgers"],
-                ["name" : "Barbeque", "code": "bbq"],
-                ["name" : "Cheesesteaks", "code": "cheesesteaks"],
-                ["name" : "Chicken Wings", "code": "chicken_wings"],
-                ["name" : "Diners", "code": "diners"],
-                ["name" : "Dumplings", "code": "dumplings"],
-                ["name" : "Hot Dogs", "code": "hotdog"],
-                ["name" : "Soul Food", "code": "soulfood"],
-                ["name" : "Southern", "code": "southern"],
-                ["name" : "Steakhouses", "code": "steak"],
-                ["name" : "Tex-Mex", "code": "tex-mex"],
-                ["name" : "Pizza", "code": "pizza"],
-                ["name" : "Australian", "code": "australian"],
-                ["name" : "Fish & Chips", "code": "fishnchips"],//Austrialian
-                ["name" : "Modern Australian", "code": "modern_australian"],
-                ["name" : "Asian Fusion", "code": "asianfusion"],
-                ["name" : "Burmese", "code": "burmese"], //Asian
-                ["name" : "Cambodian", "code": "cambodian"],//Asian
-                ["name" : "Himalayan/Nepalese", "code": "himalayan"],//Asian
-                ["name" : "Korean", "code": "korean"],//Asian
-                ["name" : "Malaysian", "code": "malaysian"],//Asian
-                ["name" : "Oriental", "code": "oriental"], //Asian
-                ["name" : "Vietnamese", "code": "vietnamese"],
-                ["name" : "Breakfast & Brunch", "code": "breakfast_brunch"],//Breakfast
-                ["name" : "Cafes", "code": "cafes"], //Breakfast
-                ["name" : "Creperies", "code": "creperies"],//Breakfast
-                ["name" : "Parent Cafes", "code": "eltern_cafes"],["name" : "Brazilian", "code": "brazilian"],//Latin American
-                ["name" : "Catalan", "code": "catalan"], //Latin American
-                ["name" : "Chilean", "code": "chilean"], //Latin America
-                ["name" : "Cuban", "code": "cuban"],//Latin American
-                ["name" : "Galician", "code": "galician"],//Latin American
-                ["name" : "Latin American", "code": "latin"],//Latin American
-                ["name" : "Mexican", "code": "mexican"], //Latin America
-                ["name" : "Peruvian", "code": "peruvian"],//Latin America
-                ["name" : "Portuguese", "code": "portuguese"], //Latin American
-                ["name" : "Spanish", "code": "spanish"],
-                ["name" : "Chinese", "code": "chinese"], //Chinese/Asian
-                ["name" : "Hong Kong Style Cafe", "code": "hkcafe"],
-                ["name" : "Mongolian", "code": "mongolian"],
-                ["name" : "Fondue", "code": "fondue"], //Deserts
-                ["name" : "Milk Bars", "code": "milkbars"],
-                ["name" : "Austrian", "code": "austrian"],
-                ["name" : "Asturian", "code": "asturian"],
-                ["name" : "Beisl", "code": "beisl"],
-                ["name" : "Belgian", "code": "belgian"],//Europe
-                ["name" : "British", "code": "british"], //Europe
-                ["name" : "Bulgarian", "code": "bulgarian"], //Europe
-                ["name" : "Chech", "code": "chech"], //European
-                ["name" : "Czech", "code": "czech"], //Europe
-                ["name" : "Czech/Slovakian", "code": "czechslovakian"],//Europe
-                ["name" : "Danish", "code": "danish"], //Europe
-                ["name" : "Eastern European", "code": "eastern_european"], //European
-                ["name" : "German", "code": "german"],//European
-                ["name" : "Greek", "code": "greek"], //European
-                ["name" : "Heuriger", "code": "heuriger"],//European
-                ["name" : "Hungarian", "code": "hungarian"], //European
-                ["name" : "Iberian", "code": "iberian"],//Europe
-                ["name" : "Irish", "code": "irish"],//Europe
-                ["name" : "Modern European", "code": "modern_european"], //European
-                ["name" : "Polish", "code": "polish"], //Europe
-                ["name" : "Scandinavian", "code": "scandinavian"],//European
-                ["name" : "Scottish", "code": "scottish"],//European
-                ["name" : "Swiss Food", "code": "swissfood"],//European
-                ["name" : "Turkish", "code": "turkish"],//European
-                ["name" : "Yugoslav", "code": "yugoslav"],//European
-                ["name" : "Fast Food", "code": "hotdogs"],
-                ["name" : "Brasseries", "code": "brasseries"],
-                ["name" : "French", "code": "french"], //French/European
-                ["name" : "French Southwest", "code": "sud_ouest"],
-                ["name" : "Gluten-Free", "code": "gluten_free"],//Healthy?
-                ["name" : "Salad", "code": "salad"],// Healthy
-                ["name" : "Vegan", "code": "vegan"], //Healthy
-                ["name" : "Vegetarian", "code": "vegetarian"],
-                ["name" : "Italian", "code": "italian"], //Italian/Europe
-                ["name" : "Norcinerie", "code": "norcinerie"],
-                ["name" : "Corsican", "code": "corsican"],
-                ["name" : "Indian", "code": "indpak"],//Indian
-                ["name" : "Indonesian", "code": "indonesian"],
-                ["name" : "Japanese", "code": "japanese"],//Japaneese
-                ["name" : "Sushi Bars", "code": "sushi"],
-                ["name" : "Afghan", "code": "afghani"],//Middle Eastern]
-                ["name" : "Arabian", "code": "arabian"],//Middle Eastern
-                ["name" : "Halal", "code": "halal"], //Middle East/Muslim????
-                ["name" : "Israeli", "code": "israeli"], //Middle eastern
-                ["name" : "Kebab", "code": "kebab"],//Middle East
-                ["name" : "Middle Eastern", "code": "mideastern"], //Middle Eastern
-                ["name" : "Moroccan", "code": "moroccan"],//Middle eastern
-                ["name" : "Pakistani", "code": "pakistani"], //Middle East
-                ["name" : "Persian/Iranian", "code": "persian"],
-                ["name" : "Mediterranean", "code": "mediterranean"],//Medditeranian
-                ["name" : "Romanian", "code": "romanian"],
-                ["name" : "Thai", "code": "thai"],
-                ["name" : "Bistros", "code": "bistros"],//Other
-                ["name" : "Buffets", "code": "buffets"], //Other
-                ["name" : "Cajun/Creole", "code": "cajun"],//French? Or Other.
-                ["name" : "Canadian", "code": "New)"], //North American
-                ["name" : "Caribbean", "code": "caribbean"],//Other
-                ["name" : "Filipino", "code": "filipino"],//Other
-                ["name" : "Georgian", "code": "georgian"],//Other
-                ["name" : "Hawaiian", "code": "hawaiian"], //American/Other
-                ["name" : "Kosher", "code": "kosher"],//Jewish
-                ["name" : "Kurdish", "code": "kurdish"],//Other
-                ["name" : "Night Food", "code": "nightfood"],//Other
-                ["name" : "Open Sandwiches", "code": "opensandwiches"], //Other
-                ["name" : "Poutineries", "code": "poutineries"], //Canadian
-                ["name" : "Rotisserie Chicken", "code": "rotisserie_chicken"],// other
-                ["name" : "Sandwiches", "code": "sandwiches"],//other
-                ["name" : "Seafood", "code": "seafood"]]
-    }
-    func allActivitiesCategories() -> [[String:String]] {
-        return [["name" : "Amusement Parks", "code": "amusementparks"],
-                ["name" : "Aquariums", "code": "aquariums"],
-                ["name" : "Arcades", "code": "arcades"],
-                ["name" : "Art Galleries", "code": "galleries"],
-                ["name" : "Casinos", "code": "casinos"],
-                ["name" : "Go Karts", "code": "gokarts"],
-                ["name" : "Horse Racing", "code": "horseracing"],
-                ["name" : "Laser Tag", "code": "lasertag"],
-                ["name" : "Mini Golf", "code": "mini_golf"],
-                ["name" : "Museums", "code": "museums"],
-                ["name" : "Paintball", "code": "paintball"],
-                ["name" : "Skating Rinks", "code": "skatingrinks"],
-                ["name" : "Trampoline Parks", "code": "trampoline"],
-                ["name" : "Zoos", "code": "zoos"],
-                ["name" : "Day Spas", "code": "spas"],
-                ["name" : "Massage", "code": "massage"],
-                ["name" : "Piercing", "code": "piercing"],
-                ["name" : "Tanning", "code": "tanning"],
-                ["name" : "Tattoo", "code": "tattoo"],
-                ["name" : "Festivals", "code": "festivals"],
-                ["name" : "Movies", "code": "movietheatres"],
-                ["name" : "Music Venues", "code": "musicvenues"],
-                ["name" : "Opera & Ballet", "code": "opera"],
-                ["name" : "Theater", "code": "theater"],
-                ["name" : "Race Tracks", "code": "racetracks"],
-                ["name" : "Social Clubs", "code": "social_clubs"],
-                ["name" : "Wineries", "code": "wineries"],
-                ["name" : "Climbing", "code": "climbing"],
-                ["name" : "Hang Gliding", "code": "hanggliding"],
-                ["name" : "Hiking", "code": "hiking"],
-                ["name" : "Hot Air Balloons", "code": "hot_air_balloons"],
-                ["name" : "Mountain Biking", "code": "mountainbiking"],
-                ["name" : "Rafting/Kayaking", "code": "rafting"],
-                ["name" : "Skydiving", "code": "skydiving"],
-                ["name" : "Landmarks", "code": "landmarks"],
-                ["name" : "Champagne Bars", "code": "champagne_bars"],
-                ["name" : "Cocktail Bars", "code": "cocktailbars"],
-                ["name" : "Comedy Clubs", "code": "comedyclubs"],
-                ["name" : "Country Dance Halls", "code": "countrydancehalls"],
-                ["name" : "Dance Clubs", "code": "danceclubs"],
-                ["name" : "Dive Bars", "code": "divebars"],
-                ["name" : "Gay Bars", "code": "gaybars"],
-                ["name" : "Hookah Bars", "code": "hookah_bars"],
-                ["name" : "Jazz & Blues", "code": "jazzandblues"],
-                ["name" : "Karaoke", "code": "karaoke"],
-                ["name" : "Lounges", "code": "lounges"],
-                ["name" : "Piano Bars", "code": "pianobars"],
-                ["name" : "Pool Halls", "code": "poolhalls"],
-                ["name" : "Pubs", "code": "pubs"],
-                ["name" : "Sports Bars", "code": "sportsbars"],
-                ["name" : "Wine Bars", "code": "wine_bars"],
-                ["name" : "Playgrounds", "code": "playgrounds"],
-                ["name" : "Skate Parks", "code": "skate_parks"],
-                ["name" : "Animal Parks", "code": "dog_parks"],
-                ["name" : "Animal Shelters", "code": "animalshelters"],
-                ["name" : "Amateur Sports Teams", "code": "amateursportsteams"],
-                ["name" : "Professional Sports Teams", "code": "sportsteams"],
-                ["name" : "Stadiums & Arenas", "code": "stadiumsarenas"],
-                ["name" : "Archery", "code": "archery"],
-                ["name" : "Badminton", "code": "badminton"],
-                ["name" : "Basketball Courts", "code": "basketballcourts"],
-                ["name" : "Batting Cages", "code": "battingcages"],
-                ["name" : "Bike Rentals", "code": "bikerentals"],
-                ["name" : "Boating", "code": "boating"],
-                ["name" : "Bowling", "code": "bowling"],
-                ["name" : "Disc Golf", "code": "discgolf"],
-                ["name" : "Golf", "code": "golf"],
-                ["name" : "Gun/Rifle", "code": "gun_ranges"],
-                ["name" : "Gymnastics", "code": "gymnastics"],
-                ["name" : "Horseback Riding", "code": "horsebackriding"],
-                ["name" : "Rock Climbing", "code": "rock_climbing"],
-                ["name" : "Soccer", "code": "football"],
-                ["name" : "Squash", "code": "squash"],
-                ["name" : "Tennis", "code": "tennis"],
-                ["name" : "Yoga", "code": "yoga"],
-                ["name" : "Beaches", "code": "beaches"],
-                ["name" : "Fishing", "code": "fishing"],
-                ["name" : "Kiteboarding", "code": "kiteboarding"],
-                ["name" : "Lakes", "code": "lakes"],
-                ["name" : "Paddleboarding", "code": "paddleboarding"],
-                ["name" : "Scuba Diving", "code": "scuba"],
-                ["name" : "Surfing", "code": "surfing"],
-                ["name" : "Swimming Pools", "code": "swimmingpools"],
-                ["name" : "Tubing", "code": "tubing"]]
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewControll	er.
-        // Pass the `object to the new view controller.
-    }
-    */
-    
-    /*var
-    
-    var professionalSportsArray[] =             [BasicValue(name : "Amateur Sports Teams", code: "amateursportsteams"),
-    BasicValue(name : "Professional Sports Teams", code: "sportsteams"),
-    BasicValue(name : "Stadiums & Arenas", code: "stadiumsarenas")],
-    
-    var sportsArray[] = [BasicValue(name : "Archery", code: "archery"),
-     BasicValue(name : "Badminton", code: "badminton"),
-     BasicValue(name : "Basketball Courts", code: "basketballcourts"),
-     BasicValue(name : "Batting Cages", code: "battingcages"),
-     BasicValue(name : "Bike Rentals", code: "bikerentals"),
-     BasicValue(name : "Boating", code: "boating"),
-     BasicValue(name : "Bowling", code: "bowling"),
-     BasicValue( name : "Disc Golf", code: "discgolf"),
-     BasicValue(name : "Golf", code: "golf"),
-     BasicValue(name : "Gun/Rifle", code: "gun_ranges"),
-     BasicValue(name : "Gymnastics", code: "gymnastics"),
-     BasicValue(name : "Horseback Riding", code: "horsebackriding"),
-     BasicValue(name : "Rock Climbing", code: "rock_climbing"),
-     BasicValue(name : "Soccer", code: "football"),
-     BasicValue(name : "Squash", code: "squash"),
-     BasicValue(name : "Tennis", code: "tennis"),
-     BasicValue( name : "Yoga", code: "yoga")]
-    
-    
-    var waterArray[] = [BasicValue(name : "Beaches", code: "beaches"),
-    BasicValue(name : "Fishing", code: "fishing"),
-    BasicValue(name : "Kiteboarding", code: "kiteboarding"),
-    BasicValue(name : "Lakes", code: "lakes"),
-    BasicValue(name : "Paddleboarding", code: "paddleboarding"),
-    BasicValue(name : "Scuba Diving", code: "scuba"),
-    BasicValue(name : "Surfing", code: "surfing"),
-    BasicValue(name : "Swimming Pools", code: "swimmingpools"),
-    BasicValue(name : "Tubing", code: "tubing")]*/
     
 }
-/*
-class BasicValue {
-                var name: String
-                var code: String
-}*/
+

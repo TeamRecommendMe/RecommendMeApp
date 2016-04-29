@@ -10,6 +10,8 @@
 		022970F6802EFBB0827418F9 /* Pods_RecommendMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9419073408F915D68D9ABB04 /* Pods_RecommendMe.framework */; };
 		948D1D4E1CA74F8F0051319D /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948D1D4D1CA74F8F0051319D /* HeaderCell.swift */; };
 		94A1E1D01CA720F0009B0A20 /* SwitchCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1E1CF1CA720F0009B0A20 /* SwitchCellTableViewCell.swift */; };
+		94C45CA71CD2AB86000C06AA /* RestruantsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C45CA61CD2AB86000C06AA /* RestruantsList.swift */; };
+		94C45CA91CD2AE3E000C06AA /* ActivitiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C45CA81CD2AE3E000C06AA /* ActivitiesList.swift */; };
 		94FA7A8C1CBE0681008C1739 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FA7A8B1CBE0681008C1739 /* MapViewController.swift */; };
 		EE18D3B21CB2BB1A0012745E /* ResultsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE18D3B11CB2BB1A0012745E /* ResultsHeaderCell.swift */; };
 		EE18D3B41CB2BB350012745E /* ResultsDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE18D3B31CB2BB350012745E /* ResultsDataCell.swift */; };
@@ -36,6 +38,8 @@
 		9419073408F915D68D9ABB04 /* Pods_RecommendMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecommendMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		948D1D4D1CA74F8F0051319D /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		94A1E1CF1CA720F0009B0A20 /* SwitchCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCellTableViewCell.swift; sourceTree = "<group>"; };
+		94C45CA61CD2AB86000C06AA /* RestruantsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestruantsList.swift; sourceTree = "<group>"; };
+		94C45CA81CD2AE3E000C06AA /* ActivitiesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesList.swift; sourceTree = "<group>"; };
 		94FA7A8B1CBE0681008C1739 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A59B6B983B93924A5FB7B7C4 /* Pods-RecommendMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecommendMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecommendMe/Pods-RecommendMe.release.xcconfig"; sourceTree = "<group>"; };
 		EE18D3B11CB2BB1A0012745E /* ResultsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsHeaderCell.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				EE245A491CA3182200DF2A76 /* Business.swift */,
+				94C45CA61CD2AB86000C06AA /* RestruantsList.swift */,
+				94C45CA81CD2AE3E000C06AA /* ActivitiesList.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -304,10 +310,12 @@
 				948D1D4E1CA74F8F0051319D /* HeaderCell.swift in Sources */,
 				EE18D3B41CB2BB350012745E /* ResultsDataCell.swift in Sources */,
 				EE18D3B61CB2BB630012745E /* ResultsTableViewController.swift in Sources */,
+				94C45CA91CD2AE3E000C06AA /* ActivitiesList.swift in Sources */,
 				EE2961151C99D92C00A088E8 /* YelpClient.swift in Sources */,
 				EE1BFD481CA9ADE90008FA25 /* advDataCell.swift in Sources */,
 				94A1E1D01CA720F0009B0A20 /* SwitchCellTableViewCell.swift in Sources */,
 				EE83BE241C7D3FC20002DF50 /* AppDelegate.swift in Sources */,
+				94C45CA71CD2AB86000C06AA /* RestruantsList.swift in Sources */,
 				EE18D3B21CB2BB1A0012745E /* ResultsHeaderCell.swift in Sources */,
 				94FA7A8C1CBE0681008C1739 /* MapViewController.swift in Sources */,
 			);

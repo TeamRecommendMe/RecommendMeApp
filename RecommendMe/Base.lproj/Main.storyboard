@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVo-Y4-DBj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xVo-Y4-DBj">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -670,7 +670,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xg-Oi-SVM">
-                                <rect key="frame" x="153" y="594" width="57" height="30"/>
+                                <rect key="frame" x="129" y="594" width="120" height="30"/>
                                 <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="15"/>
                                 <state key="normal" title="About">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -692,7 +692,7 @@
                             <constraint firstItem="c5n-tX-rZJ" firstAttribute="leading" secondItem="hTq-W9-qQe" secondAttribute="trailing" constant="35" id="BZp-SA-84a"/>
                             <constraint firstItem="hTq-W9-qQe" firstAttribute="centerY" secondItem="c5n-tX-rZJ" secondAttribute="centerY" id="EOj-k2-3TI"/>
                             <constraint firstAttribute="trailing" secondItem="gZM-Z0-4hv" secondAttribute="trailing" id="H4f-Ij-dZh"/>
-                            <constraint firstItem="9Xg-Oi-SVM" firstAttribute="leading" secondItem="DKp-16-2QN" secondAttribute="leadingMargin" constant="133" id="Lxj-Jc-ku2"/>
+                            <constraint firstItem="9Xg-Oi-SVM" firstAttribute="leading" secondItem="DKp-16-2QN" secondAttribute="leadingMargin" constant="109" id="Lxj-Jc-ku2"/>
                             <constraint firstItem="Ozt-nN-Mkh" firstAttribute="top" secondItem="9Xg-Oi-SVM" secondAttribute="bottom" constant="63" id="MFp-YR-Sde"/>
                             <constraint firstItem="7zt-vd-O2j" firstAttribute="top" secondItem="c5n-tX-rZJ" secondAttribute="bottom" constant="14" id="O37-Hk-4DK"/>
                             <constraint firstItem="6Bv-vN-7N1" firstAttribute="centerY" secondItem="7zt-vd-O2j" secondAttribute="centerY" id="Q3v-vd-dLL"/>
@@ -711,7 +711,7 @@
                             <constraint firstItem="hTq-W9-qQe" firstAttribute="leading" secondItem="DKp-16-2QN" secondAttribute="leadingMargin" constant="64" id="hr2-x3-doF"/>
                             <constraint firstItem="gZM-Z0-4hv" firstAttribute="leading" secondItem="DKp-16-2QN" secondAttribute="leading" id="iXN-7A-ewM"/>
                             <constraint firstItem="P3b-ef-VKh" firstAttribute="leading" secondItem="FrW-RS-Eny" secondAttribute="leading" id="k2D-uS-ilE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9Xg-Oi-SVM" secondAttribute="trailing" constant="184" id="leu-zJ-xve"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Xg-Oi-SVM" secondAttribute="trailing" constant="145" id="leu-zJ-xve"/>
                             <constraint firstItem="T9Y-hv-U06" firstAttribute="leading" secondItem="hdQ-r1-zpU" secondAttribute="trailing" constant="90" id="nwW-KZ-ZrJ"/>
                             <constraint firstItem="Gwc-X7-TcP" firstAttribute="leading" secondItem="6Bv-vN-7N1" secondAttribute="leading" id="pF2-hQ-sIJ"/>
                             <constraint firstItem="T9Y-hv-U06" firstAttribute="centerX" secondItem="hDJ-0u-5Qf" secondAttribute="centerX" id="r7D-9V-Kea"/>
