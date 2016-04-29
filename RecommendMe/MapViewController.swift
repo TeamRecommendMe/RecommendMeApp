@@ -19,7 +19,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var latitude : Double!
     var longitutde : Double!
     var resName : String!
-    var cityStateZip: String!
+    var fullAddress: String!
     var mapURL: String!
     var address: String!
     /*public struct CLLocationCoordinate2D {
@@ -47,9 +47,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let span = MKCoordinateSpanMake(0.1, 0.1)
         let region = MKCoordinateRegionMake(point2.coordinate, span)
         mapView.setRegion(region, animated: false)
-        if self.cityStateZip != nil && address != nil {
-            print(self.cityStateZip)
-            let replacedAddress = self.address.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        
+        // Changed to fullAddress instead of cityStateZip 4/28
+        if fullAddress != nil {
+            print(self.fullAddress)
+            let replacedAddress = self.fullAddress.stringByReplacingOccurrencesOfString(" ", withString: "+")
             self.mapURL = "http://maps.apple.com/?daddr=\(replacedAddress)&dirflg=d&t=h"
         }
         else {
