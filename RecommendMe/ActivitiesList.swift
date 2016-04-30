@@ -2,7 +2,7 @@
 //  ActivitiesList.swift
 //  RecommendMe
 //
-//  Created by Ryan Linehan on 4/28/16.
+//  Created by Josh Gebbeken and Ryan Linehan on 4/28/16.
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  DetailViewController.swift
 //  RecommendMe
 //
-//  Created by Josh Gebbeken on 4/6/16.
+//  Created by Josh Gebbeken and Ryan Linehan on 4/6/16.
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 
@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
         
         lblBusinessName.text = business.name
         lblAddress.text = business.address
-        
+        navigationItem.title = business.name
         imgProfile.setImageWithURL(business.imageURL!)
         lblSnippet.text = business.snippet
         lblPhoneNumber.text = business.phone

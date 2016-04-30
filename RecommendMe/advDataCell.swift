@@ -25,7 +25,7 @@ class advDataCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        advOnOffSwitch.addTarget(self, action: "advSwitchValueChanged", forControlEvents: UIControlEvents.ValueChanged)
+        advOnOffSwitch.addTarget(self, action: #selector(advDataCell.advSwitchValueChanged), forControlEvents: UIControlEvents.ValueChanged)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -2,7 +2,7 @@
 //  MainMenuViewController.swift
 //  RecommendMe
 //
-//  Created by Josh Gebbeken on 3/22/16.
+//  Created by Josh Gebbeken and Ryan Linehan on 3/22/16.
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 
@@ -39,12 +39,12 @@ class MainMenuViewController: UIViewController, CLLocationManagerDelegate {
         
        // print("loaded")
        // print("selected Cats: \(CategoryDefaults.objectForKey("selectedFoodCats"))")
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(MainMenuViewController.respondToSwipeGesture(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
         
 
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(MainMenuViewController.respondToSwipeGesture(_:)))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         print(CategoryDefaults.objectForKey("latitude"))

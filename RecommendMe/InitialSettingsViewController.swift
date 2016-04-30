@@ -2,7 +2,7 @@
 //  InitialSettingsViewController.swift
 //  RecommendMe
 //
-//  Created by Josh Gebbeken on 3/23/16.
+//  Created by Josh Gebbeken and Ryan Linehan on 3/23/16.
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 
@@ -55,14 +55,14 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         }
         else //Since the user isn't new we allow them to swipe back to the MainMenuViewController
         {
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(InitialSettingsViewController.respondToSwipeGesture(_:)))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         }
         //userDefaults.setBool(false, forKey: "changedPreferences")
         userDefaults.setBool(true, forKey: "userExists") //Tells NSUserDefaults that the user exists
-        let doneButton = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButton:")
-        let skipButton = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: "skipButton:")
+        _ = self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(InitialSettingsViewController.doneButton(_:)))
+        _ = self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(InitialSettingsViewController.skipButton(_:)))
        
         for selected in userDefaults.arrayForKey("selectedFoodCats")! {
             if let index = foodCategories.indexOf({$0 == selected as! NSObject}) { // goes through the array selectedFoodCats and sets the switchState for the corresponding value to true if it is inside the array of foods
@@ -124,6 +124,8 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("Header") as! HeaderCell
         headerCell.backgroundColor = UIColor.darkGrayColor()//Sets background color of the header section
+        headerCell.headerLabel.font = UIFont(name: "Verdana-BoldItalic", size: 25)! //sets font
+        headerCell.headerLabel.textColor = UIColor.whiteColor()//sets color of text
         
         switch (section) {
         case 0:

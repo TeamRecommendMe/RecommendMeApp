@@ -2,7 +2,7 @@
 //  YelpClient.swift
 //  RecommendMe
 //
-//  Created by Josh Gebbeken on 3/16/16.
+//  Created by Josh Gebbeken and Ryan Linehan on 3/16/16.
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 

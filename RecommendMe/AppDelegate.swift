@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  RecommendMe
 //
-//  Created by Josh Gebbeken on 2/23/16.
+//  Created by Josh Gebbeken and Ryan Linehan on 2/23/16.
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 

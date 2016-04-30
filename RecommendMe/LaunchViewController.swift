@@ -2,7 +2,7 @@
 //  LaunchViewController.swift
 //  RecommendMe
 //
-//  Created by Josh Gebbeken on 4/25/16.
+//  Created by Josh Gebbeken and Ryan Linehan on 4/25/16.
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 

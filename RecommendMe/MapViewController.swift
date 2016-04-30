@@ -2,7 +2,7 @@
 //  MapViewController.swift
 //  RecommendMe
 //
-//  Created by Ryan Linehan on 4/12/16.
+//  Created by Josh Gebbeken and Ryan Linehan on 4/12/16.
 //  Copyright © 2016 Team Recommend. All rights reserved.
 //
 
@@ -39,7 +39,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 200
         locationManager.requestWhenInUseAuthorization()
-        var point2 = MKPointAnnotation()
+        let point2 = MKPointAnnotation()
         point2.coordinate = CLLocationCoordinate2DMake(latitude, longitutde/*insert coords of resturant*/)
         point2.title = resName
         mapView.addAnnotation(point2)
@@ -94,7 +94,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     @IBAction func navButton(sender: AnyObject) {
-        var alert=UIAlertController(title: "Open Apple Maps?", message: "Are you sure you want to go to Apple Maps?", preferredStyle: UIAlertControllerStyle.Alert);
+        let alert=UIAlertController(title: "Open Apple Maps?", message: "Are you sure you want to go to Apple Maps?", preferredStyle: UIAlertControllerStyle.Alert);
         //default input textField (no configuration...)
         //no event handler (just close dialog box)
         
