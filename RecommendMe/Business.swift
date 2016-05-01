@@ -119,12 +119,20 @@ class Business: NSObject {
             if let bizPostalCode = location!["postal_code"] as? String {
                 self.postalCode = bizPostalCode
             }
+            else {
+                self.postalCode = ""
+            }
             
         }
         
-      
+        
         
         self.address = address
+        
+        print(address)
+        print(city)
+        print(state)
+        print(postalCode)
         
         self.fullAddress = "\(address) \(city!) \(state!) \(postalCode!)"
         

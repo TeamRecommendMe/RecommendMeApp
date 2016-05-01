@@ -189,12 +189,22 @@ class AdvancedFilterViewController: UITableViewController, AdvSwitchCellDelegate
             }
         }
         
-        print("Search button is pressed func is complete!")
         
-        advDefaults.setObject(selectedCategories, forKey: "advanceDefaults")
         
-        performSegueWithIdentifier("advanceToResults", sender: self)
         
+        // Test if user picks 5 categories minimum.
+        let alertTitle = "Less than 5"
+        let message = "Choose 5 or more categories to start the search."
+        
+        if selectedCategories.count < 5 {
+            let checkCategoryAlert = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            checkCategoryAlert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(checkCategoryAlert, animated: true, completion: nil)
+        }
+        else {
+            advDefaults.setObject(selectedCategories, forKey: "advanceDefaults")
+            performSegueWithIdentifier("advanceToResults", sender: self)
+            print("Search button is pressed func is complete! Advanced Filter")        }
         
     }
     

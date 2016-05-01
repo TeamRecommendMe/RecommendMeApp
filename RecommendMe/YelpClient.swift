@@ -21,6 +21,8 @@ var latitude: Double!
 var longitude: Double!
 let coordDefaults = NSUserDefaults.standardUserDefaults()
 
+let manager = AFHTTPSessionManager()
+
 
 enum YelpSortMode: Int {
     case BestMatched = 0, Distance = 1, HighestRated
@@ -53,6 +55,8 @@ class YelpClient: BDBOAuth1SessionManager {
         super.init(baseURL: url, sessionConfiguration: configuration)
     }
     
+    // Set access tokens and access secret.
+    
     init(consumerKey key: String!, consumerSecret secret: String!, accessToken: String!, accessSecret: String!) {
         self.accessToken = accessToken
         self.accessSecret = accessSecret
@@ -71,6 +75,7 @@ class YelpClient: BDBOAuth1SessionManager {
     func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, radius_filter: Int?, completion: ([Business]!, NSError!) -> Void) -> NSURLSessionTask {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
+        // Set coordinates from user location to get nearest resturants and activities.
       
         latitude = coordDefaults.doubleForKey("latitude")
         
@@ -122,6 +127,9 @@ class YelpClient: BDBOAuth1SessionManager {
             }, failure: { (operation: NSURLSessionTask?, error: NSError!) -> Void in
                 completion(nil, error)
         })!
+
+        
+        
     }
     
     
@@ -132,7 +140,7 @@ class YelpClient: BDBOAuth1SessionManager {
         
         
         
-        // Default the location to San Francisco
+        // Default the location to Arizona State University if GPS coordinates wasn't collected.
         var parameters: [String : AnyObject] = ["term": term, "ll": "37.785771,-122.406165"]
         
         parameters["offset"] = offset
