@@ -164,7 +164,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
         var selectedFoodCategories = [[String:String]]()
         var selectedActivitiesCategories = [[String:String]]()
         var catName: String
-        var codeName: String
+        //var codeName: String
         
         //Next 3 Lines set up the alert that will pop up once "Done" is pressed
         let alert = UIAlertController(title: "Continue?", message: "Make sure these are the categories you want to exclude from searches before continuing", preferredStyle: UIAlertControllerStyle.Alert)
@@ -181,7 +181,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                 if NSIndexPath.section == 0
                 {
                     catName = foodCategories[NSIndexPath.row]["name"]!
-                    codeName = foodCategories[NSIndexPath.row]["code"]!
+                    //codeName = foodCategories[NSIndexPath.row]["code"]!
                     switch(catName){
                     case "African":
                         var africanDict = RestruantsList.africanList()
@@ -343,7 +343,7 @@ class InitialSettingsViewController: UIViewController, UITableViewDataSource, UI
                 else if NSIndexPath.section == 1
                 {
                     catName = bigActivitiesCategories[NSIndexPath.row]["name"]!
-                    codeName = bigActivitiesCategories[NSIndexPath.row]["code"]!
+                    //codeName = bigActivitiesCategories[NSIndexPath.row]["code"]!
                     switch (catName){
                         case "Attractions":
                             var attractionsDict = ActivitiesList.attractionsList()

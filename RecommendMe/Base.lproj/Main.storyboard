@@ -393,15 +393,18 @@
                                     <action selector="openBizURL:" destination="MOv-x1-27L" eventType="touchUpInside" id="MZo-Bh-zbZ"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-nb-RNY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-nb-RNY">
                                 <rect key="frame" x="36" y="72" width="248" height="165"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="248" id="Dte-VA-Iss"/>
                                     <constraint firstAttribute="height" constant="165" id="hl2-ui-vPP"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timo Wine Bar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCf-Aa-mwp">
-                                <rect key="frame" x="90" y="245" width="140" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Timo Wine Bar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCf-Aa-mwp">
+                                <rect key="frame" x="36" y="245" width="248" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="248" id="c90-Ns-AnJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

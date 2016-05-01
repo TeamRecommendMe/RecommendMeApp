@@ -198,29 +198,15 @@ class RestruantsList: NSObject {
         
     class func allFoodCategories() -> [[String:String]] {
         return [
-            ["name" : "African", "code": "african"],
+            ["name" : "Afghan", "code": "afghani"],//Middle Eastern]
             ["name" : "American, New", "code": "newamerican"],
             ["name" : "American, Traditional", "code": "tradamerican"],
-            ["name" : "Australian", "code": "australian"],
-            ["name" : "Barbeque", "code": "bbq"],
-            ["name" : "Burgers", "code": "burgers"],
-            ["name" : "Cheesesteaks", "code": "cheesesteaks"],
-            ["name" : "Chicken Wings", "code": "chicken_wings"],
-            ["name" : "Diners", "code": "diners"],
-            ["name" : "Dumplings", "code": "dumplings"],
-            ["name" : "Ethiopian", "code": "ethiopian"],
-            ["name" : "Fish & Chips", "code": "fishnchips"],//Austrialian
-            ["name" : "Hot Dogs", "code": "hotdog"],
-            ["name" : "Pizza", "code": "pizza"],
-            ["name" : "Soul Food", "code": "soulfood"],
-            ["name" : "Southern", "code": "southern"],
-            ["name" : "Steakhouses", "code": "steak"],
-            ["name" : "Tex-Mex", "code": "tex-mex"],
-            ["name" : "Afghan", "code": "afghani"],//Middle Eastern]
             ["name" : "Arabian", "code": "arabian"],//Middle Eastern
             ["name" : "Asian Fusion", "code": "asianfusion"],
             ["name" : "Asturian", "code": "asturian"],
+            ["name" : "Australian", "code": "australian"],
             ["name" : "Austrian", "code": "austrian"],
+            ["name" : "Barbeque", "code": "bbq"],
             ["name" : "Beisl", "code": "beisl"],
             ["name" : "Belgian", "code": "belgian"],//Europe
             ["name" : "Bistros", "code": "bistros"],//Other
@@ -229,6 +215,7 @@ class RestruantsList: NSObject {
             ["name" : "British", "code": "british"], //Europe
             ["name" : "Buffets", "code": "buffets"], //Other
             ["name" : "Bulgarian", "code": "bulgarian"], //Europe
+            ["name" : "Burgers", "code": "burgers"],
             ["name" : "Burmese", "code": "burmese"], //Asian
             ["name" : "Cafes", "code": "cafes"], //Breakfast
             ["name" : "Cajun/Creole", "code": "cajun"],//French? Or Other.
@@ -237,6 +224,8 @@ class RestruantsList: NSObject {
             ["name" : "Caribbean", "code": "caribbean"],//Other
             ["name" : "Catalan", "code": "catalan"], //Latin American
             ["name" : "Chech", "code": "chech"], //European
+            ["name" : "Cheesesteaks", "code": "cheesesteaks"],
+            ["name" : "Chicken Wings", "code": "chicken_wings"],
             ["name" : "Chilean", "code": "chilean"], //Latin America
             ["name" : "Chinese", "code": "chinese"], //Chinese/Asian
             ["name" : "Corsican", "code": "corsican"],
@@ -245,9 +234,13 @@ class RestruantsList: NSObject {
             ["name" : "Czech", "code": "czech"], //Europe
             ["name" : "Czech/Slovakian", "code": "czechslovakian"],//Europe
             ["name" : "Danish", "code": "danish"], //Europe
+            ["name" : "Diners", "code": "diners"],
+            ["name" : "Dumplings", "code": "dumplings"],
             ["name" : "Eastern European", "code": "eastern_european"], //European
+            ["name" : "Ethiopian", "code": "ethiopian"],
             ["name" : "Fast Food", "code": "hotdogs"],
             ["name" : "Filipino", "code": "filipino"],//Other
+            ["name" : "Fish & Chips", "code": "fishnchips"],//Austrialian
             ["name" : "Fondue", "code": "fondue"], //Deserts
             ["name" : "French Southwest", "code": "sud_ouest"],
             ["name" : "French", "code": "french"], //French/European
@@ -261,6 +254,7 @@ class RestruantsList: NSObject {
             ["name" : "Heuriger", "code": "heuriger"],//European
             ["name" : "Himalayan/Nepalese", "code": "himalayan"],//Asian
             ["name" : "Hong Kong Style Cafe", "code": "hkcafe"],
+            ["name" : "Hot Dogs", "code": "hotdog"],
             ["name" : "Hungarian", "code": "hungarian"], //European
             ["name" : "Iberian", "code": "iberian"],//Europe
             ["name" : "Indian", "code": "indpak"],//Indian
@@ -291,6 +285,7 @@ class RestruantsList: NSObject {
             ["name" : "Parent Cafes", "code": "eltern_cafes"],["name" : "Brazilian", "code": "brazilian"],//Latin American
             ["name" : "Persian/Iranian", "code": "persian"],
             ["name" : "Peruvian", "code": "peruvian"],//Latin America
+            ["name" : "Pizza", "code": "pizza"],
             ["name" : "Polish", "code": "polish"], //Europe
             ["name" : "Portuguese", "code": "portuguese"], //Latin American
             ["name" : "Poutineries", "code": "poutineries"], //Canadian
@@ -301,16 +296,19 @@ class RestruantsList: NSObject {
             ["name" : "Scandinavian", "code": "scandinavian"],//European
             ["name" : "Scottish", "code": "scottish"],//European
             ["name" : "Seafood", "code": "seafood"],
+            ["name" : "Soul Food", "code": "soulfood"],
+            ["name" : "Southern", "code": "southern"],
             ["name" : "Spanish", "code": "spanish"],
+            ["name" : "Steakhouses", "code": "steak"],
             ["name" : "Sushi Bars", "code": "sushi"],
             ["name" : "Swiss Food", "code": "swissfood"],//European
+            ["name" : "Tex-Mex", "code": "tex-mex"],
             ["name" : "Thai", "code": "thai"],
             ["name" : "Turkish", "code": "turkish"],//European
             ["name" : "Vegan", "code": "vegan"], //Healthy
             ["name" : "Vegetarian", "code": "vegetarian"],
             ["name" : "Vietnamese", "code": "vietnamese"],
             ["name" : "Yugoslav", "code": "yugoslav"]]//European
-
     }
     
     
